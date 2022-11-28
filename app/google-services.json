@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "567977986102",
+    "project_id": "sadness-learn-73434",
+    "storage_bucket": "sadness-learn-73434.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567977986102:android:ecb8c0c1b6258ced8e3097",
+        "android_client_info": {
+          "package_name": "com.example.sadnesslearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "567977986102-8k0fdrutc3umtrm6apqd2t6vte9sfkpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDrmVrVzkHEF8G6bW2zOxxKXDEIGSXEPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "567977986102-8k0fdrutc3umtrm6apqd2t6vte9sfkpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

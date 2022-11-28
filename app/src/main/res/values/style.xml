@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@color/primary</item>
+        <item name="fontFamily">@font/comicsansms</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DownUpActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/left_out</item>
+        <item name="android:activityOpenExitAnimation">@anim/right_in</item>
+
+    </style>
+</resources>

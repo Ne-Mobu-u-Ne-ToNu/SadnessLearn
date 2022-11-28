@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Sadness Learn</string>
+    <string name="authors">by SadnessMood</string>
+    <string name="authorization">Авторизация</string>
+    <string name="auth_options">Войдите или зарегестрируйтесь</string>
+    <string name="sign_in">Вход</string>
+    <string name="register">Регистрация</string>
+    <string name="reg_text_info">Зарегестрируйтесь, чтобы пользоваться приложением и следить за прогрессом</string>
+    <string name="email_hint">e-mail: example@mail.com</string>
+    <string name="name_hint">Username:</string>
+    <string name="password_hint">Password:</string>
+    <string name="password_conf_hint">Confirm Password:</string>
+    <string name="sign_in_text_info">Для продолжения войдите в аккаунт</string>
+    <string name="reset_password">Сбросить пароль</string>
+    <string name="reset_password_info">Для сброса пароля введите адрес электронной почты, указанный при регистрации. На него вам будет отправлено письмо с инструкцией</string>
+    <string name="forgot_password"><u>Забыли пароль?</u></string>
+    <string name="password_length">Длина пароля минимум 6 символов</string>
+    <string name="btn_back_description">Назад</string>
+</resources>
