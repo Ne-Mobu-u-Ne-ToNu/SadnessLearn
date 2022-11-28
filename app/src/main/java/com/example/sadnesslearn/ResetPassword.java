@@ -55,7 +55,7 @@ public class ResetPassword extends AppCompatActivity {
             throw new NullPointerException("Заполните поле!");
         }
 
-        if(emailValidator(email_s)){
+        if(auth_Methods.emailValidator(email_s, this)){
             mAuth.sendPasswordResetEmail(email_s)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
