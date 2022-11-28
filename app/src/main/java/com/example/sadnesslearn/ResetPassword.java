@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class ResetPassword extends AppCompatActivity {
     private UserAuthentification auth_Methods;
     private FirebaseAuth mAuth;
-    private FirebaseUser user;
     private EditText email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
