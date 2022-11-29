@@ -1,6 +1,7 @@
 package com.example.sadnesslearn;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class SignIn extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -18,6 +22,10 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        Toolbar tlb_sign_in = findViewById(R.id.tlb_sign_in);
+        setSupportActionBar(tlb_sign_in);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -29,7 +37,6 @@ public class SignIn extends AppCompatActivity {
         tv_reset_password.setOnClickListener(view -> {
             startActivity(new Intent(SignIn.this, ResetPassword.class));
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
-            finish();
         });
 
         Button btn_sign_in = findViewById(R.id.btn_s_sign_in);

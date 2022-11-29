@@ -16,4 +16,6 @@
     <string name="forgot_password"><u>Забыли пароль?</u></string>
     <string name="password_length">Длина пароля минимум 6 символов</string>
     <string name="btn_back_description">Назад</string>
+    <string name="sandbox">Песочница</string>
+    <string name="exit">Выход</string>
 </resources>

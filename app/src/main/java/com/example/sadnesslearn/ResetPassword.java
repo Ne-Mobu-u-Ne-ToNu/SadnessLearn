@@ -1,6 +1,7 @@
 package com.example.sadnesslearn;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import com.example.sadnesslearn.classes.UserAuthentification;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class ResetPassword extends AppCompatActivity {
     private UserAuthentification auth_Methods;
     private FirebaseAuth mAuth;
@@ -22,6 +25,10 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
         auth_Methods = new UserAuthentification();
+
+        Toolbar tlb_reset_password = findViewById(R.id.tlb_reset_password);
+        setSupportActionBar(tlb_reset_password);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
 

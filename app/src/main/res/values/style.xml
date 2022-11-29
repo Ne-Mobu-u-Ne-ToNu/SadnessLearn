@@ -15,4 +15,5 @@
         <item name="android:activityOpenExitAnimation">@anim/right_in</item>
 
     </style>
+
 </resources>

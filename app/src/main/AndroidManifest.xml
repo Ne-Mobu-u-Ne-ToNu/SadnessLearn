@@ -10,17 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SadnessLearn">
         <activity
+            android:name=".Sandbox"
+            android:exported="true"
+            android:parentActivityName=".MainPage"/>
+        <activity
             android:name=".ResetPassword"
-            android:exported="false" />
+            android:exported="true"
+            android:parentActivityName=".SignIn" />
         <activity
             android:name=".SignIn"
-            android:exported="false" />
+            android:exported="true"
+            android:parentActivityName=".Authentification" />
         <activity
             android:name=".MainPage"
             android:exported="false" />
         <activity
             android:name=".Registration"
-            android:exported="false" />
+            android:exported="true"
+            android:parentActivityName=".Authentification" />
         <activity
             android:name=".Authentification"
             android:exported="true">

@@ -1,6 +1,7 @@
 package com.example.sadnesslearn;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import android.content.Intent;
@@ -18,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import java.util.Objects;
+
 public class Registration extends AppCompatActivity {
     private UserAuthentification auth_Methods;
     private FirebaseAuth mAuth;
@@ -29,6 +32,9 @@ public class Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        Toolbar tlb_registration = findViewById(R.id.tlb_registration);
+        setSupportActionBar(tlb_registration);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         auth_Methods = new UserAuthentification();
 
         mAuth = FirebaseAuth.getInstance();
