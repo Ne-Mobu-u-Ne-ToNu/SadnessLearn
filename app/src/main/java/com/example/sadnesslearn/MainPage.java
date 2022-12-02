@@ -9,7 +9,6 @@ import android.widget.Button;
 import com.example.sadnesslearn.classes.UserAuthentification;
 
 public class MainPage extends AppCompatActivity {
-    private UserAuthentification authMethods;
     private Button btn_sandBox, btn_exit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +23,15 @@ public class MainPage extends AppCompatActivity {
 
         btn_exit = findViewById(R.id.btn_main_exit);
         btn_exit.setOnClickListener(view -> {
-            authMethods = new UserAuthentification();
-            authMethods.signOut();
+            UserAuthentification.signOut();
+            checkAuthAndRedirect();
         });
+    }
+
+    private void checkAuthAndRedirect(){
+        if (!UserAuthentification.isSignedIn()){
+            startActivity(new Intent(MainPage.this, Authentification.class));
+            finish();
+        }
     }
 }

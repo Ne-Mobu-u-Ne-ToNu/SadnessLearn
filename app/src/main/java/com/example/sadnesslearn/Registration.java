@@ -22,7 +22,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import java.util.Objects;
 
 public class Registration extends AppCompatActivity {
-    private UserAuthentification auth_Methods;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private EditText email, name, password, password_conf;
@@ -35,8 +34,6 @@ public class Registration extends AppCompatActivity {
         Toolbar tlb_registration = findViewById(R.id.tlb_registration);
         setSupportActionBar(tlb_registration);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        auth_Methods = new UserAuthentification();
-
         mAuth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.edTex_reg_email);
@@ -70,7 +67,7 @@ public class Registration extends AppCompatActivity {
             throw new NullPointerException("Заполните все поля!");
         }
         if (password_s.length() >= 6 && password_s.equals(password_conf_s)
-                && auth_Methods.emailValidator(email_s, this)){
+                && UserAuthentification.emailValidator(email_s, this)){
             mAuth.createUserWithEmailAndPassword(email_s, password_s)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {

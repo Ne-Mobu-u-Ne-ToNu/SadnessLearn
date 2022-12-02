@@ -17,14 +17,12 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 
 public class ResetPassword extends AppCompatActivity {
-    private UserAuthentification auth_Methods;
     private FirebaseAuth mAuth;
     private EditText email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
-        auth_Methods = new UserAuthentification();
 
         Toolbar tlb_reset_password = findViewById(R.id.tlb_reset_password);
         setSupportActionBar(tlb_reset_password);
@@ -61,7 +59,7 @@ public class ResetPassword extends AppCompatActivity {
             throw new NullPointerException("Заполните поле!");
         }
 
-        if(auth_Methods.emailValidator(email_s, this)){
+        if(UserAuthentification.emailValidator(email_s, this)){
             mAuth.sendPasswordResetEmail(email_s)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {

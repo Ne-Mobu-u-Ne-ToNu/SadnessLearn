@@ -13,15 +13,15 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UserAuthentification {
-    private FirebaseAuth mAuth;
+    private static FirebaseAuth mAuth;
 
-    public boolean isSignedIn(){
+    public static boolean isSignedIn(){
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         return currentUser != null;
     }
 
-    public boolean emailValidator(String email, Activity currentActivity){
+    public static boolean emailValidator(String email, Activity currentActivity){
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             Toast.makeText(currentActivity, "Введите правильный email!", Toast.LENGTH_SHORT).show();
             return false;
@@ -31,7 +31,7 @@ public class UserAuthentification {
         }
     }
 
-    public void signOut(){
+    public static void signOut(){
         mAuth = FirebaseAuth.getInstance();
         mAuth.signOut();
     }

@@ -9,12 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sadnesslearn.classes.UserAuthentification;
 
 public class Authentification extends AppCompatActivity {
-    private UserAuthentification auth_Method;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentification);
-        auth_Method = new UserAuthentification();
 
         Button btn_register = findViewById(R.id.btn_auth_register);
         Button btn_sign_in = findViewById(R.id.btn_auth_sign_in);
@@ -36,7 +34,7 @@ public class Authentification extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        if(auth_Method.isSignedIn()){
+        if(UserAuthentification.isSignedIn()){
             startActivity(new Intent(this, MainPage.class));
         }
     }
