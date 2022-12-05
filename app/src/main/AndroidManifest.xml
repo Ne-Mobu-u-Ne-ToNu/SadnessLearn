@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SadnessLearn">
         <activity
+            android:name=".CodeRunResult"
+            android:exported="true"
+            android:parentActivityName=".Sandbox"/>
+        <activity
             android:name=".Sandbox"
             android:exported="true"
-            android:parentActivityName=".MainPage"/>
+            android:parentActivityName=".MainPage" />
         <activity
             android:name=".ResetPassword"
             android:exported="true"

@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_authentification.xml" value="0.16" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_code_run_result.xml" value="0.1265625" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_main_page.xml" value="0.1265625" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_registration.xml" value="0.1265625" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_reset_password.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_sandbox.xml" value="0.1265625" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_sandbox.xml" value="0.1" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/list_item_suggestion.xml" value="0.22826086956521738" />
       </map>

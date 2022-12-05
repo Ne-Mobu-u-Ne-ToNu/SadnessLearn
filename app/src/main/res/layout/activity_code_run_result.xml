@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tlb_code_run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="50dp"
+        app:title="@string/btn_back_description"
+        />
+
+    <RelativeLayout
+        android:id="@+id/relLay_run_code"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Sandbox">
+
+        <TextView
+            android:id="@+id/tv_run_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:fontFamily="@font/comicsansms"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+</LinearLayout>
