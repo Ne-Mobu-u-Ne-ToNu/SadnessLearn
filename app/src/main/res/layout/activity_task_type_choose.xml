@@ -6,19 +6,19 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tlb_main_page"
+        android:id="@+id/tlb_choose_task_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="50dp"
-        app:title="@string/app_name"
+        app:title="@string/task_types"
         />
 
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainPage">
+        tools:context=".TaskTypeChoose">
 
         <LinearLayout
             android:id="@+id/lin_lay_main_nav"
@@ -30,42 +30,18 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_main_plot"
+                android:id="@+id/btn_choose_task_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/plot"
+                android:text="@string/code_task"
                 style="@style/ButtonStyle" />
 
             <Button
-                android:id="@+id/btn_main_tasks"
+                android:id="@+id/btn_choose_task_block"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tasks"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn_main_settings"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/settings"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn_main_sandbox"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sandbox"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn_main_exit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/exit"
+                android:text="@string/block_task"
                 style="@style/ButtonStyle" />
 
         </LinearLayout>

@@ -35,7 +35,9 @@ public class Authentification extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         if(UserAuthentification.isSignedIn()){
-            startActivity(new Intent(this, MainPage.class));
+            if(UserAuthentification.isVerified(this)){
+                startActivity(new Intent(this, MainPage.class));
+            }
         }
     }
 }

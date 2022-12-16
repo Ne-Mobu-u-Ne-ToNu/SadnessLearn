@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sadnesslearn.classes.UserAuthentification;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -63,10 +64,12 @@ public class SignIn extends AppCompatActivity {
                 .addOnCompleteListener(SignIn.this, task -> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
-                        Toast.makeText(SignIn.this, "Вход выполнен!",
-                                Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SignIn.this, Authentification.class));
-                        finish();
+                        if(UserAuthentification.isVerified(this)){
+                            Toast.makeText(SignIn.this, "Вход выполнен!",
+                                    Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignIn.this, Authentification.class));
+                            finish();
+                        }
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(SignIn.this, "Неверный email или пароль!",

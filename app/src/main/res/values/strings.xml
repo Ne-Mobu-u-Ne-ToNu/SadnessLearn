@@ -19,6 +19,13 @@
     <string name="sandbox">Песочница</string>
     <string name="exit">Выход</string>
     <string name="description_run">Run code</string>
+    <string name="settings">Настройки</string>
+    <string name="tasks">Задачи</string>
+    <string name="plot">Сюжет</string>
+    <string name="task_types">Типы задач</string>
+    <string name="code_task">Код</string>
+    <string name="block_task">Блоки</string>
+    <string name="solving">Решение</string>
 
     <string-array name="java_keywords">
         <item>abstract</item>

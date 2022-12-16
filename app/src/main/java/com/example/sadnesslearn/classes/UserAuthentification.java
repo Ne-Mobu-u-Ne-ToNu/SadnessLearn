@@ -21,6 +21,18 @@ public class UserAuthentification {
         return currentUser != null;
     }
 
+    public static boolean isVerified(Activity currentActivity){
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        assert currentUser != null;
+        if(!currentUser.isEmailVerified()){
+            Toast.makeText(currentActivity, "Подтверите ваш email!", Toast.LENGTH_SHORT).show();
+            signOut();
+            return false;
+        }
+        return true;
+    }
+
     public static boolean emailValidator(String email, Activity currentActivity){
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             Toast.makeText(currentActivity, "Введите правильный email!", Toast.LENGTH_SHORT).show();

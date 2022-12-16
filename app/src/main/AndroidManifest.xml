@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sadnesslearn">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SadnessLearn">
         <activity
+            android:name=".SolveCodeTask"
+            android:exported="true"
+            android:parentActivityName=".TaskList"/>
+        <activity
+            android:name=".TaskTypeChoose"
+            android:exported="true"
+            android:parentActivityName=".MainPage" />
+        <activity
+            android:name=".TaskList"
+            android:exported="true"
+            android:parentActivityName=".TaskTypeChoose" />
+        <activity
             android:name=".CodeRunResult"
             android:exported="true"
-            android:parentActivityName=".Sandbox"/>
+            android:parentActivityName=".Sandbox" />
         <activity
             android:name=".Sandbox"
             android:exported="true"

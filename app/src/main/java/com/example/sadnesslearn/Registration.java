@@ -27,10 +27,27 @@ public class Registration extends AppCompatActivity {
     private EditText email, name, password, password_conf;
     private TextView tv_match_passw;
     private int text_color;
+    private Button btn_register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        init();
+
+        confirmationPassword();
+
+        btn_register.setOnClickListener(view -> {
+            try {
+                register();
+                redirectIfVerified();
+            } catch (NullPointerException e){
+                Toast.makeText(Registration.this, e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void init(){
         Toolbar tlb_registration = findViewById(R.id.tlb_registration);
         setSupportActionBar(tlb_registration);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -40,20 +57,9 @@ public class Registration extends AppCompatActivity {
         name = findViewById(R.id.edTex_reg_name);
         password = findViewById(R.id.edTex_reg_password);
         password_conf = findViewById(R.id.edTex_reg_confPassword);
-        Button btn_register = findViewById(R.id.btn_reg_register);
+        btn_register = findViewById(R.id.btn_reg_register);
         tv_match_passw = findViewById(R.id.tv_reg_match_passwords);
         text_color = tv_match_passw.getCurrentTextColor();
-
-        confirmationPassword();
-
-        btn_register.setOnClickListener(view -> {
-            try {
-                register();
-            } catch (NullPointerException e){
-                Toast.makeText(Registration.this, e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void register(){
@@ -72,8 +78,6 @@ public class Registration extends AppCompatActivity {
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(Registration.this, "Регистрация прошла успешно!",
-                                    Toast.LENGTH_SHORT).show();
                             user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(name_s).build();
@@ -86,9 +90,6 @@ public class Registration extends AppCompatActivity {
                             }
                             assert user != null;
                             user.sendEmailVerification();
-                            startActivity(new Intent(Registration.this, Authentification.class));
-                            overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(Registration.this, "Такой пользователь уже сушествует!",
@@ -154,6 +155,21 @@ public class Registration extends AppCompatActivity {
         else if(password_s.length() == 0){
             tv_match_passw.setTextColor(text_color);
             tv_match_passw.setText("Длина пароля минимум 6 символов");
+        }
+    }
+
+    private void redirectIfVerified(){
+        if(UserAuthentification.isSignedIn()){
+            if(UserAuthentification.isVerified(this)){
+                Toast.makeText(Registration.this, "Регистрация прошла успешно!",
+                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, MainPage.class));
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                finish();
+            } else {
+                startActivity(new Intent(this, Authentification.class));
+                finish();
+            }
         }
     }
 }
