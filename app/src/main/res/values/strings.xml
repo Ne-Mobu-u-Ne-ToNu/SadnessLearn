@@ -26,6 +26,7 @@
     <string name="code_task">Код</string>
     <string name="block_task">Блоки</string>
     <string name="solving">Решение</string>
+    <string name="task">Задача</string>
 
     <string-array name="java_keywords">
         <item>abstract</item>
@@ -79,4 +80,6 @@
         <item>volatile</item>
         <item>while</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

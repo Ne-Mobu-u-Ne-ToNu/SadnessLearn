@@ -1,0 +1,52 @@
+package com.example.sadnesslearn.solveCodeFragments;
+
+import android.os.Build;
+import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.amrdeveloper.codeview.CodeView;
+import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.JavaCompilerApi;
+import com.example.sadnesslearn.classes.JavaSyntaxManager;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+public class TaskSolve extends Fragment {
+    private String task_code;
+
+    public TaskSolve(String task_code){
+        this.task_code = task_code;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_task_solve, container, false);
+
+        TextView tv_result = view.findViewById(R.id.tv_result);
+
+        CodeView cv_code = view.findViewById(R.id.cv_code_task_solve);
+        JavaSyntaxManager.applyJavaCodeTheme(this.getContext(), cv_code);
+        cv_code.setText(task_code);
+
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(view.findViewById(R.id.bottom_sheet_layout));
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+        FloatingActionButton fab_run = view.findViewById(R.id.fab_code_task_solve_run);
+        fab_run.setOnClickListener(view1 -> {
+            task_code = cv_code.getText().toString();
+            tv_result.setText(JavaCompilerApi.compileAndRun(task_code));
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        });
+
+        return view;
+    }
+}

@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class Sandbox extends AppCompatActivity {
     private static String initCode = "public class Main {\n" +
-            "    public static void main(String[] args) {}\n}";
+            "    public static void main(String[] args) {\n        \n    }\n}";
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
