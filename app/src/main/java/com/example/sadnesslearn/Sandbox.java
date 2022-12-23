@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.amrdeveloper.codeview.CodeView;
 import com.example.sadnesslearn.classes.JavaCompilerApi;
 import com.example.sadnesslearn.classes.JavaSyntaxManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.Objects;
 
 public class Sandbox extends AppCompatActivity {
@@ -33,8 +35,8 @@ public class Sandbox extends AppCompatActivity {
         code.setText(initCode);
         JavaSyntaxManager.applyJavaCodeTheme(this, code);
 
-        ImageButton ib_sanbox_run = findViewById(R.id.ib_sanbox_run);
-        ib_sanbox_run.setOnClickListener(view -> {
+        FloatingActionButton fab_sanbox_run = findViewById(R.id.fab_sanbox_run);
+        fab_sanbox_run.setOnClickListener(view -> {
             String codeToRun = code.getText().toString();
             initCode = codeToRun;
             try {

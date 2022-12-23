@@ -20,9 +20,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TaskSolve extends Fragment {
     private String task_code;
+    private final String task_test;
+    private final String SOLVED = "Задание выполнено!";
 
-    public TaskSolve(String task_code){
+    public TaskSolve(String task_code, String task_test){
         this.task_code = task_code;
+        this.task_test = task_test;
     }
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -42,7 +45,8 @@ public class TaskSolve extends Fragment {
 
         FloatingActionButton fab_run = view.findViewById(R.id.fab_code_task_solve_run);
         fab_run.setOnClickListener(view1 -> {
-            task_code = cv_code.getText().toString();
+            String buf = cv_code.getText().toString();
+            task_code = buf.substring(0, buf.lastIndexOf('}')) + task_test;
             tv_result.setText(JavaCompilerApi.compileAndRun(task_code));
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         });

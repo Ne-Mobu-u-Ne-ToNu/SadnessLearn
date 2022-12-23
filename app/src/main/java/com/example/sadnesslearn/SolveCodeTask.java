@@ -22,7 +22,7 @@ public class SolveCodeTask extends AppCompatActivity {
     private TabLayout tl_solve_code_task;
     private ViewPager2 vp2_solve_code_task;
     private SolveCodeAdapter sca;
-    private String task_text, task_code;
+    private String task_text, task_code, task_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,8 @@ public class SolveCodeTask extends AppCompatActivity {
         task_text = getIntent().getStringExtra("task_text");
         task_code = getIntent().getStringExtra("task_code");
         task_code = task_code.replace("\\n", "\n");
-        sca = new SolveCodeAdapter(this, task_text, task_code);
+        task_test = getIntent().getStringExtra("task_test");
+        sca = new SolveCodeAdapter(this, task_text, task_code, task_test);
         vp2_solve_code_task.setAdapter(sca);
     }
 

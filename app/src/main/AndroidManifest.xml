@@ -12,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SadnessLearn">
         <activity
+            android:name=".ComicsActivity"
+            android:exported="true"
+            android:parentActivityName=".MainPage"/>
+        <activity
             android:name=".SolveCodeTask"
             android:exported="true"
-            android:parentActivityName=".TaskList"/>
+            android:parentActivityName=".TaskList" />
         <activity
             android:name=".TaskTypeChoose"
             android:exported="true"

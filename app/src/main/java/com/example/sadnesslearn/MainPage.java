@@ -15,6 +15,12 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
+        Button btn_plot = findViewById(R.id.btn_main_plot);
+        btn_plot.setOnClickListener(view -> {
+            startActivity(new Intent(MainPage.this, ComicsActivity.class));
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        });
+
         Button btn_tasks = findViewById(R.id.btn_main_tasks);
         btn_tasks.setOnClickListener(view -> {
             startActivity(new Intent(MainPage.this, TaskTypeChoose.class));

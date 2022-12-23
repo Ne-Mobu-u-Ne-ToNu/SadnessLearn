@@ -6,12 +6,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.sadnesslearn.classes.CodeTask;
+import com.example.sadnesslearn.classes.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,16 +18,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class TaskList extends AppCompatActivity {
     private ListView listTasks;
     private List<String> listData;
-    private List<CodeTask> arrayListTasks;
+    private Map<Integer, CodeTask> mapListTask;
     private ArrayAdapter<String> adapter;
     private DatabaseReference mDataBase;
-    private final String TASK_KEY = "CodeTask";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,19 +37,18 @@ public class TaskList extends AppCompatActivity {
         init();
         getDataFromDB();
 
-        listTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CodeTask task = arrayListTasks.get(i);
-                Intent intent = new Intent(TaskList.this, SolveCodeTask.class);
-                intent.putExtra("task_id", task.getId());
-                intent.putExtra("task_name", task.getName());
-                intent.putExtra("task_number", task.getNumber());
-                intent.putExtra("task_text", task.getText());
-                intent.putExtra("task_code", task.getCode());
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_in, R.anim.left_out);
-            }
+        listTasks.setOnItemClickListener((adapterView, view, i, l) -> {
+            CodeTask task = mapListTask.get(i);
+            Intent intent = new Intent(TaskList.this, SolveCodeTask.class);
+            assert task != null;
+            intent.putExtra("task_id", task.getId());
+            intent.putExtra("task_name", task.getName());
+            intent.putExtra("task_number", task.getNumber());
+            intent.putExtra("task_text", task.getText());
+            intent.putExtra("task_code", task.getCode());
+            intent.putExtra("task_test", task.getTest());
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
     }
 
@@ -60,22 +60,21 @@ public class TaskList extends AppCompatActivity {
         listData = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         listTasks.setAdapter(adapter);
-        mDataBase = FirebaseDatabase.getInstance().getReference(TASK_KEY);
-        arrayListTasks = new ArrayList<>();
+        mDataBase = FirebaseDatabase.getInstance().getReference(Constants.TASK_KEY);
+        mapListTask = new HashMap<>();
     }
 
     private void getDataFromDB(){
         ValueEventListener vListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(listData.size() > 0) listData.clear();
-                if(arrayListTasks.size() > 0) arrayListTasks.clear();
+                if(mapListTask.size() > 0) mapListTask.clear();
                 for(DataSnapshot ds : snapshot.getChildren()){
                     CodeTask task =  ds.getValue(CodeTask.class);
                     assert task != null;
-                    listData.add(task.getName());
-                    arrayListTasks.add(task);
+                    mapListTask.put(task.getNumber() - 1, task);
                 }
+                updateTaskList();
                 adapter.notifyDataSetChanged();
             }
 
@@ -85,5 +84,12 @@ public class TaskList extends AppCompatActivity {
             }
         };
         mDataBase.addValueEventListener(vListener);
+    }
+
+    private void updateTaskList(){
+        if(listData.size() > 0) listData.clear();
+        for(int i = 0; i < mapListTask.size(); i++){
+            listData.add(Objects.requireNonNull(mapListTask.get(i)).getName());
+        }
     }
 }

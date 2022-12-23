@@ -40,14 +40,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_result"
-                android:background="@color/grey"
-                android:textColor="@color/mainCode"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/comicsansms"
-                android:textSize="20sp" />
+                android:scrollbars="vertical"
+                android:fillViewport="true">
+
+                <TextView
+                    android:id="@+id/tv_result"
+                    android:background="@color/grey"
+                    android:textColor="@color/mainCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/comicsansms"
+                    android:textSize="20sp" />
+
+            </ScrollView>
 
         </RelativeLayout>
 </LinearLayout>
