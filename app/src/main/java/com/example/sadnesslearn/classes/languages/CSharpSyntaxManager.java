@@ -2,10 +2,16 @@ package com.example.sadnesslearn.classes.languages;
 
 import android.content.Context;
 import android.os.Build;
+
 import androidx.annotation.RequiresApi;
+
 import com.amrdeveloper.codeview.Code;
-import com.amrdeveloper.codeview.*;
+import com.amrdeveloper.codeview.CodeView;
+import com.amrdeveloper.codeview.CodeViewAdapter;
+import com.amrdeveloper.codeview.Keyword;
+import com.amrdeveloper.codeview.Snippet;
 import com.example.sadnesslearn.R;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,15 +20,25 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class JavaSyntaxManager implements SyntaxManager {
+public class CSharpSyntaxManager implements SyntaxManager {
     //Language Keywords
     private static final Pattern PATTERN_KEYWORDS =
-            Pattern.compile("\\b(abstract|assert|boolean|break|byte|case|" +
-                    "catch|char|class|const|continue|default|do|double|else|" +
-                    "enum|extends|final|finally|float|for|goto|if|implements|" +
-                    "import|instanceof|int|interface|long|native|new|package|" +
-                    "private|protected|public|return|short|static|strictfp|super|" +
-                    "switch|synchronized|this|throw|throws|transient|try|void|volatile|while)\\b");
+            Pattern.compile("\\b(abstract|as|base|bool|break|" +
+                    "byte|case|catch|char|checked|" +
+                    "class|const|continue|decimal|default|" +
+                    "delegate|do|double|else|enum|" +
+                    "event|explicit|extern|false|finally|" +
+                    "fixed|float|for|foreach|goto|" +
+                    "if|implicit|in|int|interface|" +
+                    "internal|is|lock|long|namespace|" +
+                    "new|null|object|operator|out|" +
+                    "override|params|private|protected|public|" +
+                    "readonly|ref|return|sbyte|sealed|" +
+                    "short|sizeof|stackalloc|static|string|" +
+                    "struct|switch|this|throw|true|" +
+                    "try|typeof|uint|ulong|unchecked|" +
+                    "unsafe|ushort|using|var|virtual|" +
+                    "void|volatile|while)\\b");
 
     //Brackets and Colons
     private static final Pattern PATTERN_BUILTINS = Pattern.compile("\\,|\\:|\\;|\\(|\\)|(-(?=>)>)|\\{|\\}|\\[|\\]");
@@ -61,39 +77,34 @@ public class JavaSyntaxManager implements SyntaxManager {
 
         packageTitle = "Main Method";
         packagePrefix = "main";
-        packageBody = "public static void main(String[] args) {}";
+        packageBody = "static void Main() {}";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         packageTitle = "Switch Case";
         packagePrefix = "switch";
-        packageBody = "switch (variable) {\n" +
+        packageBody = "switch (variable)\n{\n" +
                 "    case value:\n" +
                 "        break;\n" +
                 "    default:\n" +
-                "        break;}";
+                "        break;\n}";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         packageTitle = "Try Catch";
         packagePrefix = "try";
-        packageBody = "try {\n" +
+        packageBody = "try \n{\n" +
                 "    \n" +
                 "}\n" +
                 "catch (Exception e) {}";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "System.out.print()";
-        packagePrefix = "sout";
-        packageBody = "System.out.print();";
+        packageTitle = "Console.Write()";
+        packagePrefix = "write";
+        packageBody = "Console.Write();";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "System.out.println()";
-        packagePrefix = "soutln";
-        packageBody = "System.out.println();";
-        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
-
-        packageTitle = "System.out.printf()";
-        packagePrefix = "soutf";
-        packageBody = "System.out.printf();";
+        packageTitle = "Console.WriteLine()";
+        packagePrefix = "writeln";
+        packageBody = "Console.WriteLine();";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         CodeViewAdapter codeAdapter = new CodeViewAdapter(context, R.layout.list_item_suggestion,
@@ -103,7 +114,7 @@ public class JavaSyntaxManager implements SyntaxManager {
 
     //Array of keywords
     private static String[] getKeywords(Context context){
-        return context.getResources().getStringArray(R.array.java_keywords);
+        return context.getResources().getStringArray(R.array.CSharpKeywords);
     }
 
     //Adds keywords to a list
@@ -134,7 +145,7 @@ public class JavaSyntaxManager implements SyntaxManager {
     private static void applyPatterns(Context context, CodeView code){
         code.setUpdateDelayTime(100);
         code.setTextColor(context.getResources().getColor(R.color.mainCode));
-        code.addSyntaxPattern(PATTERN_KEYWORDS, context.getResources().getColor(R.color.keyWordsOrange));
+        code.addSyntaxPattern(PATTERN_KEYWORDS, context.getResources().getColor(R.color.keyWordsBlue));
         code.addSyntaxPattern(PATTERN_NUMBERS, context.getResources().getColor(R.color.numbersCode));
         code.addSyntaxPattern(PATTERN_CHAR, context.getResources().getColor(R.color.stringCode));
         code.addSyntaxPattern(PATTERN_STRING, context.getResources().getColor(R.color.stringCode));
@@ -155,7 +166,7 @@ public class JavaSyntaxManager implements SyntaxManager {
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
-    public void applyCodeTheme(Context context, CodeView code){
+    public void applyCodeTheme(Context context, CodeView code) {
         applyOtherFeatures(context, code);
         applyPatterns(context, code);
         addPairs(code);
@@ -164,15 +175,20 @@ public class JavaSyntaxManager implements SyntaxManager {
     }
 
     @Override
-    public String getInitCode(){
-        //initial code
-        return "public class Main {\n" +
-                    "    public static void main(String[] args) {\n        \n    }\n}";
+    public String getInitCode() {
+        return "using System;\n" +
+                "\n" +
+                "class Program\n" +
+                "{\n" +
+                "    static void Main() {\n" +
+                "        \n" +
+                "    }\n" +
+                "}";
     }
 
     @Override
     public String getLanguage(){
-        return "java";
+        return "csharp";
     }
 
     @Override

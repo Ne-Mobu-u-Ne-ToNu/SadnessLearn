@@ -7,19 +7,23 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.example.sadnesslearn.R;
-import com.example.sadnesslearn.classes.languages.JavaCompilerApi;
+import com.example.sadnesslearn.classes.Constants;
+import com.example.sadnesslearn.classes.languages.CSharpSyntaxManager;
+import com.example.sadnesslearn.classes.languages.CompilerApi;
 import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
+import com.example.sadnesslearn.classes.languages.SyntaxManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
 public class Sandbox extends AppCompatActivity {
-    private static String initCode = "public class Main {\n" +
-            "    public static void main(String[] args) {\n        \n    }\n}";
+    private SyntaxManager syntaxManager;
+    private static String initCode, language, versionIndex, lang;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -31,9 +35,17 @@ public class Sandbox extends AppCompatActivity {
         setSupportActionBar(tlb_sandBox);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        if(getIntent().getStringExtra("language") != null)
+            lang = getIntent().getStringExtra("language");
+
+        initLang(lang);
+
+
+        initCode = syntaxManager.getInitCode();
+
         CodeView code = findViewById(R.id.cv_sandbox);
         code.setText(initCode);
-        JavaSyntaxManager.applyJavaCodeTheme(this, code);
+        syntaxManager.applyCodeTheme(this, code);
 
         FloatingActionButton fab_sanbox_run = findViewById(R.id.fab_sanbox_run);
         fab_sanbox_run.setOnClickListener(view -> {
@@ -42,7 +54,7 @@ public class Sandbox extends AppCompatActivity {
             try {
                 if(codeToRun.length() != 0){
                     Intent intent = new Intent(Sandbox.this, CodeRunResult.class);
-                    String result = JavaCompilerApi.compileAndRun(codeToRun);
+                    String result = CompilerApi.compileAndRun(codeToRun, language, versionIndex);
                     intent.putExtra("result", result);
                     startActivity(intent);
                     overridePendingTransition(R.anim.right_in, R.anim.left_out);
@@ -53,5 +65,17 @@ public class Sandbox extends AppCompatActivity {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void initLang(String lang) {
+        switch (lang) {
+            case "Java":
+                syntaxManager = new JavaSyntaxManager();
+                break;
+            case "C#":
+                syntaxManager = new CSharpSyntaxManager();
+        }
+        language = syntaxManager.getLanguage();
+        versionIndex = syntaxManager.getVersionIndex();
     }
 }

@@ -29,6 +29,11 @@
     <string name="task">Задача</string>
     <string name="item">Item</string>
 
+    <string-array name="languages">
+        <item>Java</item>
+        <item>C#</item>
+    </string-array>
+
     <string-array name="java_keywords">
         <item>abstract</item>
         <item>assert</item>
@@ -81,6 +86,85 @@
         <item>volatile</item>
         <item>while</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="CSharpKeywords">
+        <item>abstract</item>
+        <item>as</item>
+        <item>base</item>
+        <item>bool</item>
+        <item>break</item>
+        <item>byte</item>
+        <item>case</item>
+        <item>catch</item>
+        <item>char</item>
+        <item>checked</item>
+        <item>class</item>
+        <item>const</item>
+        <item>continue</item>
+        <item>decimal</item>
+        <item>default</item>
+        <item>delegate</item>
+        <item>do</item>
+        <item>double</item>
+        <item>else</item>
+        <item>enum</item>
+        <item>event</item>
+        <item>explicit</item>
+        <item>extern</item>
+        <item>false</item>
+        <item>finally</item>
+        <item>fixed</item>
+        <item>float</item>
+        <item>for</item>
+        <item>foreach</item>
+        <item>goto</item>
+        <item>if</item>
+        <item>implicit</item>
+        <item>in</item>
+        <item>int</item>
+        <item>interface</item>
+        <item>internal</item>
+        <item>is</item>
+        <item>lock</item>
+        <item>long</item>
+        <item>namespace</item>
+        <item>new</item>
+        <item>null</item>
+        <item>object</item>
+        <item>operator</item>
+        <item>out</item>
+        <item>override</item>
+        <item>params</item>
+        <item>private</item>
+        <item>protected</item>
+        <item>public</item>
+        <item>readonly</item>
+        <item>ref</item>
+        <item>return</item>
+        <item>sbyte</item>
+        <item>sealed</item>
+        <item>short</item>
+        <item>sizeof</item>
+        <item>stackalloc</item>
+        <item>static</item>
+        <item>string</item>
+        <item>struct</item>
+        <item>switch</item>
+        <item>this</item>
+        <item>throw</item>
+        <item>true</item>
+        <item>try</item>
+        <item>typeof</item>
+        <item>uint</item>
+        <item>ulong</item>
+        <item>unchecked</item>
+        <item>unsafe</item>
+        <item>ushort</item>
+        <item>using</item>
+        <item>var</item>
+        <item>virtual</item>
+        <item>void</item>
+        <item>volatile</item>
+        <item>while</item>
+    </string-array>
 </resources>

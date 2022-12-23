@@ -14,13 +14,11 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JavaCompilerApi {
+public class CompilerApi {
     private static final String clientId = "c0b0fe69991d61d0b7b63163584a6445";
     private static final String clientSecret = "6b95f0f97a26f0b7522c9355207e616bb8a19b69c88a2b264b1e6288f3a214ba";
-    private static final String language = "java";
-    private static final String versionIndex = "4";
 
-    private static String executeCode(String script){
+    private static String executeCode(String script, String language, String versionIndex){
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -66,7 +64,7 @@ public class JavaCompilerApi {
     }
 
 
-    public static String compileAndRun(String code){
-        return executeCode(code);
+    public static String compileAndRun(String code, String language, String versionIndex){
+        return executeCode(code, language, versionIndex);
     }
 }
