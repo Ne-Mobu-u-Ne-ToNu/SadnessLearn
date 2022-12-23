@@ -1,4 +1,4 @@
-package com.example.sadnesslearn.solveCodeFragments;
+package com.example.sadnesslearn.activities.solveCodeFragments;
 
 import android.os.Bundle;
 

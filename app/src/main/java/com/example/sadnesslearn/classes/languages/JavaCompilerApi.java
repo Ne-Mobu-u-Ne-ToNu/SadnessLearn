@@ -1,7 +1,8 @@
-package com.example.sadnesslearn.classes;
+package com.example.sadnesslearn.classes.languages;
 
 import android.os.StrictMode;
 
+import com.example.sadnesslearn.classes.JsonStringHandler;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;

@@ -12,46 +12,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SadnessLearn">
         <activity
-            android:name=".ComicsActivity"
+            android:name=".activities.ComicsActivity"
             android:exported="true"
-            android:parentActivityName=".MainPage"/>
+            android:parentActivityName=".activities.MainPage"/>
         <activity
-            android:name=".SolveCodeTask"
+            android:name=".activities.SolveCodeTask"
             android:exported="true"
-            android:parentActivityName=".TaskList" />
+            android:parentActivityName=".activities.TaskList" />
         <activity
-            android:name=".TaskTypeChoose"
+            android:name=".activities.TaskTypeChoose"
             android:exported="true"
-            android:parentActivityName=".MainPage" />
+            android:parentActivityName=".activities.MainPage" />
         <activity
-            android:name=".TaskList"
+            android:name=".activities.TaskList"
             android:exported="true"
-            android:parentActivityName=".TaskTypeChoose" />
+            android:parentActivityName=".activities.TaskTypeChoose" />
         <activity
-            android:name=".CodeRunResult"
+            android:name=".activities.CodeRunResult"
             android:exported="true"
-            android:parentActivityName=".Sandbox" />
+            android:parentActivityName=".activities.Sandbox" />
         <activity
-            android:name=".Sandbox"
+            android:name=".activities.Sandbox"
             android:exported="true"
-            android:parentActivityName=".MainPage" />
+            android:parentActivityName=".activities.MainPage" />
         <activity
-            android:name=".ResetPassword"
+            android:name=".activities.ResetPassword"
             android:exported="true"
-            android:parentActivityName=".SignIn" />
+            android:parentActivityName=".activities.SignIn" />
         <activity
-            android:name=".SignIn"
+            android:name=".activities.SignIn"
             android:exported="true"
-            android:parentActivityName=".Authentification" />
+            android:parentActivityName=".activities.Authentification" />
         <activity
-            android:name=".MainPage"
+            android:name=".activities.MainPage"
             android:exported="false" />
         <activity
-            android:name=".Registration"
+            android:name=".activities.Registration"
             android:exported="true"
-            android:parentActivityName=".Authentification" />
+            android:parentActivityName=".activities.Authentification" />
         <activity
-            android:name=".Authentification"
+            android:name=".activities.Authentification"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

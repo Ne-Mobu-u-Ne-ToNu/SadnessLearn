@@ -19,7 +19,7 @@
         android:id="@+id/relLay_run_code"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Sandbox">
+        tools:context=".activities.Sandbox">
 
         <TextView
             android:id="@+id/tv_run_code"

@@ -1,4 +1,4 @@
-package com.example.sadnesslearn;
+package com.example.sadnesslearn.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.example.sadnesslearn.R;
 
 import java.util.Objects;
 

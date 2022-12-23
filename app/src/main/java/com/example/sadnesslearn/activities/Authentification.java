@@ -1,4 +1,4 @@
-package com.example.sadnesslearn;
+package com.example.sadnesslearn.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.UserAuthentification;
 
 public class Authentification extends AppCompatActivity {

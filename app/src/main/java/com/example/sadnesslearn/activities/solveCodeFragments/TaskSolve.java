@@ -1,4 +1,4 @@
-package com.example.sadnesslearn.solveCodeFragments;
+package com.example.sadnesslearn.activities.solveCodeFragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.example.sadnesslearn.R;
-import com.example.sadnesslearn.classes.JavaCompilerApi;
-import com.example.sadnesslearn.classes.JavaSyntaxManager;
+import com.example.sadnesslearn.classes.languages.JavaCompilerApi;
+import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

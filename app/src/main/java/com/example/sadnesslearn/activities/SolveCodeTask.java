@@ -1,6 +1,5 @@
-package com.example.sadnesslearn;
+package com.example.sadnesslearn.activities;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,13 +7,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import com.amrdeveloper.codeview.CodeView;
-import com.example.sadnesslearn.classes.JavaSyntaxManager;
-import com.example.sadnesslearn.solveCodeFragments.SolveCodeAdapter;
+import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.activities.solveCodeFragments.SolveCodeAdapter;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.Objects;
 

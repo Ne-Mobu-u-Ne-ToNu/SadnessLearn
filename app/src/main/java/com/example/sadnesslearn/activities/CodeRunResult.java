@@ -1,10 +1,12 @@
-package com.example.sadnesslearn;
+package com.example.sadnesslearn.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.sadnesslearn.R;
 
 import java.util.Objects;
 

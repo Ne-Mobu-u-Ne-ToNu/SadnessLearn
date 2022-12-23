@@ -1,4 +1,4 @@
-package com.example.sadnesslearn;
+package com.example.sadnesslearn.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,11 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.CodeTask;
 import com.example.sadnesslearn.classes.Constants;
+import com.example.sadnesslearn.classes.TaskItem;
+import com.example.sadnesslearn.classes.TaskListArrayAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,9 +27,9 @@ import java.util.Objects;
 
 public class TaskList extends AppCompatActivity {
     private ListView listTasks;
-    private List<String> listData;
+    private List<TaskItem> listData;
     private Map<Integer, CodeTask> mapListTask;
-    private ArrayAdapter<String> adapter;
+    private TaskListArrayAdapter adapter;
     private DatabaseReference mDataBase;
 
     @Override
@@ -58,8 +60,9 @@ public class TaskList extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         listTasks = findViewById(R.id.lv_task_taskList);
         listData = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        adapter = new TaskListArrayAdapter(this, listData);
         listTasks.setAdapter(adapter);
+        listTasks.setClickable(true);
         mDataBase = FirebaseDatabase.getInstance().getReference(Constants.TASK_KEY);
         mapListTask = new HashMap<>();
     }
@@ -89,7 +92,8 @@ public class TaskList extends AppCompatActivity {
     private void updateTaskList(){
         if(listData.size() > 0) listData.clear();
         for(int i = 0; i < mapListTask.size(); i++){
-            listData.add(Objects.requireNonNull(mapListTask.get(i)).getName());
+            TaskItem taskItem = new TaskItem(Objects.requireNonNull(mapListTask.get(i)).getName(), false);
+            listData.add(taskItem);
         }
     }
 }

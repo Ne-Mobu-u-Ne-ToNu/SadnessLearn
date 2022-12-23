@@ -1,16 +1,11 @@
 package com.example.sadnesslearn.classes;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.util.Patterns;
 import android.widget.Toast;
 
-import com.example.sadnesslearn.Authentification;
-import com.example.sadnesslearn.ResetPassword;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UserAuthentification {
     private static FirebaseAuth mAuth;

@@ -1,4 +1,4 @@
-package com.example.sadnesslearn.classes;
+package com.example.sadnesslearn.classes.languages;
 
 import android.content.Context;
 import android.os.Build;

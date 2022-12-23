@@ -1,4 +1,4 @@
-package com.example.sadnesslearn;
+package com.example.sadnesslearn.activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,12 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.amrdeveloper.codeview.CodeView;
-import com.example.sadnesslearn.classes.JavaCompilerApi;
-import com.example.sadnesslearn.classes.JavaSyntaxManager;
+import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.languages.JavaCompilerApi;
+import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;

@@ -27,6 +27,7 @@
     <string name="block_task">Блоки</string>
     <string name="solving">Решение</string>
     <string name="task">Задача</string>
+    <string name="item">Item</string>
 
     <string-array name="java_keywords">
         <item>abstract</item>

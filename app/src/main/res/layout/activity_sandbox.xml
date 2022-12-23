@@ -19,7 +19,7 @@
         android:id="@+id/relLay_sand_code"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Sandbox">
+        tools:context=".activities.Sandbox">
 
         <com.amrdeveloper.codeview.CodeView
             android:id="@+id/cv_sandbox"
