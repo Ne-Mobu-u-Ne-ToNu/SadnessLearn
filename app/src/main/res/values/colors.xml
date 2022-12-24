@@ -17,4 +17,5 @@
     <color name="stringCode">#006600</color>
     <color name="bracketsCode">#ffcc00</color>
     <color name="keyWordsBlue">#3433ff</color>
+    <color name="keyWordsRed">#ff000d</color>
 </resources>

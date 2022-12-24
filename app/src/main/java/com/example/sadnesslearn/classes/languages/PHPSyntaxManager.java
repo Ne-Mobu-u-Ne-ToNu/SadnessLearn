@@ -19,21 +19,25 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class GoLangSyntaxManager extends LangSyntaxManager implements SyntaxManager {
+public class PHPSyntaxManager extends LangSyntaxManager implements SyntaxManager {
     private static final Pattern PATTERN_KEYWORDS =
-            Pattern.compile("\\b(break|default|func|interface|case|defer|" +
-                    "go|map|struct|chan|else|goto|package|switch|const" +
-                    "|fallthrough|if|range|type|continue|for|import|return|var|" +
-                    "string|true|false|new|nil|byte|bool|int|int8|int16|int32|int64)\\b");
+            Pattern.compile("\\b(__halt_compiler|break|clone|die|empty|endswitch|" +
+                    "final|function|include|isset|or|readonly|switch|use|yield from" +
+                    "|abstract|callable|const|do|enddeclare|endwhile|finally|global|include_once|" +
+                    "list|print|require|throw|var|and|case|continue|echo|" +
+                    "endfor|eval|fn|goto|instanceof|match|private|require_once|trait|" +
+                    "while|array|catch|declare|else|endforeach|exit|for|if|" +
+                    "insteadof|namespace|protected|return|try|xor|as|class|default|php|" +
+                    "string|elseif|endif|extends|foreach|implements|interface|new|public|static|unset|yield)\\b");
 
     //Brackets and Colons
-    private static final Pattern PATTERN_BUILTINS = Pattern.compile("[,:;[->]{}()]");
+    private static final Pattern PATTERN_BUILTINS = Pattern.compile("[,:;[->]{}()?<>]");
 
     //Data
     private static final Pattern PATTERN_NUMBERS = Pattern.compile("\\b(\\d*[.]?\\d+)\\b");
     private static final Pattern PATTERN_CHAR = Pattern.compile("'[a-zA-Z]'");
     private static final Pattern PATTERN_STRING = Pattern.compile("\".*\"");
-    private static final Pattern PATTERN_COMMENTS = Pattern.compile("(//.*?$)|(/\\*.*?\\*/)",
+    private static final Pattern PATTERN_COMMENTS = Pattern.compile("(//.*?$)|(#.*?$)|(/\\*.*?\\*/)",
             Pattern.MULTILINE | Pattern.DOTALL);
 
     //Pairs
@@ -47,7 +51,6 @@ public class GoLangSyntaxManager extends LangSyntaxManager implements SyntaxMana
         pairCompleteMap.put('(', ')');
         pairCompleteMap.put('\'', '\'');
         pairCompleteMap.put('"', '"');
-        pairCompleteMap.put('<', '>');
         code.setPairCompleteMap(pairCompleteMap);
     }
 
@@ -59,34 +62,34 @@ public class GoLangSyntaxManager extends LangSyntaxManager implements SyntaxMana
 
         List<Code> codes = new ArrayList<>();
 
-        addKeywords(context, codes, R.array.GoLangKeyword);
-
-        packageTitle = "Main Method";
-        packagePrefix = "main";
-        packageBody = "func main() {}";
-        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
+        addKeywords(context, codes, R.array.PHPKeywords);
 
         packageTitle = "Switch Case";
         packagePrefix = "switch";
-        packageBody = "switch variable {\n" +
+        packageBody = "switch ($variable) {\n" +
                 "    case val:\n" +
+                "        break;\n" +
                 "    default:\n" +
                 "}";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "fmt.Print";
+        packageTitle = "Try Catch";
+        packagePrefix = "try";
+        packageBody = "try {\n" +
+                "    \n" +
+                "} catch(Exception $e) {\n" +
+                "    \n" +
+                "}";
+        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
+
+        packageTitle = "print()";
         packagePrefix = "print";
-        packageBody = "fmt.Print()";
+        packageBody = "print();";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "fmt.Println";
-        packagePrefix = "println";
-        packageBody = "fmt.Println()";
-        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
-
-        packageTitle = "fmt.Printf";
-        packagePrefix = "printf";
-        packageBody = "fmt.Printf()";
+        packageTitle = "echo()";
+        packagePrefix = "echo";
+        packageBody = "echo();";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         CodeViewAdapter codeAdapter = new CodeViewAdapter(context, R.layout.list_item_suggestion,
@@ -113,7 +116,7 @@ public class GoLangSyntaxManager extends LangSyntaxManager implements SyntaxMana
     private static void applyPatterns(Context context, CodeView code){
         code.setUpdateDelayTime(100);
         code.setTextColor(context.getResources().getColor(R.color.mainCode));
-        code.addSyntaxPattern(PATTERN_KEYWORDS, context.getResources().getColor(R.color.keyWordsOrange));
+        code.addSyntaxPattern(PATTERN_KEYWORDS, context.getResources().getColor(R.color.keyWordsRed));
         code.addSyntaxPattern(PATTERN_NUMBERS, context.getResources().getColor(R.color.numbersCode));
         code.addSyntaxPattern(PATTERN_CHAR, context.getResources().getColor(R.color.stringCode));
         code.addSyntaxPattern(PATTERN_STRING, context.getResources().getColor(R.color.stringCode));
@@ -133,18 +136,12 @@ public class GoLangSyntaxManager extends LangSyntaxManager implements SyntaxMana
 
     @Override
     public String getInitCode() {
-        return "package main\n" +
-                "\n" +
-                "import \"fmt\"\n" +
-                "\n" +
-                "func main() {\n" +
-                "    \n" +
-                "}";
+        return "<?php\n    \n?>";
     }
 
     @Override
     public String getLanguage() {
-        return "go";
+        return "php";
     }
 
     @Override

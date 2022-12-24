@@ -310,4 +310,79 @@
         <item>int32</item>
         <item>int64</item>
     </string-array>
+
+    <string-array name="PHPKeywords">
+        <item>__halt_compiler()</item>
+        <item>break</item>
+        <item>clone</item>
+        <item>die()</item>
+        <item>empty()</item>
+        <item>endswitch</item>
+        <item>final</item>
+        <item>function</item>
+        <item>include</item>
+        <item>isset()</item>
+        <item>or</item>
+        <item>readonly </item>
+        <item>switch</item>
+        <item>use</item>
+        <item>yield from</item>
+        <item>abstract</item>
+        <item>callable</item>
+        <item>const</item>
+        <item>do</item>
+        <item>enddeclare</item>
+        <item>endwhile</item>
+        <item>finally</item>
+        <item>global</item>
+        <item>include_once</item>
+        <item>list()</item>
+        <item>print</item>
+        <item>require</item>
+        <item>throw</item>
+        <item>var</item>
+        <item>and</item>
+        <item>case</item>
+        <item>continue</item>
+        <item>echo</item>
+        <item>endfor</item>
+        <item>eval()</item>
+        <item>fn</item>
+        <item>goto</item>
+        <item>instanceof</item>
+        <item>match</item>
+        <item>private</item>
+        <item>require_once</item>
+        <item>trait</item>
+        <item>while</item>
+        <item>array()</item>
+        <item>catch</item>
+        <item>declare</item>
+        <item>else</item>
+        <item>endforeach</item>
+        <item>exit()</item>
+        <item>for</item>
+        <item>if</item>
+        <item>insteadof</item>
+        <item>namespace</item>
+        <item>protected</item>
+        <item>return</item>
+        <item>try</item>
+        <item>xor</item>
+        <item>as</item>
+        <item>class</item>
+        <item>default</item>
+        <item>elseif</item>
+        <item>endif</item>
+        <item>extends</item>
+        <item>foreach</item>
+        <item>implements</item>
+        <item>interface</item>
+        <item>new</item>
+        <item>public</item>
+        <item>static</item>
+        <item>unset()</item>
+        <item>yield</item>
+        <item>&lt;?php</item>
+    </string-array>
 </resources>
