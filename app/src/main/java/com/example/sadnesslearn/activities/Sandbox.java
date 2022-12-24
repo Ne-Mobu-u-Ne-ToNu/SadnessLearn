@@ -16,6 +16,7 @@ import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.languages.CPPSyntaxManager;
 import com.example.sadnesslearn.classes.languages.CSharpSyntaxManager;
 import com.example.sadnesslearn.classes.languages.CompilerApi;
+import com.example.sadnesslearn.classes.languages.GoLangSyntaxManager;
 import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
 import com.example.sadnesslearn.classes.languages.SyntaxManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -72,6 +73,9 @@ public class Sandbox extends AppCompatActivity {
                 break;
             case "C++":
                 syntaxManager = new CPPSyntaxManager();
+                break;
+            case "GoLang":
+                syntaxManager = new GoLangSyntaxManager();
                 break;
             default:
                 syntaxManager = new JavaSyntaxManager();

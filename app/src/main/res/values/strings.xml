@@ -33,6 +33,9 @@
         <item>Java</item>
         <item>C#</item>
         <item>C++</item>
+        <item>GoLang</item>
+        <item>Php</item>
+        <item>Delphi</item>
     </string-array>
 
     <string-array name="java_keywords">
@@ -257,7 +260,6 @@
         <item>typedef</item>
         <item>typeid</item>
         <item>typename</item>
-        "union|unsigned|using|virtual|void|volatile|wchar_t|while|xor|xor_eq
         <item>union</item>
         <item>unsigned</item>
         <item>using</item>
@@ -268,5 +270,44 @@
         <item>while</item>
         <item>xor</item>
         <item>xor_eq</item>
+    </string-array>
+
+    <string-array name="GoLangKeyword">
+        <item>break</item>
+        <item>default</item>
+        <item>func</item>
+        <item>interface</item>
+        <item>case</item>
+        <item>defer</item>
+        <item>go</item>
+        <item>map</item>
+        <item>struct</item>
+        <item>chan</item>
+        <item>else</item>
+        <item>goto</item>
+        <item>package</item>
+        <item>switch</item>
+        <item>const</item>
+        <item>fallthrough</item>
+        <item>if</item>
+        <item>range</item>
+        <item>type</item>
+        <item>continue</item>
+        <item>for</item>
+        <item>import</item>
+        <item>return</item>
+        <item>var</item>
+        <item>string</item>
+        <item>true</item>
+        <item>false</item>
+        <item>new</item>
+        <item>nil</item>
+        <item>byte</item>
+        <item>bool</item>
+        <item>int</item>
+        <item>int8</item>
+        <item>int16</item>
+        <item>int32</item>
+        <item>int64</item>
     </string-array>
 </resources>

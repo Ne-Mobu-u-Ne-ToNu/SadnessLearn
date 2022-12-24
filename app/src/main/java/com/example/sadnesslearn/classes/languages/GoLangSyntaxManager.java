@@ -2,10 +2,15 @@ package com.example.sadnesslearn.classes.languages;
 
 import android.content.Context;
 import android.os.Build;
+
 import androidx.annotation.RequiresApi;
+
 import com.amrdeveloper.codeview.Code;
-import com.amrdeveloper.codeview.*;
+import com.amrdeveloper.codeview.CodeView;
+import com.amrdeveloper.codeview.CodeViewAdapter;
+import com.amrdeveloper.codeview.Snippet;
 import com.example.sadnesslearn.R;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,23 +19,21 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class JavaSyntaxManager extends LangSyntaxManager implements SyntaxManager {
-    //Language Keywords
+public class GoLangSyntaxManager extends LangSyntaxManager implements SyntaxManager {
     private static final Pattern PATTERN_KEYWORDS =
-            Pattern.compile("\\b(abstract|assert|boolean|break|byte|case|" +
-                    "catch|char|class|const|continue|default|do|double|else|" +
-                    "enum|extends|final|finally|float|for|goto|if|implements|" +
-                    "import|instanceof|int|interface|long|native|new|package|" +
-                    "private|protected|public|return|short|static|strictfp|super|" +
-                    "switch|synchronized|this|throw|throws|transient|try|void|volatile|while)\\b");
+            Pattern.compile("\\b(break|default|func|interface|case|defer|" +
+                    "go|map|struct|chan|else|goto|package|switch|const" +
+                    "|fallthrough|if|range|type|continue|for|import|return|var|" +
+                    "string|true|false|new|nil|byte|bool|int|int8|int16|int32|int64)\\b");
 
     //Brackets and Colons
-    private static final Pattern PATTERN_BUILTINS = Pattern.compile("\\,|\\:|\\;|\\(|\\)|(-(?=>)>)|\\{|\\}|\\[|\\]");
+    private static final Pattern PATTERN_BUILTINS = Pattern.compile("[,:;[->]{}()]");
 
     //Data
     private static final Pattern PATTERN_NUMBERS = Pattern.compile("\\b(\\d*[.]?\\d+)\\b");
     private static final Pattern PATTERN_CHAR = Pattern.compile("'[a-zA-Z]'");
     private static final Pattern PATTERN_STRING = Pattern.compile("\".*\"");
+    private static final Pattern PATTERN_HEX = Pattern.compile("0x[0-9a-fA-F]+");
     private static final Pattern PATTERN_COMMENTS = Pattern.compile("(//.*?$)|(/\\*.*?\\*/)",
             Pattern.MULTILINE | Pattern.DOTALL);
 
@@ -57,43 +60,34 @@ public class JavaSyntaxManager extends LangSyntaxManager implements SyntaxManage
 
         List<Code> codes = new ArrayList<>();
 
-        addKeywords(context, codes, R.array.java_keywords);
+        addKeywords(context, codes, R.array.GoLangKeyword);
 
         packageTitle = "Main Method";
         packagePrefix = "main";
-        packageBody = "public static void main(String[] args) {}";
+        packageBody = "func main() {}";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         packageTitle = "Switch Case";
         packagePrefix = "switch";
-        packageBody = "switch (variable) {\n" +
-                "    case value:\n" +
-                "        break;\n" +
+        packageBody = "switch variable {\n" +
+                "    case val:\n" +
                 "    default:\n" +
-                "        break;}";
+                "}";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "Try Catch";
-        packagePrefix = "try";
-        packageBody = "try {\n" +
-                "    \n" +
-                "}\n" +
-                "catch (Exception e) {}";
+        packageTitle = "fmt.Print";
+        packagePrefix = "print";
+        packageBody = "fmt.Print()";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "System.out.print()";
-        packagePrefix = "sout";
-        packageBody = "System.out.print();";
+        packageTitle = "fmt.Println";
+        packagePrefix = "println";
+        packageBody = "fmt.Println()";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "System.out.println()";
-        packagePrefix = "soutln";
-        packageBody = "System.out.println();";
-        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
-
-        packageTitle = "System.out.printf()";
-        packagePrefix = "soutf";
-        packageBody = "System.out.printf();";
+        packageTitle = "fmt.Printf";
+        packagePrefix = "printf";
+        packageBody = "fmt.Printf()";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         CodeViewAdapter codeAdapter = new CodeViewAdapter(context, R.layout.list_item_suggestion,
@@ -130,7 +124,7 @@ public class JavaSyntaxManager extends LangSyntaxManager implements SyntaxManage
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
-    public void applyCodeTheme(Context context, CodeView code){
+    public void applyCodeTheme(Context context, CodeView code) {
         applyOtherFeatures(context, code);
         applyPatterns(context, code);
         addPairs(code);
@@ -139,15 +133,19 @@ public class JavaSyntaxManager extends LangSyntaxManager implements SyntaxManage
     }
 
     @Override
-    public String getInitCode(){
-        //initial code
-        return "public class Main {\n" +
-                    "    public static void main(String[] args) {\n        \n    }\n}";
+    public String getInitCode() {
+        return "package main\n" +
+                "\n" +
+                "import \"fmt\"\n" +
+                "\n" +
+                "func main() {\n" +
+                "    \n" +
+                "}";
     }
 
     @Override
-    public String getLanguage(){
-        return "java";
+    public String getLanguage() {
+        return "go";
     }
 
     @Override
