@@ -27,7 +27,7 @@ public class GoLangSyntaxManager extends LangSyntaxManager implements SyntaxMana
                     "string|true|false|new|nil|byte|bool|int|int8|int16|int32|int64)\\b");
 
     //Brackets and Colons
-    private static final Pattern PATTERN_BUILTINS = Pattern.compile("[,:;[->]{}()]");
+    private static final Pattern PATTERN_BUILTINS = Pattern.compile("\\,|\\:|\\;|\\(|\\)|(-(?=>)>)|\\{|\\}|\\[|\\]");
 
     //Data
     private static final Pattern PATTERN_NUMBERS = Pattern.compile("\\b(\\d*[.]?\\d+)\\b");

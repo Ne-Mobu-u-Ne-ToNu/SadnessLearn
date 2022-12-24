@@ -7,15 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.example.sadnesslearn.R;
-import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.languages.CPPSyntaxManager;
 import com.example.sadnesslearn.classes.languages.CSharpSyntaxManager;
 import com.example.sadnesslearn.classes.languages.CompilerApi;
+import com.example.sadnesslearn.classes.languages.PascalSyntaxManager;
 import com.example.sadnesslearn.classes.languages.GoLangSyntaxManager;
 import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
 import com.example.sadnesslearn.classes.languages.PHPSyntaxManager;
@@ -80,6 +79,9 @@ public class Sandbox extends AppCompatActivity {
                 break;
             case "Php":
                 syntaxManager = new PHPSyntaxManager();
+                break;
+            case "Pascal":
+                syntaxManager = new PascalSyntaxManager();
                 break;
             default:
                 syntaxManager = new JavaSyntaxManager();

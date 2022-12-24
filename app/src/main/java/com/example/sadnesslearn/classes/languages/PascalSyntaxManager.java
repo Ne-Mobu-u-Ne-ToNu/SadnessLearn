@@ -13,31 +13,27 @@ import com.example.sadnesslearn.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
-public class PHPSyntaxManager extends LangSyntaxManager implements SyntaxManager {
+public class PascalSyntaxManager extends LangSyntaxManager implements SyntaxManager {
     private static final Pattern PATTERN_KEYWORDS =
-            Pattern.compile("\\b(__halt_compiler|break|clone|die|empty|endswitch|" +
-                    "final|function|include|isset|or|readonly|switch|use|yield from" +
-                    "|abstract|callable|const|do|enddeclare|endwhile|finally|global|include_once|" +
-                    "list|print|require|throw|var|and|case|continue|echo|" +
-                    "endfor|eval|fn|goto|instanceof|match|private|require_once|trait|" +
-                    "while|array|catch|declare|else|endforeach|exit|for|if|" +
-                    "insteadof|namespace|protected|return|try|xor|as|class|default|php|" +
-                    "string|elseif|endif|extends|foreach|implements|interface|new|public|static|unset|yield)\\b");
+            Pattern.compile("\\b(and|array|asm|begin|break|case|" +
+                    "const|constructor|continue|destructor|div|do|downto|else|end|" +
+                    "false|file|for|function|goto|if|implementation|in|inline|" +
+                    "label|interface|mod|nil|not|object|of|on|operator|" +
+                    "or|packed|procedure|program|record|repeat|set|shl|shr|" +
+                    "string|then|to|true|type|unit|until|uses|var|" +
+                    "while|with|xor)\\b");
 
     //Brackets and Colons
-    private static final Pattern PATTERN_BUILTINS = Pattern.compile("\\,|\\:|\\;|\\(|\\)|(-(?=>)>)|\\{|\\}|\\[|\\]|\\?|\\<|\\>");
+    private static final Pattern PATTERN_BUILTINS = Pattern.compile("\\,|\\:|\\;|\\(|\\)|\\[|\\]");
 
     //Data
     private static final Pattern PATTERN_NUMBERS = Pattern.compile("\\b(\\d*[.]?\\d+)\\b");
-    private static final Pattern PATTERN_CHAR = Pattern.compile("'[a-zA-Z]'");
-    private static final Pattern PATTERN_STRING = Pattern.compile("\".*\"");
-    private static final Pattern PATTERN_COMMENTS = Pattern.compile("(//.*?$)|(#.*?$)|(/\\*.*?\\*/)",
+    private static final Pattern PATTERN_STRING = Pattern.compile("'.*'");
+    private static final Pattern PATTERN_COMMENTS = Pattern.compile("(//.*?$)|(\\(\\*.*?\\*\\))|(\\{.*?\\})",
             Pattern.MULTILINE | Pattern.DOTALL);
 
     //Pairs
@@ -62,34 +58,44 @@ public class PHPSyntaxManager extends LangSyntaxManager implements SyntaxManager
 
         List<Code> codes = new ArrayList<>();
 
-        addKeywords(context, codes, R.array.PHPKeywords);
+        addKeywords(context, codes, R.array.PascalKeywords);
+
+        packageTitle = "Begin End;";
+        packagePrefix = "begin;";
+        packageBody = "begin end;";
+        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
+
+        packageTitle = "Begin End.";
+        packagePrefix = "begin.";
+        packageBody = "begin end.";
+        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         packageTitle = "Switch Case";
         packagePrefix = "switch";
-        packageBody = "switch ($variable) {\n" +
-                "    case val:\n" +
-                "        break;\n" +
-                "    default:\n" +
-                "}";
+        packageBody = "case (expression) of\n" +
+                "    L1 : S1;\n" +
+                "    L2: S2;\n" +
+                "end;";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "Try Catch";
-        packagePrefix = "try";
-        packageBody = "try {\n" +
-                "    \n" +
-                "} catch(Exception $e) {\n" +
-                "    \n" +
-                "}";
+        packageTitle = "Write";
+        packagePrefix = "write";
+        packageBody = "write();";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "print()";
-        packagePrefix = "print";
-        packageBody = "print();";
+        packageTitle = "Writeln";
+        packagePrefix = "writeln";
+        packageBody = "writeln();";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "echo()";
-        packagePrefix = "echo";
-        packageBody = "echo();";
+        packageTitle = "Read";
+        packagePrefix = "read";
+        packageBody = "read();";
+        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
+
+        packageTitle = "Readln";
+        packagePrefix = "readln";
+        packageBody = "readln()";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         CodeViewAdapter codeAdapter = new CodeViewAdapter(context, R.layout.list_item_suggestion,
@@ -97,28 +103,12 @@ public class PHPSyntaxManager extends LangSyntaxManager implements SyntaxManager
         code.setAdapter(codeAdapter);
     }
 
-    //Enables auto indentation
-    private static void enableIndentation(CodeView code){
-        code.setTabLength(4);
-
-        Set<Character> indentationStart = new HashSet<>();
-        indentationStart.add('{');
-        code.setIndentationStarts(indentationStart);
-
-        Set<Character> indentationEnds = new HashSet<>();
-        indentationEnds.add('}');
-        code.setIndentationEnds(indentationEnds);
-
-        code.setEnableAutoIndentation(true);
-    }
-
     //Applies patterns
     private static void applyPatterns(Context context, CodeView code){
         code.setUpdateDelayTime(100);
         code.setTextColor(context.getResources().getColor(R.color.mainCode));
-        code.addSyntaxPattern(PATTERN_KEYWORDS, context.getResources().getColor(R.color.keyWordsRed));
+        code.addSyntaxPattern(PATTERN_KEYWORDS, context.getResources().getColor(R.color.keyWordsOrange));
         code.addSyntaxPattern(PATTERN_NUMBERS, context.getResources().getColor(R.color.numbersCode));
-        code.addSyntaxPattern(PATTERN_CHAR, context.getResources().getColor(R.color.stringCode));
         code.addSyntaxPattern(PATTERN_STRING, context.getResources().getColor(R.color.stringCode));
         code.addSyntaxPattern(PATTERN_COMMENTS, context.getResources().getColor(R.color.commentsCode));
         code.addSyntaxPattern(PATTERN_BUILTINS, context.getResources().getColor(R.color.bracketsCode));
@@ -131,21 +121,20 @@ public class PHPSyntaxManager extends LangSyntaxManager implements SyntaxManager
         applyPatterns(context, code);
         addPairs(code);
         addSnippetsAndKeywords(context, code);
-        enableIndentation(code);
     }
 
     @Override
     public String getInitCode() {
-        return "<?php\n    \n?>";
+        return "var\nbegin\n\nend.";
     }
 
     @Override
     public String getLanguage() {
-        return "php";
+        return "pascal";
     }
 
     @Override
     public String getVersionIndex() {
-        return "4";
+        return "3";
     }
 }

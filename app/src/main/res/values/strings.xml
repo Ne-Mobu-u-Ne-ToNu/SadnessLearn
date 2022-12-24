@@ -35,7 +35,7 @@
         <item>C++</item>
         <item>GoLang</item>
         <item>Php</item>
-        <item>Delphi</item>
+        <item>Pascal</item>
     </string-array>
 
     <string-array name="java_keywords">
@@ -384,5 +384,62 @@
         <item>unset()</item>
         <item>yield</item>
         <item>&lt;?php</item>
+    </string-array>
+
+    <string-array name="PascalKeywords">
+        <item>and</item>
+        <item>begin</item>
+        <item>array</item>
+        <item>asm</item>
+        <item>break</item>
+        <item>case</item>
+        <item>const</item>
+        <item>constructor</item>
+        <item>continue</item>
+        <item>destructor</item>
+        <item>div</item>
+        <item>do</item>
+        <item>downto</item>
+        <item>else</item>
+        <item>end</item>
+        <item>false</item>
+        <item>file</item>
+        <item>for</item>
+        <item>function</item>
+        <item>goto</item>
+        <item>if</item>
+        <item>implementation</item>
+        <item>in</item>
+        <item>inline</item>
+        <item>interface</item>
+        <item>label</item>
+        <item>mod</item>
+        <item>nil</item>
+        <item>not</item>
+        <item>object</item>
+        <item>of</item>
+        <item>on</item>
+        <item>operator</item>
+        <item>or</item>
+        <item>packed</item>
+        <item>procedure</item>
+        <item>program</item>
+        <item>record</item>
+        <item>repeat</item>
+        <item>set</item>
+        <item>shl</item>
+        <item>shr</item>
+        <item>string</item>
+        <item>then</item>
+        <item>to</item>
+        <item>true</item>
+        <item>type</item>
+        <item>unit</item>
+        <item>until</item>
+        <item>uses</item>
+        <item>var</item>
+        <item>while</item>
+        <item>with</item>
+        <item>xor</item>
     </string-array>
 </resources>
