@@ -8,7 +8,6 @@ import androidx.annotation.RequiresApi;
 import com.amrdeveloper.codeview.Code;
 import com.amrdeveloper.codeview.CodeView;
 import com.amrdeveloper.codeview.CodeViewAdapter;
-import com.amrdeveloper.codeview.Keyword;
 import com.amrdeveloper.codeview.Snippet;
 import com.example.sadnesslearn.R;
 
@@ -20,25 +19,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class CSharpSyntaxManager extends LangSyntaxManager implements SyntaxManager {
+public class CPPSyntaxManager extends LangSyntaxManager implements SyntaxManager{
     //Language Keywords
     private static final Pattern PATTERN_KEYWORDS =
-            Pattern.compile("\\b(abstract|as|base|bool|break|" +
-                    "byte|case|catch|char|checked|" +
-                    "class|const|continue|decimal|default|" +
-                    "delegate|do|double|else|enum|" +
-                    "event|explicit|extern|false|finally|" +
-                    "fixed|float|for|foreach|goto|" +
-                    "if|implicit|in|int|interface|" +
-                    "internal|is|lock|long|namespace|" +
-                    "new|null|object|operator|out|" +
-                    "override|params|private|protected|public|" +
-                    "readonly|ref|return|sbyte|sealed|" +
-                    "short|sizeof|stackalloc|static|string|" +
-                    "struct|switch|this|throw|true|" +
-                    "try|typeof|uint|ulong|unchecked|" +
-                    "unsafe|ushort|using|var|virtual|" +
-                    "void|volatile|while)\\b");
+            Pattern.compile("\\b(alignas|alignof|and|and_eq|asm|atomic_cancel|atomic_commit|atomic_noexcept|auto|" +
+                    "bitand|bitor|bool|break|case|catch|char|char8_t|char16_t|char32_t|class|compl|concept|" +
+                    "const|consteval|constexpr|constinit|const_cast|continue|co_await|co_return|co_yield|decltype|default" +
+                    "delete|do|double|dynamic_cast|else|enum|explicit|export|extern|false|float|for|friend|goto|if|" +
+                    "inline|int|long|mutable|namespace|new|noexcept|not|not_eq|nullptr|operator|or|or_eq|private|" +
+                    "protected|public|reflexpr|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|" +
+                    "static_cast|struct|switch|synchronized|template|this|thread_local|throw|true|try|typedef|typeid|typename|" +
+                    "union|unsigned|using|virtual|void|volatile|wchar_t|while|xor|xor_eq)\\b");
 
     //Brackets and Colons
     private static final Pattern PATTERN_BUILTINS = Pattern.compile("\\,|\\:|\\;|\\(|\\)|(-(?=>)>)|\\{|\\}|\\[|\\]");
@@ -73,16 +64,16 @@ public class CSharpSyntaxManager extends LangSyntaxManager implements SyntaxMana
 
         List<Code> codes = new ArrayList<>();
 
-        addKeywords(context, codes, R.array.CSharpKeywords);
+        addKeywords(context, codes, R.array.CPPKeywords);
 
         packageTitle = "Main Method";
         packagePrefix = "main";
-        packageBody = "static void Main() {}";
+        packageBody = "int main() {}";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         packageTitle = "Switch Case";
         packagePrefix = "switch";
-        packageBody = "switch (variable)\n{\n" +
+        packageBody = "switch (variable) {\n" +
                 "    case value:\n" +
                 "        break;\n" +
                 "    default:\n" +
@@ -91,20 +82,25 @@ public class CSharpSyntaxManager extends LangSyntaxManager implements SyntaxMana
 
         packageTitle = "Try Catch";
         packagePrefix = "try";
-        packageBody = "try \n{\n" +
+        packageBody = "try {\n" +
                 "    \n" +
                 "}\n" +
-                "catch (Exception e) {}";
+                "catch (ExceptionName e) {}";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "Console.Write()";
-        packagePrefix = "write";
-        packageBody = "Console.Write();";
+        packageTitle = "cout <<";
+        packagePrefix = "cout";
+        packageBody = "cout << ;";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
-        packageTitle = "Console.WriteLine()";
-        packagePrefix = "writeln";
-        packageBody = "Console.WriteLine();";
+        packageTitle = "cout endl";
+        packagePrefix = "coutln";
+        packageBody = "cout << << endl;";
+        codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
+
+        packageTitle = "cin >>";
+        packagePrefix = "cin";
+        packageBody = "cin >> ;";
         codes.add(new Snippet(packageTitle, packagePrefix, packageBody));
 
         CodeViewAdapter codeAdapter = new CodeViewAdapter(context, R.layout.list_item_suggestion,
@@ -151,23 +147,22 @@ public class CSharpSyntaxManager extends LangSyntaxManager implements SyntaxMana
 
     @Override
     public String getInitCode() {
-        return "using System;\n" +
+        return "#include <iostream>\n" +
                 "\n" +
-                "class Program\n" +
-                "{\n" +
-                "    static void Main() {\n" +
-                "        \n" +
-                "    }\n" +
+                "using namespace std;\n" +
+                "\n" +
+                "int main() {\n" +
+                "    \n" +
                 "}";
     }
 
     @Override
-    public String getLanguage(){
-        return "csharp";
+    public String getLanguage() {
+        return "cpp17";
     }
 
     @Override
     public String getVersionIndex() {
-        return "4";
+        return "1";
     }
 }

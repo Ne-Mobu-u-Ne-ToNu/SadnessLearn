@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.amrdeveloper.codeview.CodeView;
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.Constants;
+import com.example.sadnesslearn.classes.languages.CPPSyntaxManager;
 import com.example.sadnesslearn.classes.languages.CSharpSyntaxManager;
 import com.example.sadnesslearn.classes.languages.CompilerApi;
 import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
@@ -22,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Objects;
 
 public class Sandbox extends AppCompatActivity {
-    private SyntaxManager syntaxManager;
+    private static SyntaxManager syntaxManager;
     private static String initCode, language, versionIndex, lang;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -35,13 +36,10 @@ public class Sandbox extends AppCompatActivity {
         setSupportActionBar(tlb_sandBox);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        if(getIntent().getStringExtra("language") != null)
+        if(getIntent().getStringExtra("language") != null) {
             lang = getIntent().getStringExtra("language");
-
-        initLang(lang);
-
-
-        initCode = syntaxManager.getInitCode();
+            initLang(lang);
+        }
 
         CodeView code = findViewById(R.id.cv_sandbox);
         code.setText(initCode);
@@ -69,13 +67,18 @@ public class Sandbox extends AppCompatActivity {
 
     private void initLang(String lang) {
         switch (lang) {
-            case "Java":
-                syntaxManager = new JavaSyntaxManager();
-                break;
             case "C#":
                 syntaxManager = new CSharpSyntaxManager();
+                break;
+            case "C++":
+                syntaxManager = new CPPSyntaxManager();
+                break;
+            default:
+                syntaxManager = new JavaSyntaxManager();
+                break;
         }
         language = syntaxManager.getLanguage();
         versionIndex = syntaxManager.getVersionIndex();
+        initCode = syntaxManager.getInitCode();
     }
 }

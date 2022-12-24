@@ -2,14 +2,10 @@ package com.example.sadnesslearn.activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -40,11 +36,7 @@ public class MainPage extends AppCompatActivity {
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
         Button btn_sandBox = findViewById(R.id.btn_main_sandbox);
-        btn_sandBox.setOnClickListener(view -> {
-            /*startActivity(new Intent(MainPage.this, Sandbox.class));
-            overridePendingTransition(R.anim.right_in, R.anim.left_out);*/
-            showLanguageWindow();
-        });
+        btn_sandBox.setOnClickListener(view -> showLanguageWindow());
 
         Button btn_exit = findViewById(R.id.btn_main_exit);
         btn_exit.setOnClickListener(view -> {

@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class JavaSyntaxManager implements SyntaxManager {
+public class JavaSyntaxManager extends LangSyntaxManager implements SyntaxManager {
     //Language Keywords
     private static final Pattern PATTERN_KEYWORDS =
             Pattern.compile("\\b(abstract|assert|boolean|break|byte|case|" +
@@ -57,7 +57,7 @@ public class JavaSyntaxManager implements SyntaxManager {
 
         List<Code> codes = new ArrayList<>();
 
-        addKeywords(context, codes);
+        addKeywords(context, codes, R.array.java_keywords);
 
         packageTitle = "Main Method";
         packagePrefix = "main";
@@ -101,24 +101,11 @@ public class JavaSyntaxManager implements SyntaxManager {
         code.setAdapter(codeAdapter);
     }
 
-    //Array of keywords
-    private static String[] getKeywords(Context context){
-        return context.getResources().getStringArray(R.array.java_keywords);
-    }
-
-    //Adds keywords to a list
-    private static void addKeywords(Context context, List<Code> codes){
-        String[] keyWords = getKeywords(context);
-
-        for(String s : keyWords){
-            codes.add(new Keyword(s));
-        }
-    }
-
     //Enables auto indentation
     private static void enableIndentation(CodeView code){
         code.setTabLength(4);
 
+        Set<String> inSt = new HashSet<>();
         Set<Character> indentationStart = new HashSet<>();
         indentationStart.add('{');
         code.setIndentationStarts(indentationStart);
@@ -140,17 +127,6 @@ public class JavaSyntaxManager implements SyntaxManager {
         code.addSyntaxPattern(PATTERN_STRING, context.getResources().getColor(R.color.stringCode));
         code.addSyntaxPattern(PATTERN_COMMENTS, context.getResources().getColor(R.color.commentsCode));
         code.addSyntaxPattern(PATTERN_BUILTINS, context.getResources().getColor(R.color.bracketsCode));
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.Q)
-    private static void applyOtherFeatures(Context context, CodeView code){
-        code.setTypeface(context.getResources().getFont(R.font.comicsansms));
-        code.setEnableLineNumber(true);
-        code.setLineNumberTextSize(code.getTextSize());
-        code.setEnableHighlightCurrentLine(true);
-        code.setHighlightCurrentLineColor(context.getResources().getColor(R.color.grey));
-        code.setLineNumberTypeface(context.getResources().getFont(R.font.comicsansms));
-        code.resetSyntaxPatternList();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
