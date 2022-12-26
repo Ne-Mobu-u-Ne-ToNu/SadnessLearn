@@ -22,7 +22,6 @@ public class UserAuthentification {
         assert currentUser != null;
         if(!currentUser.isEmailVerified()){
             Toast.makeText(currentActivity, "Подтверите ваш email!", Toast.LENGTH_SHORT).show();
-            signOut();
             return false;
         }
         return true;

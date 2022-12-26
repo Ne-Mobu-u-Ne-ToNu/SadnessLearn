@@ -43,16 +43,6 @@ public class ResetPassword extends AppCompatActivity {
         });
     }
 
-    private boolean emailValidator(String email){
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(this, "Введите правильный email!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-
     private void resetPassword(){
         String email_s = email.getText().toString();
         if(email_s.length() == 0){
