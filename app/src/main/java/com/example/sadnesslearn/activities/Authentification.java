@@ -39,6 +39,10 @@ public class Authentification extends AppCompatActivity {
             if(UserAuthentification.isVerified(this)){
                 startActivity(new Intent(this, MainPage.class));
             }
+            else {
+                UserAuthentification.signOut();
+            }
         }
+
     }
 }
