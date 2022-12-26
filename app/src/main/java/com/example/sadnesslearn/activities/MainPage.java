@@ -38,6 +38,12 @@ public class MainPage extends AppCompatActivity {
         Button btn_sandBox = findViewById(R.id.btn_main_sandbox);
         btn_sandBox.setOnClickListener(view -> showLanguageWindow());
 
+        Button btn_settings = findViewById(R.id.btn_main_settings);
+        btn_settings.setOnClickListener(view -> {
+            startActivity(new Intent(MainPage.this, Settings.class));
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        });
+
         Button btn_exit = findViewById(R.id.btn_main_exit);
         btn_exit.setOnClickListener(view -> {
             UserAuthentification.signOut();

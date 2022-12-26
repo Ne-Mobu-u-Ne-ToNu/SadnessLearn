@@ -8,13 +8,17 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.SadnessLearn">
         <activity
-            android:name=".activities.ComicsActivity"
+            android:name=".activities.Settings"
             android:exported="true"
             android:parentActivityName=".activities.MainPage"/>
+        <activity
+            android:name=".activities.ComicsActivity"
+            android:exported="true"
+            android:parentActivityName=".activities.MainPage" />
         <activity
             android:name=".activities.SolveTask"
             android:exported="true"
