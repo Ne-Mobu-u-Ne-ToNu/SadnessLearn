@@ -10,6 +10,7 @@ import com.amrdeveloper.codeview.CodeView;
 import com.amrdeveloper.codeview.CodeViewAdapter;
 import com.amrdeveloper.codeview.Snippet;
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -147,22 +148,16 @@ public class CPPSyntaxManager extends LangSyntaxManager implements SyntaxManager
 
     @Override
     public String getInitCode() {
-        return "#include <iostream>\n" +
-                "\n" +
-                "using namespace std;\n" +
-                "\n" +
-                "int main() {\n" +
-                "    \n" +
-                "}";
+        return Constants.CPP_INIT_CODE;
     }
 
     @Override
     public String getLanguage() {
-        return "cpp17";
+        return Constants.CPP_LANG_NAME;
     }
 
     @Override
     public String getVersionIndex() {
-        return "1";
+        return Constants.CPP_LANG_VERSION;
     }
 }

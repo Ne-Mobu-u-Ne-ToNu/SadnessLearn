@@ -10,6 +10,7 @@ import com.amrdeveloper.codeview.CodeView;
 import com.amrdeveloper.codeview.CodeViewAdapter;
 import com.amrdeveloper.codeview.Snippet;
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -133,22 +134,16 @@ public class GoLangSyntaxManager extends LangSyntaxManager implements SyntaxMana
 
     @Override
     public String getInitCode() {
-        return "package main\n" +
-                "\n" +
-                "import \"fmt\"\n" +
-                "\n" +
-                "func main() {\n" +
-                "    \n" +
-                "}";
+        return Constants.GOLANG_INIT_CODE;
     }
 
     @Override
     public String getLanguage() {
-        return "go";
+        return Constants.GOLANG_LANG_NAME;
     }
 
     @Override
     public String getVersionIndex() {
-        return "4";
+        return Constants.GOLANG_LANG_VERSION;
     }
 }

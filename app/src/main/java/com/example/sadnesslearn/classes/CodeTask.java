@@ -2,15 +2,17 @@ package com.example.sadnesslearn.classes;
 
 public class CodeTask {
     private String code, id, name, test, text;
+    private boolean isSolved;
     private int number;
 
     public CodeTask(){
 
     }
 
-    public CodeTask(String code, String id, String name, int number, String test, String text){
+    public CodeTask(String code, String id, boolean isSolved, String name, int number, String test, String text){
         this.code = code;
         this.id = id;
+        this.isSolved = isSolved;
         this.name = name;
         this.number = number;
         this.test = test;
@@ -22,6 +24,8 @@ public class CodeTask {
     public String getId(){
         return this.id;
     }
+
+    public boolean getIsSolved() { return this.isSolved; }
 
     public String getName(){
         return this.name;

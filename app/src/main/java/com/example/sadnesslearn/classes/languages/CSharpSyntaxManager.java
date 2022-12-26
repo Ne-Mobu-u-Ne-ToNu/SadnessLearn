@@ -11,6 +11,7 @@ import com.amrdeveloper.codeview.CodeViewAdapter;
 import com.amrdeveloper.codeview.Keyword;
 import com.amrdeveloper.codeview.Snippet;
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -151,23 +152,16 @@ public class CSharpSyntaxManager extends LangSyntaxManager implements SyntaxMana
 
     @Override
     public String getInitCode() {
-        return "using System;\n" +
-                "\n" +
-                "class Program\n" +
-                "{\n" +
-                "    static void Main() {\n" +
-                "        \n" +
-                "    }\n" +
-                "}";
+        return Constants.CSHARP_INIT_CODE;
     }
 
     @Override
     public String getLanguage(){
-        return "csharp";
+        return Constants.CSHARP_LANG_NAME;
     }
 
     @Override
     public String getVersionIndex() {
-        return "4";
+        return Constants.CSHARP_LANG_VERSION;
     }
 }

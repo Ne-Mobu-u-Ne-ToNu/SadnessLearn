@@ -6,6 +6,8 @@ import androidx.annotation.RequiresApi;
 import com.amrdeveloper.codeview.Code;
 import com.amrdeveloper.codeview.*;
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.Constants;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -140,18 +142,16 @@ public class JavaSyntaxManager extends LangSyntaxManager implements SyntaxManage
 
     @Override
     public String getInitCode(){
-        //initial code
-        return "public class Main {\n" +
-                    "    public static void main(String[] args) {\n        \n    }\n}";
+        return Constants.JAVA_INIT_CODE;
     }
 
     @Override
     public String getLanguage(){
-        return "java";
+        return Constants.JAVA_LANG_NAME;
     }
 
     @Override
     public String getVersionIndex() {
-        return "4";
+        return Constants.JAVA_LANG_VERSION;
     }
 }

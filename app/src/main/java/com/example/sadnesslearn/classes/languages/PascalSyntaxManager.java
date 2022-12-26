@@ -10,6 +10,7 @@ import com.amrdeveloper.codeview.CodeView;
 import com.amrdeveloper.codeview.CodeViewAdapter;
 import com.amrdeveloper.codeview.Snippet;
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -125,16 +126,16 @@ public class PascalSyntaxManager extends LangSyntaxManager implements SyntaxMana
 
     @Override
     public String getInitCode() {
-        return "var\nbegin\n\nend.";
+        return Constants.PASCAL_INIT_CODE;
     }
 
     @Override
     public String getLanguage() {
-        return "pascal";
+        return Constants.PASCAL_LANG_NAME;
     }
 
     @Override
     public String getVersionIndex() {
-        return "3";
+        return Constants.PASCAL_LANG_VERSION;
     }
 }

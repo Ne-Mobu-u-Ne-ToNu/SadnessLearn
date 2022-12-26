@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.BlockTask;
 import com.example.sadnesslearn.classes.CodeTask;
 import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.TaskItem;
@@ -28,7 +29,10 @@ import java.util.Objects;
 public class TaskList extends AppCompatActivity {
     private ListView listTasks;
     private List<TaskItem> listData;
-    private Map<Integer, CodeTask> mapListTask;
+    private Map<Integer, CodeTask> mapListCodeTask;
+    private Map<Integer, BlockTask> mapListBlockTask;
+    private static String taskType;
+    private Intent intent;
     private TaskListArrayAdapter adapter;
     private DatabaseReference mDataBase;
 
@@ -36,22 +40,15 @@ public class TaskList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
-        init();
-        getDataFromDB();
 
-        listTasks.setOnItemClickListener((adapterView, view, i, l) -> {
-            CodeTask task = mapListTask.get(i);
-            Intent intent = new Intent(TaskList.this, SolveCodeTask.class);
-            assert task != null;
-            intent.putExtra("task_id", task.getId());
-            intent.putExtra("task_name", task.getName());
-            intent.putExtra("task_number", task.getNumber());
-            intent.putExtra("task_text", task.getText());
-            intent.putExtra("task_code", task.getCode());
-            intent.putExtra("task_test", task.getTest());
-            startActivity(intent);
-            overridePendingTransition(R.anim.right_in, R.anim.left_out);
-        });
+        if(getIntent().getStringExtra("task_type") != null)
+            taskType = getIntent().getStringExtra("task_type");
+
+        intent = new Intent(TaskList.this, SolveTask.class);
+        intent.putExtra("task_type", taskType);
+
+        init();
+        scenario(taskType);
     }
 
     private void init(){
@@ -62,22 +59,71 @@ public class TaskList extends AppCompatActivity {
         listData = new ArrayList<>();
         adapter = new TaskListArrayAdapter(this, listData);
         listTasks.setAdapter(adapter);
-        listTasks.setClickable(true);
-        mDataBase = FirebaseDatabase.getInstance().getReference(Constants.TASK_KEY);
-        mapListTask = new HashMap<>();
     }
 
-    private void getDataFromDB(){
+    private void initCode(){
+        mDataBase = FirebaseDatabase.getInstance().getReference(Constants.CODE_TASK_KEY);
+        mapListCodeTask = new HashMap<>();
+    }
+
+    private void initBlock() {
+        mDataBase = FirebaseDatabase.getInstance().getReference(Constants.BLOCK_TASK_KEY);
+        mapListBlockTask = new HashMap<>();
+    }
+
+    private void goSolveCode() {
+        listTasks.setOnItemClickListener((adapterView, view, i, l) -> {
+            CodeTask task = mapListCodeTask.get(i);
+            assert task != null;
+            intent.putExtra("task_id", task.getId());
+            intent.putExtra("task_text", task.getText());
+            intent.putExtra("task_code", task.getCode());
+            intent.putExtra("task_test", task.getTest());
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        });
+    }
+
+    private void goSolveBlock() {
+        listTasks.setOnItemClickListener((adapterView, view, i, l) -> {
+            BlockTask task = mapListBlockTask.get(i);
+            assert task != null;
+            intent.putExtra("task_id", task.getId());
+            intent.putExtra("task_text", task.getText());
+            intent.putExtra("task_code", task.getCode());
+            intent.putExtra("task_test", task.getTest());
+            intent.putExtra("task_options", task.getOptions());
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        });
+    }
+
+    private void scenario(String taskType) {
+        switch (taskType) {
+            case "code":
+                initCode();
+                getCodeTaskFromDB();
+                goSolveCode();
+                break;
+            case "block":
+                initBlock();
+                getBlockTaskFromDB();
+                goSolveBlock();
+                break;
+        }
+    }
+
+    private void getCodeTaskFromDB(){
         ValueEventListener vListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(mapListTask.size() > 0) mapListTask.clear();
+                if(mapListCodeTask.size() > 0) mapListCodeTask.clear();
                 for(DataSnapshot ds : snapshot.getChildren()){
                     CodeTask task =  ds.getValue(CodeTask.class);
                     assert task != null;
-                    mapListTask.put(task.getNumber() - 1, task);
+                    mapListCodeTask.put(task.getNumber() - 1, task);
                 }
-                updateTaskList();
+                updateCodeTaskList();
                 adapter.notifyDataSetChanged();
             }
 
@@ -89,10 +135,42 @@ public class TaskList extends AppCompatActivity {
         mDataBase.addValueEventListener(vListener);
     }
 
-    private void updateTaskList(){
+    private void getBlockTaskFromDB(){
+        ValueEventListener vListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(mapListBlockTask.size() > 0) mapListBlockTask.clear();
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    BlockTask task =  ds.getValue(BlockTask.class);
+                    assert task != null;
+                    mapListBlockTask.put(task.getNumber() - 1, task);
+                }
+                updateBlockTaskList();
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        mDataBase.addValueEventListener(vListener);
+    }
+
+    private void updateCodeTaskList(){
         if(listData.size() > 0) listData.clear();
-        for(int i = 0; i < mapListTask.size(); i++){
-            TaskItem taskItem = new TaskItem(Objects.requireNonNull(mapListTask.get(i)).getName(), false);
+        for(int i = 0; i < mapListCodeTask.size(); i++){
+            TaskItem taskItem = new TaskItem(Objects.requireNonNull(mapListCodeTask.get(i)).getName(),
+                    Objects.requireNonNull(mapListCodeTask.get(i)).getIsSolved());
+            listData.add(taskItem);
+        }
+    }
+
+    private void updateBlockTaskList() {
+        if(listData.size() > 0) listData.clear();
+        for(int i = 0; i < mapListBlockTask.size(); i++){
+            TaskItem taskItem = new TaskItem(Objects.requireNonNull(mapListBlockTask.get(i)).getName(),
+                    Objects.requireNonNull(mapListBlockTask.get(i)).getIsSolved());
             listData.add(taskItem);
         }
     }

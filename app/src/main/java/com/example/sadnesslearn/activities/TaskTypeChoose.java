@@ -22,9 +22,19 @@ public class TaskTypeChoose extends AppCompatActivity {
         setSupportActionBar(tlb_choose_task_type);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        Intent intent = new Intent(TaskTypeChoose.this, TaskList.class);
+
         Button btn_code = findViewById(R.id.btn_choose_task_code);
         btn_code.setOnClickListener(view -> {
-            startActivity(new Intent(TaskTypeChoose.this, TaskList.class));
+            intent.putExtra("task_type", "code");
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        });
+
+        Button btn_block = findViewById(R.id.btn_choose_task_block);
+        btn_block.setOnClickListener(view -> {
+            intent.putExtra("task_type", "block");
+            startActivity(intent);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
     }

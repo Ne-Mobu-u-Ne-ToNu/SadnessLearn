@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="50dp"
-        app:title="@string/code_task"
+        app:title="@string/solving"
         />
 
     <com.google.android.material.tabs.TabLayout

@@ -10,6 +10,7 @@ import com.amrdeveloper.codeview.CodeView;
 import com.amrdeveloper.codeview.CodeViewAdapter;
 import com.amrdeveloper.codeview.Snippet;
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -136,16 +137,16 @@ public class PHPSyntaxManager extends LangSyntaxManager implements SyntaxManager
 
     @Override
     public String getInitCode() {
-        return "<?php\n    \n?>";
+        return Constants.PHP_INIT_CODE;
     }
 
     @Override
     public String getLanguage() {
-        return "php";
+        return Constants.PHP_LANG_NAME;
     }
 
     @Override
     public String getVersionIndex() {
-        return "4";
+        return Constants.PHP_LANG_VERSION;
     }
 }
