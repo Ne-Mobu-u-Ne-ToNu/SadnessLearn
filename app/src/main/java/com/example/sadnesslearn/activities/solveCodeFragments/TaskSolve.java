@@ -33,7 +33,7 @@ import java.util.List;
 
 public class TaskSolve extends Fragment {
     private String task_code, task_key;
-    private List<String> addedElements;
+    private List<Integer> addedElementsFirst, addedElementsLast;
     private final String task_test, task_id, task_options;
     private final String SOLVED = "Задание выполнено!";
     private RecyclerView rv_solve;
@@ -63,7 +63,8 @@ public class TaskSolve extends Fragment {
         task_key = null;
 
         if(task_options != null) {
-            addedElements = new ArrayList<>();
+            addedElementsFirst = new ArrayList<>();
+            addedElementsLast = new ArrayList<>();
             fillOptions(view);
             cv_code.setEnabled(false);
             addDeleteSelectedOption();
@@ -109,26 +110,26 @@ public class TaskSolve extends Fragment {
         adapter.setClickListener((view, position) -> {
             String changedText = cv_code.getText().toString();
             int firstIndex = changedText.indexOf("___");
-            int lastIndex = -1;
-            if(addedElements.size() != 0 )
-                lastIndex = changedText.lastIndexOf(addedElements.get(addedElements.size() - 1));
+
             if(firstIndex != -1) {
                 if (!adapter.getItem(position).equals("Удалить")) {
-                    addedElements.add(adapter.getItem(position));
+                    addedElementsFirst.add(firstIndex);
+                    addedElementsLast.add(firstIndex + adapter.getItem(position).length());
                     String after = changedText.substring(firstIndex + 3);
                     changedText = changedText.substring(0, firstIndex) + adapter.getItem(position) + after;
                     cv_code.setText(changedText);
                 }
             }
 
-            if(lastIndex != -1) {
+            if(addedElementsFirst.size() != 0 & addedElementsLast.size() != 0) {
                 if (adapter.getItem(position).equals("Удалить")) {
                     String before = changedText.substring(0,
-                            lastIndex);
-                    String after = changedText.substring(lastIndex + addedElements.get(addedElements.size() - 1).length());
+                            addedElementsFirst.get(addedElementsFirst.size() - 1));
+                    String after = changedText.substring(addedElementsLast.get(addedElementsLast.size() - 1));
                     changedText = before + "___" + after;
                     cv_code.setText(changedText);
-                    addedElements.remove(addedElements.size() - 1);
+                    addedElementsFirst.remove(addedElementsFirst.size() - 1);
+                    addedElementsLast.remove(addedElementsLast.size() - 1);
                 }
             }
         });

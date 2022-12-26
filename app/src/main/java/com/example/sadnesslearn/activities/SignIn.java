@@ -102,7 +102,7 @@ public class SignIn extends AppCompatActivity {
         });
 
         dialog.setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss());
-        dialog.show();  
+        dialog.show();
     }
 
 }
