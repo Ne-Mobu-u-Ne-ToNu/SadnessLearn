@@ -36,7 +36,6 @@ public class TaskSolve extends Fragment {
     private List<String> addedElements;
     private final String task_test, task_id, task_options;
     private final String SOLVED = "Задание выполнено!";
-    private final String ERROR = "error";
     private RecyclerView rv_solve;
     private OptionRecyclerViewAdapter adapter;
     private CodeView cv_code;
@@ -93,14 +92,7 @@ public class TaskSolve extends Fragment {
 
     private void checkAndWriteSolved(String task_key, String child, String codeResult){
         DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-        boolean isSolved;
-
-        if(task_options == null) {
-            isSolved = codeResult.contains(SOLVED);
-        }
-        else {
-            isSolved = !codeResult.contains(ERROR);
-        }
+        boolean isSolved = codeResult.contains(SOLVED);
 
         mDataBase.child(task_key).child(child).child("isSolved").setValue(isSolved);
     }
