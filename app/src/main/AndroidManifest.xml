@@ -22,6 +22,7 @@
         <activity
             android:name=".activities.SolveTask"
             android:exported="true"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".activities.TaskList" />
         <activity
             android:name=".activities.TaskTypeChoose"

@@ -46,6 +46,20 @@
             app:layout_anchor="@+id/bottom_sheet_layout"
             app:layout_anchorGravity="top|end"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_code_task_solve_hide_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:backgroundTint="@color/primary"
+        app:borderWidth="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@android:drawable/arrow_down_float"
+        app:layout_anchor="@+id/bottom_sheet_layout"
+        app:layout_anchorGravity="top|end"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_task_solve"
         android:layout_width="match_parent"

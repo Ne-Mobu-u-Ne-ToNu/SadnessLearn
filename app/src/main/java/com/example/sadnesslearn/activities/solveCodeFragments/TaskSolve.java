@@ -11,18 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amrdeveloper.codeview.CodeView;
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.BottomSheetBehaviorNoSwipe;
 import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.OptionRecyclerViewAdapter;
 import com.example.sadnesslearn.classes.languages.CompilerApi;
 import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
 import com.example.sadnesslearn.classes.languages.SyntaxManager;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -56,6 +57,10 @@ public class TaskSolve extends Fragment {
 
         TextView tv_result = view.findViewById(R.id.tv_result);
 
+        requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+
+        rv_solve = view.findViewById(R.id.rv_task_solve);
+
         cv_code = view.findViewById(R.id.cv_code_task_solve);
         syntaxManager.applyCodeTheme(this.getContext(), cv_code);
         cv_code.setText(task_code);
@@ -75,12 +80,24 @@ public class TaskSolve extends Fragment {
         }
 
 
-        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(view.findViewById(R.id.bottom_sheet_layout));
+        BottomSheetBehaviorNoSwipe<View> bottomSheetBehavior = (BottomSheetBehaviorNoSwipe<View>) BottomSheetBehaviorNoSwipe.from(view.findViewById(R.id.bottom_sheet_layout));
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-
         FloatingActionButton fab_run = view.findViewById(R.id.fab_code_task_solve_run);
+        FloatingActionButton fab_hide_dialog = view.findViewById(R.id.fab_code_task_solve_hide_dialog);
+
+        fab_hide_dialog.setVisibility(View.GONE);
+        fab_hide_dialog.setOnClickListener(view1 -> {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            fab_hide_dialog.setVisibility(View.GONE);
+            fab_run.setVisibility(View.VISIBLE);
+            rv_solve.setVisibility(View.VISIBLE);
+        });
+
         fab_run.setOnClickListener(view1 -> {
+            fab_run.setVisibility(View.GONE);
+            rv_solve.setVisibility(View.GONE);
+            fab_hide_dialog.setVisibility(View.VISIBLE);
             String buf = cv_code.getText().toString();
             task_code = buf.substring(0, buf.lastIndexOf('}')) + task_test;
             tv_result.setText(CompilerApi.compileAndRun(task_code, syntaxManager.getLanguage(), syntaxManager.getVersionIndex()));
@@ -99,7 +116,6 @@ public class TaskSolve extends Fragment {
     }
 
     private void fillOptions(View v) {
-        rv_solve = v.findViewById(R.id.rv_task_solve);
         List<String> listOptions = new ArrayList<>(Arrays.asList(task_options.split(" ")));
         adapter = new OptionRecyclerViewAdapter(v.getContext(), listOptions);
         rv_solve.setAdapter(adapter);

@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:layout_height="350dp"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="62dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    app:layout_behavior="com.example.sadnesslearn.classes.BottomSheetBehaviorNoSwipe">
 
     <LinearLayout
         android:id="@+id/bottom_sheet_header"
