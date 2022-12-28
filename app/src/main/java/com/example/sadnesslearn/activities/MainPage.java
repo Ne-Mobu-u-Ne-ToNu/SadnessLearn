@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.sadnesslearn.R;
@@ -24,27 +24,28 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
-        Button btn_plot = findViewById(R.id.btn_main_plot);
-        btn_plot.setOnClickListener(view -> {
+        LinearLayout lin_lay_plot = findViewById(R.id.lin_lay_main_btn_comics);
+        lin_lay_plot.setOnClickListener(view -> {
             startActivity(new Intent(MainPage.this, ComicsActivity.class));
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
 
-        Button btn_tasks = findViewById(R.id.btn_main_tasks);
-        btn_tasks.setOnClickListener(view -> {
+        LinearLayout lin_lay_tasks = findViewById(R.id.lin_lay_main_btn_tasks);
+        lin_lay_tasks.setOnClickListener(view -> {
             startActivity(new Intent(MainPage.this, TaskTypeChoose.class));
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
-        Button btn_sandBox = findViewById(R.id.btn_main_sandbox);
-        btn_sandBox.setOnClickListener(view -> showLanguageWindow());
 
-        Button btn_settings = findViewById(R.id.btn_main_settings);
-        btn_settings.setOnClickListener(view -> {
+        LinearLayout lin_lay_sandBox = findViewById(R.id.lin_lay_main_btn_sandBox);
+        lin_lay_sandBox.setOnClickListener(view -> showLanguageWindow());
+
+        LinearLayout lin_lay_settings = findViewById(R.id.lin_lay_main_btn_settings);
+        lin_lay_settings.setOnClickListener(view -> {
             startActivity(new Intent(MainPage.this, Settings.class));
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
 
-        Button btn_exit = findViewById(R.id.btn_main_exit);
+        LinearLayout btn_exit = findViewById(R.id.lin_lay_main_btn_profile);
         btn_exit.setOnClickListener(view -> {
             UserAuthentification.signOut();
             checkAuthAndRedirect();

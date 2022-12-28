@@ -27,6 +27,7 @@
         <activity
             android:name=".activities.TaskTypeChoose"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.MainPage" />
         <activity
             android:name=".activities.TaskList"
@@ -50,7 +51,8 @@
             android:parentActivityName=".activities.Authentification" />
         <activity
             android:name=".activities.MainPage"
-            android:exported="false" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.Registration"
             android:exported="true"

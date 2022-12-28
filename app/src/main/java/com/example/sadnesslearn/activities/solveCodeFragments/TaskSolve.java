@@ -23,7 +23,6 @@ import com.example.sadnesslearn.classes.languages.CompilerApi;
 import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
 import com.example.sadnesslearn.classes.languages.SyntaxManager;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,7 +35,6 @@ public class TaskSolve extends Fragment {
     private String task_code, task_key;
     private List<Integer> addedElementsFirst, addedElementsLast;
     private final String task_test, task_id, task_options;
-    private final String SOLVED = "Задание выполнено!";
     private RecyclerView rv_solve;
     private OptionRecyclerViewAdapter adapter;
     private CodeView cv_code;
@@ -56,8 +54,6 @@ public class TaskSolve extends Fragment {
         SyntaxManager syntaxManager = new JavaSyntaxManager();
 
         TextView tv_result = view.findViewById(R.id.tv_result);
-
-        requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
         rv_solve = view.findViewById(R.id.rv_task_solve);
 
@@ -88,6 +84,7 @@ public class TaskSolve extends Fragment {
 
         fab_hide_dialog.setVisibility(View.GONE);
         fab_hide_dialog.setOnClickListener(view1 -> {
+            requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             fab_hide_dialog.setVisibility(View.GONE);
             fab_run.setVisibility(View.VISIBLE);
@@ -95,6 +92,7 @@ public class TaskSolve extends Fragment {
         });
 
         fab_run.setOnClickListener(view1 -> {
+            requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
             fab_run.setVisibility(View.GONE);
             rv_solve.setVisibility(View.GONE);
             fab_hide_dialog.setVisibility(View.VISIBLE);
@@ -110,6 +108,7 @@ public class TaskSolve extends Fragment {
 
     private void checkAndWriteSolved(String task_key, String child, String codeResult){
         DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
+        String SOLVED = "Задание выполнено!";
         boolean isSolved = codeResult.contains(SOLVED);
 
         mDataBase.child(task_key).child(child).child("isSolved").setValue(isSolved);

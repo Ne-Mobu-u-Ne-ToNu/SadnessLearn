@@ -18,33 +18,40 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/darkGrey"
         tools:context=".activities.TaskTypeChoose">
 
-        <LinearLayout
-            android:id="@+id/lin_lay_main_nav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="vertical">
+        <GridLayout
+            style="@style/GridLayButtons"
+            android:columnCount="1">
 
-            <Button
-                android:id="@+id/btn_choose_task_code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/code_task"
-                style="@style/ButtonStyle" />
+            <LinearLayout
+                android:id="@+id/lin_lay_btn_choose_task_code"
+                style="@style/LinLayMenuButton">
 
-            <Button
-                android:id="@+id/btn_choose_task_block"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/block_task"
-                style="@style/ButtonStyle" />
+                <ImageView
+                    style="@style/ImageViewMenuButton"
+                    android:src="@drawable/ic_code_task" />
 
-        </LinearLayout>
+                <TextView
+                    style="@style/TextViewMenuButton"
+                    android:text="@string/code_task" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_lay_btn_choose_task_block"
+                style="@style/LinLayMenuButton"
+                android:layout_marginBottom="0dp">
+
+                <ImageView
+                    style="@style/ImageViewMenuButton"
+                    android:src="@drawable/ic_block_task" />
+
+                <TextView
+                    style="@style/TextViewMenuButton"
+                    android:text="@string/block_task" />
+            </LinearLayout>
+        </GridLayout>
 
     </RelativeLayout>
 </LinearLayout>

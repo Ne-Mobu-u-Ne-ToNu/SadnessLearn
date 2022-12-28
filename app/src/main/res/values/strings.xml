@@ -2,7 +2,7 @@
     <string name="app_name">Sadness Learn</string>
     <string name="authors">by SadnessMood</string>
     <string name="authorization">Авторизация</string>
-    <string name="auth_options">Войдите или зарегестрируйтесь</string>
+    <string name="auth_options">Войдите или зарегистрируйтесь</string>
     <string name="sign_in">Вход</string>
     <string name="register">Регистрация</string>
     <string name="reg_text_info">Зарегестрируйтесь, чтобы пользоваться приложением и следить за прогрессом</string>
@@ -28,6 +28,7 @@
     <string name="solving">Решение</string>
     <string name="task">Задача</string>
     <string name="item">Item</string>
+    <string name="profile">Профиль</string>
 
     <string-array name="languages">
         <item>Java</item>

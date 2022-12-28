@@ -5,7 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.example.sadnesslearn.R;
 
@@ -24,15 +24,15 @@ public class TaskTypeChoose extends AppCompatActivity {
 
         Intent intent = new Intent(TaskTypeChoose.this, TaskList.class);
 
-        Button btn_code = findViewById(R.id.btn_choose_task_code);
-        btn_code.setOnClickListener(view -> {
+        LinearLayout lin_lay_btn_code = findViewById(R.id.lin_lay_btn_choose_task_code);
+        lin_lay_btn_code.setOnClickListener(view -> {
             intent.putExtra("task_type", "code");
             startActivity(intent);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
 
-        Button btn_block = findViewById(R.id.btn_choose_task_block);
-        btn_block.setOnClickListener(view -> {
+        LinearLayout lin_lay_btn_block = findViewById(R.id.lin_lay_btn_choose_task_block);
+        lin_lay_btn_block.setOnClickListener(view -> {
             intent.putExtra("task_type", "block");
             startActivity(intent);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);

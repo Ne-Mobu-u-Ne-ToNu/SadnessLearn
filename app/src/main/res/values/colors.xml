@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#E467B3</color>
-    <color name="darkGrey">#5A5A5A</color>
+    <color name="darkGrey">#464646</color>
     <color name="grey">#737373</color>
     <color name="commentsCode">#8c8c8c</color>
     <color name="keyWordsOrange">#ff9900</color>

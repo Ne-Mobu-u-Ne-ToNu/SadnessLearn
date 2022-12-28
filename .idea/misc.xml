@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.137" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/custom_button_border.xml" value="0.137" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.137" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout-v23/activity_settings.xml" value="0.1" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_authentification.xml" value="0.16" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_code_run_result.xml" value="0.1265625" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_comics.xml" value="0.1" />
@@ -12,7 +14,7 @@
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_registration.xml" value="0.1265625" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_reset_password.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_sandbox.xml" value="0.1" />
-        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_settings.xml" value="0.1" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_settings.xml" value="0.2" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_solve_code_task.xml" value="0.1" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_solve_task.xml" value="0.1" />

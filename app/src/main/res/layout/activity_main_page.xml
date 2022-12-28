@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,60 +16,83 @@
         />
 
     <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/darkGrey"
         tools:context=".activities.MainPage">
+        
+        <GridLayout
+            style="@style/GridLayButtons"
+            android:columnCount="2">
+            <LinearLayout
+                android:id="@+id/lin_lay_main_btn_tasks"
+                style="@style/LinLayMenuButton">
 
-        <LinearLayout
-            android:id="@+id/lin_lay_main_nav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="vertical">
+                <ImageView
+                    style="@style/ImageViewMenuButton"
+                    android:src="@drawable/ic_tasks" />
 
-            <Button
-                android:id="@+id/btn_main_plot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/plot"
-                style="@style/ButtonStyle" />
+                <TextView
+                    style="@style/TextViewMenuButton"
+                    android:text="@string/tasks" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_main_tasks"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tasks"
-                style="@style/ButtonStyle" />
+            <LinearLayout
+                android:id="@+id/lin_lay_main_btn_sandBox"
+                style="@style/LinLayMenuButton"
+                android:layout_marginStart="40dp">
 
-            <Button
-                android:id="@+id/btn_main_settings"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/settings"
-                style="@style/ButtonStyle" />
+                <ImageView
+                    style="@style/ImageViewMenuButton"
+                    android:src="@drawable/ic_sand_box" />
 
-            <Button
-                android:id="@+id/btn_main_sandbox"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sandbox"
-                style="@style/ButtonStyle" />
+                <TextView
+                    style="@style/TextViewMenuButton"
+                    android:text="@string/sandbox" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_main_exit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/exit"
-                style="@style/ButtonStyle" />
+            <LinearLayout
+                android:id="@+id/lin_lay_main_btn_profile"
+                style="@style/LinLayMenuButton">
 
-        </LinearLayout>
+                <ImageView
+                    style="@style/ImageViewMenuButton"
+                    android:src="@drawable/ic_profile" />
 
+                <TextView
+                    style="@style/TextViewMenuButton"
+                    android:text="@string/profile" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_lay_main_btn_settings"
+                style="@style/LinLayMenuButton"
+                android:layout_marginStart="40dp">
+
+                <ImageView
+                    style="@style/ImageViewMenuButton"
+                    android:src="@drawable/ic_settings" />
+
+                <TextView
+                    style="@style/TextViewMenuButton"
+                    android:text="@string/settings" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_lay_main_btn_comics"
+                android:layout_columnSpan="2"
+                style="@style/LinLayMenuButton"
+                android:layout_marginBottom="0dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    style="@style/ImageViewMenuButton"
+                    android:src="@drawable/ic_comics" />
+
+                <TextView
+                    style="@style/TextViewMenuButton"
+                    android:text="@string/plot" />
+            </LinearLayout>
+        </GridLayout>
     </RelativeLayout>
 </LinearLayout>
