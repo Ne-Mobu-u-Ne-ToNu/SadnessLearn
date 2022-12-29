@@ -17,7 +17,6 @@
     <string name="password_length">Длина пароля минимум 6 символов</string>
     <string name="btn_back_description">Назад</string>
     <string name="sandbox">Песочница</string>
-    <string name="exit">Выход</string>
     <string name="description_run">Run code</string>
     <string name="settings">Настройки</string>
     <string name="tasks">Задачи</string>
@@ -28,7 +27,15 @@
     <string name="solving">Решение</string>
     <string name="task">Задача</string>
     <string name="item">Item</string>
+
     <string name="profile">Профиль</string>
+    <string name="change_name">Изменить имя</string>
+    <string name="change_mail">Сменить почту</string>
+    <string name="change_password">Сменить пароль</string>
+    <string name="sign_out">Выйти из аккаунта</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="theme">Тема</string>
+    <string name="lang">Язык</string>
 
     <string-array name="languages">
         <item>Java</item>

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--> Слой с контентом <!-->
+    <style name="RelativeLayoutContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/darkGrey</item>
+    </style>
+
     <!--> Кнопки при авторизации <!-->
     <style name="ButtonStyle" parent="@android:style/Widget.Button">
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/mainCode</item>
         <item name="android:textSize">15sp</item>
         <item name="android:padding">10dp</item>
-        <item name="android:background">@color/primary</item>
         <item name="fontFamily">@font/comicsansms</item>
         <item name="android:gravity">center</item>
     </style>
@@ -16,7 +22,7 @@
         <item name="android:layout_width">115dp</item>
         <item name="android:layout_height">130dp</item>
         <item name="android:layout_marginBottom">40dp</item>
-        <item name="android:background">@drawable/custom_button_border</item>
+        <item name="android:background">@drawable/custom_button_menu_border</item>
         <item name="android:orientation">vertical</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
@@ -28,7 +34,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:tint">@color/primary</item>
+        <item name="android:tint">?attr/colorPrimary</item>
     </style>
 
     <style name="TextViewMenuButton">
@@ -46,6 +52,39 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!--> Круглая форма для картинки <!-->
+    <style name="roundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!--> Кнопки настроек <!-->
+    <style name="LinLaySettingsButton">
+        <item name="android:background">@drawable/custom_button_settings_border</item>
+        <item name="android:layout_marginBottom">25dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextViewSettingsButton">
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/comicsansms</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="ImageViewSettingsButton">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:tint">?attr/colorPrimary</item>
+        <item name="android:layout_marginEnd">10dp</item>
     </style>
 
 </resources>

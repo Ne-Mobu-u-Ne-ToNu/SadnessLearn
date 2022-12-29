@@ -11,8 +11,7 @@
         android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/RelativeLayoutContent">
 
         <com.amrdeveloper.codeview.CodeView
             android:id="@+id/cv_code_task_solve"

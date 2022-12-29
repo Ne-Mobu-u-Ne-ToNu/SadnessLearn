@@ -12,9 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SadnessLearn">
         <activity
+            android:name=".activities.Profile"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activities.MainPage"/>
+        <activity
             android:name=".activities.Settings"
             android:exported="true"
-            android:parentActivityName=".activities.MainPage"/>
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activities.MainPage" />
         <activity
             android:name=".activities.ComicsActivity"
             android:exported="true"
@@ -22,13 +28,13 @@
         <activity
             android:name=".activities.SolveTask"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".activities.TaskList" />
+            android:parentActivityName=".activities.TaskList"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.TaskTypeChoose"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.MainPage" />
+            android:parentActivityName=".activities.MainPage"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.TaskList"
             android:exported="true"
@@ -52,7 +58,7 @@
         <activity
             android:name=".activities.MainPage"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.Registration"
             android:exported="true"

@@ -16,10 +16,59 @@
 
     <RelativeLayout
         android:id="@+id/relLay_settings"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/darkGrey"
+        style="@style/RelativeLayoutContent"
         tools:context=".activities.Settings">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:src="@drawable/ic_settings_two"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                app:contentPadding="15dp"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                app:strokeWidth="3dp"
+                app:strokeColor="@color/black"
+                android:layout_width="130dp"
+                android:tint="?attr/colorPrimary"
+                android:layout_height="130dp"
+                android:layout_marginBottom="50dp"/>
+
+            <LinearLayout
+                android:id="@+id/lin_lay_settings_theme"
+                style="@style/LinLaySettingsButton">
+
+                <TextView
+                    style="@style/TextViewSettingsButton"
+                    android:text="@string/theme"/>
+
+                <ImageView
+                    style="@style/ImageViewSettingsButton"
+                    android:src="@drawable/ic_settings" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_lay_settings_lang"
+                style="@style/LinLaySettingsButton">
+
+                <TextView
+                    style="@style/TextViewSettingsButton"
+                    android:text="@string/lang"/>
+
+                <ImageView
+                    style="@style/ImageViewSettingsButton"
+                    android:src="@drawable/ic_settings" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 </LinearLayout>

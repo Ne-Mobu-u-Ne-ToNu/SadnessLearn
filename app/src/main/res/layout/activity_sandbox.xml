@@ -17,8 +17,7 @@
 
     <RelativeLayout
         android:id="@+id/relLay_sand_code"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/RelativeLayoutContent"
         tools:context=".activities.Sandbox">
 
         <com.amrdeveloper.codeview.CodeView

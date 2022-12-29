@@ -41,4 +41,18 @@ public class UserAuthentification {
         mAuth = FirebaseAuth.getInstance();
         mAuth.signOut();
     }
+
+    public static String getUserName() {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        assert currentUser != null;
+        return currentUser.getDisplayName();
+    }
+
+    public static String getUserMail() {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        assert currentUser != null;
+        return currentUser.getEmail();
+    }
 }

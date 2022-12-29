@@ -17,6 +17,7 @@
 
     <RelativeLayout
         android:id="@+id/relLay_run_code"
+        android:background="@color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.Sandbox">
@@ -25,7 +26,7 @@
             android:id="@+id/tv_run_code"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black"
+            android:layout_margin="10dp"
             android:fontFamily="@font/comicsansms"
             android:textColor="@color/white"/>
     </RelativeLayout>

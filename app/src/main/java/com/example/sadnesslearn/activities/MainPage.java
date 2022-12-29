@@ -47,16 +47,9 @@ public class MainPage extends AppCompatActivity {
 
         LinearLayout btn_exit = findViewById(R.id.lin_lay_main_btn_profile);
         btn_exit.setOnClickListener(view -> {
-            UserAuthentification.signOut();
-            checkAuthAndRedirect();
+            startActivity(new Intent(MainPage.this, Profile.class));
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
-    }
-
-    private void checkAuthAndRedirect(){
-        if (!UserAuthentification.isSignedIn()){
-            startActivity(new Intent(MainPage.this, Authentification.class));
-            finish();
-        }
     }
 
     private void showLanguageWindow(){
