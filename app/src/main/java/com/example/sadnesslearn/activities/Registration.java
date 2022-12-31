@@ -35,12 +35,11 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         init();
 
-        confirmationPassword();
+        UserAuthentification.confirmationPassword(password, password_conf, tv_match_passw, text_color);
 
         btn_register.setOnClickListener(view -> {
             try {
                 register();
-                redirectIfVerified();
             } catch (NullPointerException e){
                 Toast.makeText(Registration.this, e.getMessage(),
                         Toast.LENGTH_SHORT).show();
@@ -65,10 +64,10 @@ public class Registration extends AppCompatActivity {
 
     private void register(){
         String email_s, name_s, password_s, password_conf_s;
-        email_s = email.getText().toString();
-        name_s = name.getText().toString();
-        password_s = password.getText().toString();
-        password_conf_s = password_conf.getText().toString();
+        email_s = email.getText().toString().trim();
+        name_s = name.getText().toString().trim();
+        password_s = password.getText().toString().trim();
+        password_conf_s = password_conf.getText().toString().trim();
         if(email_s.length() == 0 || name_s.length() == 0
                 || password_s.length() == 0  || password_conf_s.length()  == 0){
             throw new NullPointerException("Заполните все поля!");
@@ -80,9 +79,7 @@ public class Registration extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             user = mAuth.getCurrentUser();
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(name_s).build();
-                            user.updateProfile(profileUpdates);
+                            UserAuthentification.changeUserName(name_s);
 
                             try {
                                 Thread.sleep(2000);
@@ -91,86 +88,14 @@ public class Registration extends AppCompatActivity {
                             }
                             assert user != null;
                             user.sendEmailVerification();
+                            Toast.makeText(this, "Подтверите ваш email!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Registration.this, Authentification.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(Registration.this, "Такой пользователь уже сушествует!",
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
-        }
-    }
-
-    private void confirmationPassword(){
-        password.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkAndSetConfMessage();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        password_conf.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkAndSetConfMessage();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-    }
-
-    private void checkAndSetConfMessage(){
-        String password_s, password_conf_s;
-        password_s = password.getText().toString();
-        password_conf_s = password_conf.getText().toString();
-        if(password_s.equals(password_conf_s) && password_s.length() != 0){
-            if(password_s.length() < 6){
-                tv_match_passw.setTextColor(Color.RED);
-                tv_match_passw.setText("Длина пароля минимум 6 символов");
-            }
-            else{
-                tv_match_passw.setTextColor(Color.GREEN);
-                tv_match_passw.setText("Пароли совпадают");
-            }
-        }
-        else if(!password_s.equals(password_conf_s)){
-            tv_match_passw.setTextColor(Color.RED);
-            tv_match_passw.setText("Пароли не совпадают");
-        }
-        else if(password_s.length() == 0){
-            tv_match_passw.setTextColor(text_color);
-            tv_match_passw.setText("Длина пароля минимум 6 символов");
-        }
-    }
-
-    private void redirectIfVerified(){
-        if(UserAuthentification.isSignedIn()){
-            if(UserAuthentification.isVerified(this)){
-                Toast.makeText(Registration.this, "Регистрация прошла успешно!",
-                        Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainPage.class));
-                overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                finish();
-            } else {
-                startActivity(new Intent(this, Authentification.class));
-                finish();
-            }
         }
     }
 }

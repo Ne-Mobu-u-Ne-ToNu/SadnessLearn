@@ -2,6 +2,7 @@ package com.example.sadnesslearn.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,13 @@ public class Authentification extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!onStartCheck()){
+            init();
+        }
+    }
+
+    private void init() {
+        setTheme(R.style.Theme_SadnessLearn_Pink);
         setContentView(R.layout.activity_authentification);
 
         Button btn_register = findViewById(R.id.btn_auth_register);
@@ -31,18 +39,18 @@ public class Authentification extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    private boolean onStartCheck() {
         // Check if user is signed in (non-null) and update UI accordingly.
         if(UserAuthentification.isSignedIn()){
             if(UserAuthentification.isVerified(this)){
                 startActivity(new Intent(this, MainPage.class));
+                return true;
             }
             else {
                 UserAuthentification.signOut();
+                return false;
             }
         }
-
+        return false;
     }
 }

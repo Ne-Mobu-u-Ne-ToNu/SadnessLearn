@@ -44,7 +44,7 @@ public class ResetPassword extends AppCompatActivity {
     }
 
     private void resetPassword(){
-        String email_s = email.getText().toString();
+        String email_s = email.getText().toString().trim();
         if(email_s.length() == 0){
             throw new NullPointerException("Заполните поле!");
         }

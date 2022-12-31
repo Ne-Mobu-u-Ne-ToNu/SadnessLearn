@@ -60,8 +60,8 @@ public class SignIn extends AppCompatActivity {
 
     private void signIn(){
         String email_s, password_s;
-        email_s = email.getText().toString();
-        password_s = password.getText().toString();
+        email_s = email.getText().toString().trim();
+        password_s = password.getText().toString().trim();
         if(email_s.length() == 0 || password_s.length() == 0){
             throw new NullPointerException("Заполните все поля!");
         }

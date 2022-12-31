@@ -8,6 +8,8 @@
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/custom_button_menu_border.xml" value="0.137" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/custom_button_settings_border.xml" value="0.137" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.137" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/ic_splash_screen.xml" value="0.1065" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/splash_image.xml" value="0.1065" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout-v23/activity_settings.xml" value="0.1" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_authentification.xml" value="0.16" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/activity_code_run_result.xml" value="0.1265625" />
@@ -31,6 +33,8 @@
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/list_item_suggestion.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/task_list_item.xml" value="0.1265625" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_choose_language.xml" value="0.1265625" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_profile_setting.xml" value="0.22530996152201796" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_profile_settings.xml" value="0.1" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/mipmap-anydpi-v26/ic_btn_back.xml" value="0.137" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/mipmap-anydpi-v26/ic_btn_back_round.xml" value="0.137" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.137" />
