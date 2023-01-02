@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.AnimationHelper;
 import com.example.sadnesslearn.classes.Comics;
 import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.MyImageSwitcher;
@@ -31,6 +33,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class ComicsActivity extends AppCompatActivity implements ViewSwitcher.ViewFactory, GestureDetector.OnGestureListener {
     private MyImageSwitcher is_comics;
+    private ImageButton ib_back, ib_forward;
     private int position;
     private GestureDetector gestureDetector;
     private static final int SWIPE_MIN_DISTANCE = 120;
@@ -45,6 +48,7 @@ public class ComicsActivity extends AppCompatActivity implements ViewSwitcher.Vi
         setContentView(R.layout.activity_comics);
 
         init();
+        buttonNavigation();
         getDataFromDB();
     }
 
@@ -52,6 +56,12 @@ public class ComicsActivity extends AppCompatActivity implements ViewSwitcher.Vi
         Toolbar tlb_comics = findViewById(R.id.tlb_comics);
         setSupportActionBar(tlb_comics);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        ib_back = findViewById(R.id.ib_comics_back);
+        AnimationHelper.buttonAnimation(ib_back, this);
+        ib_forward = findViewById(R.id.ib_comics_forward);
+        AnimationHelper.buttonAnimation(ib_forward, this);
+
         position = 0;
         imageMap = new HashMap<>();
         is_comics = findViewById(R.id.is_comics);
@@ -59,6 +69,18 @@ public class ComicsActivity extends AppCompatActivity implements ViewSwitcher.Vi
         mDataBase = FirebaseDatabase.getInstance().getReference(Constants.COMICS_KEY);
 
         gestureDetector = new GestureDetector(this,this);
+    }
+
+    private void buttonNavigation() {
+        ib_back.setOnClickListener(view -> {
+            setPositionPrev();
+            is_comics.setImageUrl(imageMap.get(position), this);
+        });
+
+        ib_forward.setOnClickListener(view -> {
+            setPositionNext();
+            is_comics.setImageUrl(imageMap.get(position), this);
+        });
     }
 
     private void setPositionNext() {

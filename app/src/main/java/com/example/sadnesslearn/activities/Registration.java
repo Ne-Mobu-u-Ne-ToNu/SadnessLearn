@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.AnimationHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +37,7 @@ public class Registration extends AppCompatActivity {
         init();
 
         UserAuthentification.confirmationPassword(password, password_conf, tv_match_passw, text_color);
+        AnimationHelper.buttonAnimation(btn_register, this);
 
         btn_register.setOnClickListener(view -> {
             try {

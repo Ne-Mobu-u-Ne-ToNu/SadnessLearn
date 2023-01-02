@@ -24,6 +24,7 @@
         <activity
             android:name=".activities.ComicsActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.MainPage" />
         <activity
             android:name=".activities.SolveTask"
@@ -38,10 +39,12 @@
         <activity
             android:name=".activities.TaskList"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.TaskTypeChoose" />
         <activity
             android:name=".activities.CodeRunResult"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.Sandbox" />
         <activity
             android:name=".activities.Sandbox"
@@ -50,10 +53,12 @@
         <activity
             android:name=".activities.ResetPassword"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.SignIn" />
         <activity
             android:name=".activities.SignIn"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.Authentification" />
         <activity
             android:name=".activities.MainPage"
@@ -62,10 +67,12 @@
         <activity
             android:name=".activities.Registration"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.Authentification" />
         <activity
             android:name=".activities.Authentification"
             android:theme="@style/splashScreenTheme"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

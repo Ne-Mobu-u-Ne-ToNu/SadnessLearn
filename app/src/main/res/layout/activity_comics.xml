@@ -25,5 +25,25 @@
             android:layout_height="match_parent">
         </com.example.sadnesslearn.classes.MyImageSwitcher>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@id/is_comics"
+            android:weightSum="2"
+            android:layout_marginBottom="15dp">
+
+            <ImageButton
+                android:id="@+id/ib_comics_back"
+                style="@style/ButtonImageSwitcher"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/ic_arrow_left" />
+
+            <ImageButton
+                android:id="@+id/ib_comics_forward"
+                style="@style/ButtonImageSwitcher"
+                android:src="@drawable/ic_arrow_right"/>
+
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

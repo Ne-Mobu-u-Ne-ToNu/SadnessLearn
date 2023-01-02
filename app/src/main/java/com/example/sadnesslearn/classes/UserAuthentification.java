@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.activities.Authentification;
 import com.example.sadnesslearn.activities.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,7 +36,7 @@ public class UserAuthentification {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         assert currentUser != null;
         if(!currentUser.isEmailVerified()){
-            Toast.makeText(currentActivity, "Подтверите ваш email!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(currentActivity, currentActivity.getResources().getString(R.string.confirm_email), Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -43,7 +44,7 @@ public class UserAuthentification {
 
     public static boolean emailValidator(String email, Context context){
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(context, "Введите правильный email!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.wrong_email_type), Toast.LENGTH_SHORT).show();
             return false;
         }
         else{
@@ -107,7 +108,7 @@ public class UserAuthentification {
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 user.sendEmailVerification();
-                                Toast.makeText(context, "Подтвердите адрес электронной почты",
+                                Toast.makeText(context, context.getResources().getString(R.string.confirm_email),
                                         Toast.LENGTH_SHORT).show();
                                 signOut();
                                 context.startActivity(new Intent(context, Authentification.class));

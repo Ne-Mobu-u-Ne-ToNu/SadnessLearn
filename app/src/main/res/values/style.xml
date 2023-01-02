@@ -9,6 +9,7 @@
 
     <!--> Кнопки при авторизации <!-->
     <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/base_button</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:textColor">@color/mainCode</item>
         <item name="android:textSize">15sp</item>
@@ -22,7 +23,7 @@
         <item name="android:layout_width">115dp</item>
         <item name="android:layout_height">130dp</item>
         <item name="android:layout_marginBottom">40dp</item>
-        <item name="android:background">@drawable/custom_button_menu_border</item>
+        <item name="android:background">@drawable/custom_button_menu</item>
         <item name="android:orientation">vertical</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
@@ -62,7 +63,7 @@
 
     <!--> Кнопки настроек <!-->
     <style name="LinLaySettingsButton">
-        <item name="android:background">@drawable/custom_button_settings_border</item>
+        <item name="android:background">@drawable/custom_button_settings</item>
         <item name="android:layout_marginBottom">25dp</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">match_parent</item>
@@ -85,6 +86,16 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:tint">?attr/colorPrimary</item>
         <item name="android:layout_marginEnd">10dp</item>
+    </style>
+
+    <!--> Стрелочки для переключения изображений <!-->
+    <style name="ButtonImageSwitcher">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:background">@null</item>
+        <item name="android:tint">?attr/colorPrimary</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
 </resources>

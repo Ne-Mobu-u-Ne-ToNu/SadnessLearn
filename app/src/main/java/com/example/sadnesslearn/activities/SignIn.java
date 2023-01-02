@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.AnimationHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,6 +40,7 @@ public class SignIn extends AppCompatActivity {
         password = findViewById(R.id.edTex_sign_password);
 
         TextView tv_reset_password = findViewById(R.id.tv_sign_in_reset_pass);
+        AnimationHelper.buttonAnimation(tv_reset_password, this);
 
         tv_reset_password.setOnClickListener(view -> {
             startActivity(new Intent(SignIn.this, ResetPassword.class));
@@ -46,6 +48,7 @@ public class SignIn extends AppCompatActivity {
         });
 
         Button btn_sign_in = findViewById(R.id.btn_s_sign_in);
+        AnimationHelper.buttonAnimation(btn_sign_in, this);
 
         btn_sign_in.setOnClickListener(view -> {
             try{

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.AnimationHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,6 +32,7 @@ public class ResetPassword extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         Button btn_reset_password = findViewById(R.id.btn_res_reset_password);
+        AnimationHelper.buttonAnimation(btn_reset_password, this);
         email = findViewById(R.id.edTex_res_email);
 
         btn_reset_password.setOnClickListener(view -> {
