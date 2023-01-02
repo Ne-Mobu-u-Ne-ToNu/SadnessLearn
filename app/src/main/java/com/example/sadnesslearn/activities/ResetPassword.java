@@ -48,14 +48,14 @@ public class ResetPassword extends AppCompatActivity {
     private void resetPassword(){
         String email_s = email.getText().toString().trim();
         if(email_s.length() == 0){
-            throw new NullPointerException("Заполните поле!");
+            throw new NullPointerException(getResources().getString(R.string.enter_field));
         }
 
         if(UserAuthentification.emailValidator(email_s, this)){
             mAuth.sendPasswordResetEmail(email_s)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(ResetPassword.this, "Сообщение отправлено",
+                            Toast.makeText(ResetPassword.this, getResources().getString(R.string.letter_sent),
                                     Toast.LENGTH_SHORT).show();
                             try {
                                 Thread.sleep(1000);
@@ -66,7 +66,7 @@ public class ResetPassword extends AppCompatActivity {
                             finish();
                         }
                         else{
-                            Toast.makeText(ResetPassword.this, "Пользователя с таким email не существует!",
+                            Toast.makeText(ResetPassword.this, getResources().getString(R.string.user_not_exist),
                                     Toast.LENGTH_SHORT).show();
                         }
                     });

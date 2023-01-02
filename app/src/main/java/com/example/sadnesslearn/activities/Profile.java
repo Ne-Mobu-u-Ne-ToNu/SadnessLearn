@@ -5,26 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.UserAuthentification;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 public class Profile extends AppCompatActivity {
@@ -87,16 +79,16 @@ public class Profile extends AppCompatActivity {
 
     private void showNameWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Смена имени");
+        dialog.setTitle(getResources().getString(R.string.change_name));
 
         View window_name = LayoutInflater.from(this).inflate(R.layout.window_profile_settings, null);
 
         EditText edTex_name = window_name.findViewById(R.id.edTex_window_profile_settings_1);
-        edTex_name.setHint("Введите новое имя");
+        edTex_name.setHint(getResources().getString(R.string.name_hint));
 
         dialog.setView(window_name);
 
-        dialog.setPositiveButton("Ок", (dialogInterface, i) -> {
+        dialog.setPositiveButton(getResources().getString(R.string.ok), (dialogInterface, i) -> {
             if (edTex_name.getText().toString().trim().length() != 0) {
                 UserAuthentification.changeUserName(edTex_name.getText().toString());
                 try {
@@ -107,99 +99,99 @@ public class Profile extends AppCompatActivity {
                 tv_hello_user.setText(greetingMessage());
             }
             else {
-                Toast.makeText(Profile.this, "Введите поле!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Profile.this, getResources().getString(R.string.enter_field), Toast.LENGTH_SHORT).show();
             }
         });
 
-        dialog.setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
 
         dialog.show();
     }
 
     private void showMailWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Смена почты");
+        dialog.setTitle(getResources().getString(R.string.change_mail));
 
         View window_name = LayoutInflater.from(this).inflate(R.layout.window_profile_settings, null);
 
         EditText edTex_mail = window_name.findViewById(R.id.edTex_window_profile_settings_1);
-        edTex_mail.setHint("Введите новую почту");
+        edTex_mail.setHint(getResources().getString(R.string.email_hint));
 
         dialog.setView(window_name);
 
-        dialog.setPositiveButton("Ок", (dialogInterface, i) -> {
+        dialog.setPositiveButton(getResources().getString(R.string.ok), (dialogInterface, i) -> {
             UserAuthentification.changeUserMail(edTex_mail.getText().toString().trim(), this);
         });
 
-        dialog.setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
 
         dialog.show();
     }
 
     private void showPasswordWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Смена пароля");
+        dialog.setTitle(getResources().getString(R.string.change_password));
 
         View window_name = LayoutInflater.from(this).inflate(R.layout.window_profile_settings, null);
 
         EditText edTex_passw = window_name.findViewById(R.id.edTex_window_profile_settings_1);
         edTex_passw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        edTex_passw.setHint("Введите новый пароль");
+        edTex_passw.setHint(getResources().getString(R.string.password_hint));
 
         EditText edTex_passw_conf = window_name.findViewById(R.id.edTex_window_profile_settings_2);
         edTex_passw_conf.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         showView(edTex_passw_conf);
-        edTex_passw_conf.setHint("Подтвердите новый пароль");
+        edTex_passw_conf.setHint(getResources().getString(R.string.password_conf_hint));
 
         TextView tv_info = window_name.findViewById(R.id.tv_window_profile_info);
         int textColor = tv_info.getCurrentTextColor();
         showView(tv_info);
 
-        UserAuthentification.confirmationPassword(edTex_passw, edTex_passw_conf, tv_info, textColor);
+        UserAuthentification.confirmationPassword(this, edTex_passw, edTex_passw_conf, tv_info, textColor);
 
         dialog.setView(window_name);
 
-        dialog.setPositiveButton("Ок", (dialogInterface, i) -> {
+        dialog.setPositiveButton(getResources().getString(R.string.ok), (dialogInterface, i) -> {
             UserAuthentification.changeUserPassword(edTex_passw.getText().toString().trim(),
                     edTex_passw_conf.getText().toString().trim(), this);
         });
 
-        dialog.setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
 
         dialog.show();
     }
 
     private void showExitWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Выход");
-        dialog.setMessage("Вы действительно хотите выйти из аккаунта?");
+        dialog.setTitle(getResources().getString(R.string.exit));
+        dialog.setMessage(getResources().getString(R.string.sure_to_exit));
 
-        dialog.setPositiveButton("Да", (dialogInterface, i) -> {
+        dialog.setPositiveButton(getResources().getString(R.string.yes), (dialogInterface, i) -> {
             UserAuthentification.signOut();
             checkAuthAndRedirect();
         });
 
-        dialog.setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
 
         dialog.show();
     }
 
     private void showDeleteWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Удаление аккаунта");
-        dialog.setMessage("Вы действительно хотите удалить свою учетную запись?");
+        dialog.setTitle(getResources().getString(R.string.delete_account));
+        dialog.setMessage(getResources().getString(R.string.sure_to_delete));
 
-        dialog.setPositiveButton("Да", (dialogInterface, i) -> {
+        dialog.setPositiveButton(getResources().getString(R.string.yes), (dialogInterface, i) -> {
             UserAuthentification.deleteAccount(this);
         });
 
-        dialog.setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
 
         dialog.show();
     }
 
     private String greetingMessage() {
-        return "Добро пожаловать, " + UserAuthentification.getUserName() + "!";
+        return getResources().getString(R.string.greeting_message) + " " + UserAuthentification.getUserName() + "!";
     }
 
     private void showView(View v) {

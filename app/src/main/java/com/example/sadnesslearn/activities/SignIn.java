@@ -66,14 +66,14 @@ public class SignIn extends AppCompatActivity {
         email_s = email.getText().toString().trim();
         password_s = password.getText().toString().trim();
         if(email_s.length() == 0 || password_s.length() == 0){
-            throw new NullPointerException("Заполните все поля!");
+            throw new NullPointerException(getResources().getString(R.string.enter_fields));
         }
         mAuth.signInWithEmailAndPassword(email_s, password_s)
                 .addOnCompleteListener(SignIn.this, task -> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         if(UserAuthentification.isVerified(this)){
-                            Toast.makeText(SignIn.this, "Вход выполнен!",
+                            Toast.makeText(SignIn.this, getResources().getString(R.string.sign_in_success),
                                     Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SignIn.this, Authentification.class));
                             finish();
@@ -82,7 +82,7 @@ public class SignIn extends AppCompatActivity {
                         }
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(SignIn.this, "Неверный email или пароль!",
+                        Toast.makeText(SignIn.this, getResources().getString(R.string.wrong_email_password),
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -90,21 +90,21 @@ public class SignIn extends AppCompatActivity {
 
     private void repeatConfEmailWindow(Context context) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Повторный email");
-        dialog.setMessage("Хотите отправить повторный email для подтверждения электронной почты?");
+        dialog.setTitle(getResources().getString(R.string.repeating_email));
+        dialog.setMessage(getResources().getString(R.string.ask_to_send_repeating_email));
 
-        dialog.setPositiveButton("Да", (dialogInterface, i) -> {
+        dialog.setPositiveButton(getResources().getString(R.string.yes), (dialogInterface, i) -> {
             FirebaseUser user = mAuth.getCurrentUser();
             if(user != null) {
                 user.sendEmailVerification();
-                Toast.makeText(context, "Письмо отправлено!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, getResources().getString(R.string.letter_sent), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "Вы не вошли в систему!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, getResources().getString(R.string.did_not_sign_in), Toast.LENGTH_SHORT).show();
             }
             dialogInterface.dismiss();
         });
 
-        dialog.setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
         dialog.show();
     }
 

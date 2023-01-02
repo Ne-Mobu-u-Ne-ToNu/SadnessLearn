@@ -54,8 +54,8 @@ public class MainPage extends AppCompatActivity {
 
     private void showLanguageWindow(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Язык программирования");
-        dialog.setMessage("Выберите язык программирования");
+        dialog.setTitle(getResources().getString(R.string.programming_language));
+        dialog.setMessage(getResources().getString(R.string.choose_programming_language));
 
         View window_choose_lang = LayoutInflater.from(this).inflate(R.layout.window_choose_language, null);
         dialog.setView(window_choose_lang);
@@ -72,7 +72,7 @@ public class MainPage extends AppCompatActivity {
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
 
-        dialog.setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
 
         dialog.show();
     }

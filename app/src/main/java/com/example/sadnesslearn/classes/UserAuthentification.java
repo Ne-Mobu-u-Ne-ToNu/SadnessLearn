@@ -88,11 +88,11 @@ public class UserAuthentification {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         signOut();
-                        Toast.makeText(context, "Аккаунт удалён!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, context.getResources().getString(R.string.account_deleted), Toast.LENGTH_SHORT).show();
                         context.startActivity(new Intent(context, Authentification.class));
                     }
                     else {
-                        Toast.makeText(context, "Ошибка, попробуйте перезайти в свой аккаунт", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -114,13 +114,13 @@ public class UserAuthentification {
                                 context.startActivity(new Intent(context, Authentification.class));
                             }
                             else {
-                                Toast.makeText(context, "Ошибка, попробуйте перезайти в свой аккаунт", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();
                             }
                         });
             }
         }
         else {
-            Toast.makeText(context, "Введите поле!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.enter_field), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -134,23 +134,23 @@ public class UserAuthentification {
                 user.updatePassword(password)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Toast.makeText(context, "Перезайдите в учётную запись!",
+                                Toast.makeText(context, context.getResources().getString(R.string.sign_in_again),
                                         Toast.LENGTH_SHORT).show();
                                 signOut();
                                 context.startActivity(new Intent(context, Authentification.class));
                             }
                             else {
-                                Toast.makeText(context, "Ошибка, попробуйте перезайти в свой аккаунт", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();
                             }
                         });
             }
         }
         else {
-            Toast.makeText(context, "Введите все поля!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.enter_fields), Toast.LENGTH_SHORT).show();
         }
     }
 
-    public static void confirmationPassword(EditText password, EditText password_conf, TextView tv_match_passw, int text_color){
+    public static void confirmationPassword(Context context, EditText password, EditText password_conf, TextView tv_match_passw, int text_color){
         password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -159,7 +159,7 @@ public class UserAuthentification {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkAndSetConfMessage(password, password_conf, tv_match_passw, text_color);
+                checkAndSetConfMessage(context, password, password_conf, tv_match_passw, text_color);
             }
 
             @Override
@@ -175,7 +175,7 @@ public class UserAuthentification {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkAndSetConfMessage(password, password_conf, tv_match_passw, text_color);
+                checkAndSetConfMessage(context, password, password_conf, tv_match_passw, text_color);
             }
 
             @Override
@@ -185,27 +185,27 @@ public class UserAuthentification {
         });
     }
 
-    public static void checkAndSetConfMessage(EditText password, EditText password_conf, TextView tv_match_passw, int text_color){
+    public static void checkAndSetConfMessage(Context context, EditText password, EditText password_conf, TextView tv_match_passw, int text_color){
         String password_s, password_conf_s;
         password_s = password.getText().toString();
         password_conf_s = password_conf.getText().toString();
         if(password_s.equals(password_conf_s) && password_s.length() != 0){
             if(password_s.length() < 6){
                 tv_match_passw.setTextColor(Color.RED);
-                tv_match_passw.setText("Длина пароля минимум 6 символов");
+                tv_match_passw.setText(context.getResources().getString(R.string.password_length));
             }
             else{
                 tv_match_passw.setTextColor(Color.GREEN);
-                tv_match_passw.setText("Пароли совпадают");
+                tv_match_passw.setText(context.getResources().getString(R.string.passwords_match));
             }
         }
         else if(!password_s.equals(password_conf_s)){
             tv_match_passw.setTextColor(Color.RED);
-            tv_match_passw.setText("Пароли не совпадают");
+            tv_match_passw.setText(context.getResources().getString(R.string.passwords_not_match));
         }
         else if(password_s.length() == 0){
             tv_match_passw.setTextColor(text_color);
-            tv_match_passw.setText("Длина пароля минимум 6 символов");
+            tv_match_passw.setText(context.getResources().getString(R.string.password_length));
         }
     }
 }

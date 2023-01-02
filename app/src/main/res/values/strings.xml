@@ -39,6 +39,31 @@
 
     <string name="confirm_email">Подтвердите адрес электронной почты!</string>
     <string name="wrong_email_type">Введите правильный email!</string>
+    <string name="account_deleted">Аккаунт удалён!</string>
+    <string name="sign_in_again">Перезайдите в учётную запись!</string>
+    <string name="error_try_sign_in">Ошибка, попробуйте перезайти в свой аккаунт!</string>
+    <string name="enter_field">Заполните поле!</string>
+    <string name="enter_fields">Заполните все поля!</string>
+    <string name="min_password_length">Длина пароля минимум 6 символов</string>
+    <string name="passwords_match">Пароли совпадают</string>
+    <string name="passwords_not_match">Пароли не совпадают</string>
+    <string name="programming_language">Язык программирования</string>
+    <string name="choose_programming_language">Выберите язык программирования</string>
+    <string name="ok">Ок</string>
+    <string name="yes">Да</string>
+    <string name="cancel">Отмена</string>
+    <string name="sign_in_success">Вход выполнен!</string>
+    <string name="wrong_email_password">Неверный email или пароль!</string>
+    <string name="repeating_email">Повторный email</string>
+    <string name="ask_to_send_repeating_email">Хотите отправить повторный email для подтверждения электронной почты?</string>
+    <string name="letter_sent">Письмо отправлено!</string>
+    <string name="did_not_sign_in">Вы не вошли в систему!</string>
+    <string name="user_already_exists">Такой пользователь уже существует!</string>
+    <string name="user_not_exist">Пользователя с таким email не существует!</string>
+    <string name="greeting_message">Добро пожаловать,</string>
+    <string name="exit">Выход</string>
+    <string name="sure_to_exit">Вы действительно хотите выйти из аккаунта?</string>
+    <string name="sure_to_delete">Вы действительно хотите удалить свою учётную запись?</string>
 
     <string-array name="languages">
         <item>Java</item>

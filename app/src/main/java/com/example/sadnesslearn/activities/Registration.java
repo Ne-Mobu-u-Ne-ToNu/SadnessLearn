@@ -36,7 +36,7 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         init();
 
-        UserAuthentification.confirmationPassword(password, password_conf, tv_match_passw, text_color);
+        UserAuthentification.confirmationPassword(this, password, password_conf, tv_match_passw, text_color);
         AnimationHelper.buttonAnimation(btn_register, this);
 
         btn_register.setOnClickListener(view -> {
@@ -72,7 +72,7 @@ public class Registration extends AppCompatActivity {
         password_conf_s = password_conf.getText().toString().trim();
         if(email_s.length() == 0 || name_s.length() == 0
                 || password_s.length() == 0  || password_conf_s.length()  == 0){
-            throw new NullPointerException("Заполните все поля!");
+            throw new NullPointerException(getResources().getString(R.string.enter_fields));
         }
         if (password_s.length() >= 6 && password_s.equals(password_conf_s)
                 && UserAuthentification.emailValidator(email_s, this)){
@@ -90,11 +90,11 @@ public class Registration extends AppCompatActivity {
                             }
                             assert user != null;
                             user.sendEmailVerification();
-                            Toast.makeText(this, "Подтверите ваш email!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, getResources().getString(R.string.confirm_email), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Registration.this, Authentification.class));
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(Registration.this, "Такой пользователь уже сушествует!",
+                            Toast.makeText(Registration.this, getResources().getString(R.string.user_already_exists),
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
