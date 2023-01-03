@@ -7,12 +7,12 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tlb_comics"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="50dp"
-        app:title="@string/plot"
-        />
+        style="@style/ToolbarSadness">
+
+        <TextView
+            style="@style/ToolbarText"
+            android:text="@string/plot" />
+    </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"

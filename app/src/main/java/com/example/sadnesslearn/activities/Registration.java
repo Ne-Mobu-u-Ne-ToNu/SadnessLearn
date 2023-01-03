@@ -53,6 +53,7 @@ public class Registration extends AppCompatActivity {
         Toolbar tlb_registration = findViewById(R.id.tlb_registration);
         setSupportActionBar(tlb_registration);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
         mAuth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.edTex_reg_email);

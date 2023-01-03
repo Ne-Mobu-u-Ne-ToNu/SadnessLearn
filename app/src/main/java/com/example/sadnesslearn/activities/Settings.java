@@ -23,5 +23,6 @@ public class Settings extends AppCompatActivity {
         Toolbar tlb_settings = findViewById(R.id.tlb_settings);
         setSupportActionBar(tlb_settings);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
     }
 }

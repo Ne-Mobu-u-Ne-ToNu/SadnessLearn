@@ -21,6 +21,7 @@ public class TaskTypeChoose extends AppCompatActivity {
         Toolbar tlb_choose_task_type = findViewById(R.id.tlb_choose_task_type);
         setSupportActionBar(tlb_choose_task_type);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
         Intent intent = new Intent(TaskTypeChoose.this, TaskList.class);
 

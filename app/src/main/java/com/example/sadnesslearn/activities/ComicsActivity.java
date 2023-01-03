@@ -56,6 +56,7 @@ public class ComicsActivity extends AppCompatActivity implements ViewSwitcher.Vi
         Toolbar tlb_comics = findViewById(R.id.tlb_comics);
         setSupportActionBar(tlb_comics);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
         ib_back = findViewById(R.id.ib_comics_back);
         AnimationHelper.buttonAnimation(ib_back, this);

@@ -7,12 +7,13 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tlb_registration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="50dp"
-        app:title="@string/btn_back_description"
-        />
+        style="@style/ToolbarSadness">
+
+        <TextView
+            style="@style/ToolbarText"
+            android:text="@string/btn_back_description" />
+    </androidx.appcompat.widget.Toolbar>
+
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"
         style="@style/RelativeLayoutContent"

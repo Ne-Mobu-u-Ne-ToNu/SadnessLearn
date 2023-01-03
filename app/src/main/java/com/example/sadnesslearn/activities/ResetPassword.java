@@ -28,6 +28,7 @@ public class ResetPassword extends AppCompatActivity {
         Toolbar tlb_reset_password = findViewById(R.id.tlb_reset_password);
         setSupportActionBar(tlb_reset_password);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
         mAuth = FirebaseAuth.getInstance();
 

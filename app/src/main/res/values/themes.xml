@@ -10,6 +10,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primaryVarPink</item>
+        <item name="android:windowBackground">@color/darkGrey</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:textColor">@color/mainCode</item>
         <!-- Secondary brand color. -->

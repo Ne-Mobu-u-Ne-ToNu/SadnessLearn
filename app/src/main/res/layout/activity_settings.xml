@@ -7,12 +7,12 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tlb_settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="50dp"
-        app:title="@string/settings"
-        />
+        style="@style/ToolbarSadness">
+
+        <TextView
+            style="@style/ToolbarText"
+            android:text="@string/settings" />
+    </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         android:id="@+id/relLay_settings"

@@ -7,12 +7,13 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tlb_choose_task_type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="50dp"
-        app:title="@string/task_types"
-        />
+        style="@style/ToolbarSadness">
+
+        <TextView
+            style="@style/ToolbarText"
+            android:text="@string/task_types" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"

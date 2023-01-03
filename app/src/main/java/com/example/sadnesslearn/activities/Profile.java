@@ -35,6 +35,7 @@ public class Profile extends AppCompatActivity {
         Toolbar tlb_profile = findViewById(R.id.tlb_profile);
         setSupportActionBar(tlb_profile);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
         tv_hello_user = findViewById(R.id.tv_profile_user_name);
         tv_hello_user.setText(greetingMessage());

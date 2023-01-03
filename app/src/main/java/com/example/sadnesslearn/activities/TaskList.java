@@ -55,6 +55,7 @@ public class TaskList extends AppCompatActivity {
         Toolbar tlb_task_list = findViewById(R.id.tlb_task_list);
         setSupportActionBar(tlb_task_list);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
         listTasks = findViewById(R.id.lv_task_taskList);
         listData = new ArrayList<>();
         adapter = new TaskListArrayAdapter(this, listData);

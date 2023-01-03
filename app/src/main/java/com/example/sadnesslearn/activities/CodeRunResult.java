@@ -20,6 +20,7 @@ public class CodeRunResult extends AppCompatActivity {
         Toolbar tlb_code_run = findViewById(R.id.tlb_code_run);
         setSupportActionBar(tlb_code_run);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
         String result = getIntent().getStringExtra("result");
         TextView tv_run_code = findViewById(R.id.tv_run_code);

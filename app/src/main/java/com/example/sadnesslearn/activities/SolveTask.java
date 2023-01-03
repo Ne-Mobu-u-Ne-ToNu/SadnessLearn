@@ -34,6 +34,7 @@ public class SolveTask extends AppCompatActivity {
         Toolbar tlb_solve_code_task = findViewById(R.id.tlb_solve_code_task);
         setSupportActionBar(tlb_solve_code_task);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
         if(getIntent().getStringExtra("task_type") != null)
             taskType = getIntent().getStringExtra("task_type");
         tl_solve_code_task = findViewById(R.id.tl_solve_code_task);

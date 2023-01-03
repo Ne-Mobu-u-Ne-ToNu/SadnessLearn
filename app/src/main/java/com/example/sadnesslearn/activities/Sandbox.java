@@ -36,6 +36,7 @@ public class Sandbox extends AppCompatActivity {
         Toolbar tlb_sandBox = findViewById(R.id.tlb_sandBox);
         setSupportActionBar(tlb_sandBox);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
         if(getIntent().getStringExtra("language") != null) {
             lang = getIntent().getStringExtra("language");

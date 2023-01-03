@@ -8,12 +8,12 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tlb_registration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="50dp"
-        app:title="@string/app_name"
-        />
+        style="@style/ToolbarSadness">
+
+        <TextView
+            style="@style/ToolbarText"
+            android:text="@string/app_name" />
+    </androidx.appcompat.widget.Toolbar>
     <RelativeLayout
         style="@style/RelativeLayoutContent"
         tools:context=".activities.Authentification">

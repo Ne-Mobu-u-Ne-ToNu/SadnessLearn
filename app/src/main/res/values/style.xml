@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--> Тулбар <!-->
+    <style name="ToolbarSadness">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">70dp</item>
+        <item name="android:background">@drawable/toolbar_border</item>
+    </style>
+
+    <style name="ToolbarText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/comicsansms</item>
+        <item name="android:textColor">@color/mainCode</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
     <!--> Слой с контентом <!-->
     <style name="RelativeLayoutContent">
         <item name="android:layout_width">match_parent</item>

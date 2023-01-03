@@ -32,6 +32,7 @@ public class SignIn extends AppCompatActivity {
         Toolbar tlb_sign_in = findViewById(R.id.tlb_sign_in);
         setSupportActionBar(tlb_sign_in);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
 
         mAuth = FirebaseAuth.getInstance();
