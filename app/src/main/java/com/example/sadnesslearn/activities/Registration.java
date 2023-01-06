@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.AnimationHelper;
+import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +34,9 @@ public class Registration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
         setContentView(R.layout.activity_registration);
         init();
 

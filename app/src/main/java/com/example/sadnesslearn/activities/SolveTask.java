@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.activities.solveCodeFragments.SolveAdapter;
+import com.example.sadnesslearn.classes.SettingsHelper;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
@@ -24,6 +25,9 @@ public class SolveTask extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
         setContentView(R.layout.activity_solve_task);
         init();
         scenario(taskType);

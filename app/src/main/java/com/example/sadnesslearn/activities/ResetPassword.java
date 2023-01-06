@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.AnimationHelper;
+import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -23,6 +24,9 @@ public class ResetPassword extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
         setContentView(R.layout.activity_reset_password);
 
         Toolbar tlb_reset_password = findViewById(R.id.tlb_reset_password);

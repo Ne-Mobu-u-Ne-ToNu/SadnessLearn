@@ -9,6 +9,7 @@ public class Constants {
     //Preferences
     public static final String APP_PREFERENCES = "sadnessSettings";
     public static final String APP_PREFERENCES_LANG = "Language";
+    public static final String APP_PREFERENCES_THEME = "Theme";
 
     //Java
     public static final String JAVA_LANG_NAME = "java";

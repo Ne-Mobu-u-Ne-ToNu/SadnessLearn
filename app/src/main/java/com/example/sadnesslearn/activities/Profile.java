@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import java.util.Objects;
 
@@ -25,6 +26,9 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
         setContentView(R.layout.activity_profile);
         init();
         settingsButtonsActions();

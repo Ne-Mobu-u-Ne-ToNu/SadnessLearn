@@ -8,13 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary">#E467B3</color>
-    <color name="primaryVarPink">#dd3c9c</color>
-    <color name="primaryPressedPink">#ec93c8</color>
+    <color name="primary">#f06292</color>
+    <color name="primaryVarPink">#ec407a</color>
+    <color name="primaryPressedPink">#f48fb1</color>
 
-    <color name="primaryGreen">#009900</color>
-    <color name="primaryVarGreen">#006600</color>
-    <color name="primaryPressedGreen">#00cc00</color>
+    <color name="primaryGreen">#dce775</color>
+    <color name="primaryVarGreen">#d4e157</color>
+    <color name="primaryPressedGreen">#e6ee9c</color>
 
     <color name="darkGrey">#464646</color>
     <color name="viewPagerColor">#404040</color>

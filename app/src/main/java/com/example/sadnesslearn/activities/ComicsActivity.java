@@ -19,6 +19,7 @@ import com.example.sadnesslearn.classes.AnimationHelper;
 import com.example.sadnesslearn.classes.Comics;
 import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.MyImageSwitcher;
+import com.example.sadnesslearn.classes.SettingsHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +46,9 @@ public class ComicsActivity extends AppCompatActivity implements ViewSwitcher.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
         setContentView(R.layout.activity_comics);
 
         init();

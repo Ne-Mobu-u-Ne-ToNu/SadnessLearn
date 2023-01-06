@@ -23,7 +23,13 @@ public class Authentification extends AppCompatActivity {
     }
 
     private void init() {
-        setTheme(R.style.Theme_SadnessLearn_Pink);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
+        else {
+            setTheme(R.style.Theme_SadnessLearn_Pink);
+        }
+
         setContentView(R.layout.activity_authentification);
 
         Button btn_register = findViewById(R.id.btn_auth_register);

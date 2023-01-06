@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
+import com.example.sadnesslearn.R;
+
 import java.util.Locale;
 
 public class SettingsHelper {
@@ -35,11 +37,40 @@ public class SettingsHelper {
 
     public static boolean localeExists(Context context) {
         sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
-        return sadnessSettings.contains(Constants.APP_PREFERENCES_LANG);
+        return sadnessSettings.contains(Constants.APP_PREFERENCES_LANG)
+                && sadnessSettings.getString(Constants.APP_PREFERENCES_LANG, "").length() != 0;
     }
 
     public static String getStringLocaleFromPreferences(Context context) {
         sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         return sadnessSettings.getString(Constants.APP_PREFERENCES_LANG, "");
+    }
+
+    public static void saveTheme(Context context, int themeId) {
+        sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sadnessSettings.edit();
+        editor.putInt(Constants.APP_PREFERENCES_THEME, themeId);
+        editor.apply();
+    }
+
+    public static boolean themeExists(Context context) {
+        sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        return sadnessSettings.contains(Constants.APP_PREFERENCES_THEME)
+                && sadnessSettings.getInt(Constants.APP_PREFERENCES_THEME, 0) != 0;
+    }
+
+    public static int getThemeFromPrefs(Context context) {
+        sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        return sadnessSettings.getInt(Constants.APP_PREFERENCES_THEME, 0);
+    }
+
+    public static int getThemeFromColor(Context context, int color) {
+
+        if (color == context.getResources().getColor(R.color.primaryGreen)) {
+            return R.style.Theme_SadnessLearn_Green;
+        }
+        else {
+            return R.style.Theme_SadnessLearn_Pink;
+        }
     }
 }

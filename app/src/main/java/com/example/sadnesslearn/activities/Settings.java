@@ -3,14 +3,9 @@ package com.example.sadnesslearn.activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -19,18 +14,23 @@ import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.InterfaceLangArrayAdapter;
 import com.example.sadnesslearn.classes.InterfaceLangItem;
 import com.example.sadnesslearn.classes.SettingsHelper;
+import com.jaredrummler.android.colorpicker.ColorPickerDialog;
+import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
+import com.jaredrummler.android.colorpicker.ColorShape;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
-public class Settings extends AppCompatActivity {
+
+public class Settings extends AppCompatActivity implements ColorPickerDialogListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
         setContentView(R.layout.activity_settings);
 
         init();
@@ -45,13 +45,26 @@ public class Settings extends AppCompatActivity {
     }
 
     private void settingsButtonsActions() {
+        LinearLayout lin_lay_theme = findViewById(R.id.lin_lay_settings_theme);
+        lin_lay_theme.setOnClickListener(view -> showThemeDialog());
+
         LinearLayout lin_lay_lang = findViewById(R.id.lin_lay_settings_lang);
-        lin_lay_lang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLangDialog();
-            }
-        });
+        lin_lay_lang.setOnClickListener(view -> showLangDialog());
+    }
+
+    private void showThemeDialog() {
+        int[] presets = {getResources().getColor(R.color.primary), getResources().getColor(R.color.primaryGreen)};
+
+        ColorPickerDialog.newBuilder()
+                .setDialogType(ColorPickerDialog.TYPE_PRESETS)
+                .setColor(presets[0])
+                .setPresets(presets)
+                .setAllowCustom(false)
+                .setShowColorShades(false)
+                .setColorShape(ColorShape.CIRCLE)
+                .setDialogId(1)
+                .show(this);
+
     }
 
     private void showLangDialog() {
@@ -65,12 +78,9 @@ public class Settings extends AppCompatActivity {
         ListView lv_langs = window_choose_lang.findViewById(R.id.lv_window_choose_interface_lang);
         InterfaceLangArrayAdapter adapter = new InterfaceLangArrayAdapter(this, getLangList());
         lv_langs.setAdapter(adapter);
-        lv_langs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CheckBox cb_lang = adapter.getView(i, view, adapterView).findViewById(R.id.cb_item_interface_lang);
-                adapter.setSelectedPosition((Integer)cb_lang.getTag());
-            }
+        lv_langs.setOnItemClickListener((adapterView, view, i, l) -> {
+            CheckBox cb_lang = adapter.getView(i, view, adapterView).findViewById(R.id.cb_item_interface_lang);
+            adapter.setSelectedPosition((Integer)cb_lang.getTag());
         });
 
         dialog.setPositiveButton(getResources().getString(R.string.ok), (dialogInterface, i) -> {
@@ -96,5 +106,16 @@ public class Settings extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    @Override
+    public void onColorSelected(int dialogId, int color) {
+        SettingsHelper.saveTheme(this, SettingsHelper.getThemeFromColor(this, color));
+        recreate();
+    }
+
+    @Override
+    public void onDialogDismissed(int dialogId) {
+
     }
 }

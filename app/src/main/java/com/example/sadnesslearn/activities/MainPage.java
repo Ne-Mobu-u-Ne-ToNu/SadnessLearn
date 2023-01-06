@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.SettingsHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +22,9 @@ public class MainPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
         setContentView(R.layout.activity_main_page);
 
         LinearLayout lin_lay_plot = findViewById(R.id.lin_lay_main_btn_comics);

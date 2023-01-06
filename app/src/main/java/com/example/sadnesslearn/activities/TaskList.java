@@ -12,6 +12,7 @@ import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.BlockTask;
 import com.example.sadnesslearn.classes.CodeTask;
 import com.example.sadnesslearn.classes.Constants;
+import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.TaskItem;
 import com.example.sadnesslearn.classes.TaskListArrayAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,9 @@ public class TaskList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
         setContentView(R.layout.activity_task_list);
 
         if(getIntent().getStringExtra("task_type") != null)
