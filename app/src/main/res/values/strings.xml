@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Sadness Learn</string>
-    <string name="authors">by SadnessMood</string>
+    <string name="app_name" translatable="false">Sadness Learn</string>
+    <string name="authors" translatable="false">by SadnessMood</string>
     <string name="authorization">Авторизация</string>
     <string name="auth_options">Войдите или зарегистрируйтесь</string>
     <string name="sign_in">Вход</string>
     <string name="register">Регистрация</string>
     <string name="reg_text_info">Зарегестрируйтесь, чтобы пользоваться приложением и следить за прогрессом</string>
-    <string name="email_hint">e-mail: example@mail.com</string>
+    <string name="email_hint" translatable="false">e-mail: example@mail.com</string>
     <string name="name_hint">Имя пользователя:</string>
     <string name="password_hint">Пароль:</string>
     <string name="password_conf_hint">Подтверждение пароля:</string>
@@ -17,7 +17,7 @@
     <string name="password_length">Длина пароля минимум 6 символов</string>
     <string name="btn_back_description">Назад</string>
     <string name="sandbox">Песочница</string>
-    <string name="description_run">Run code</string>
+    <string name="description_run" translatable="false">Run code</string>
     <string name="settings">Настройки</string>
     <string name="tasks">Задачи</string>
     <string name="plot">Сюжет</string>
@@ -26,7 +26,7 @@
     <string name="block_task">Блоки</string>
     <string name="solving">Решение</string>
     <string name="task">Задача</string>
-    <string name="item">Item</string>
+    <string name="item" translatable="false">Item</string>
 
     <string name="profile">Профиль</string>
     <string name="change_name">Изменить имя</string>
@@ -44,7 +44,6 @@
     <string name="error_try_sign_in">Ошибка, попробуйте перезайти в свой аккаунт!</string>
     <string name="enter_field">Заполните поле!</string>
     <string name="enter_fields">Заполните все поля!</string>
-    <string name="min_password_length">Длина пароля минимум 6 символов</string>
     <string name="passwords_match">Пароли совпадают</string>
     <string name="passwords_not_match">Пароли не совпадают</string>
     <string name="programming_language">Язык программирования</string>
@@ -64,6 +63,11 @@
     <string name="exit">Выход</string>
     <string name="sure_to_exit">Вы действительно хотите выйти из аккаунта?</string>
     <string name="sure_to_delete">Вы действительно хотите удалить свою учётную запись?</string>
+
+    <string-array name="interface_langs">
+        <item>Русский</item>
+        <item>Английский</item>
+    </string-array>
 
     <string-array name="languages">
         <item>Java</item>

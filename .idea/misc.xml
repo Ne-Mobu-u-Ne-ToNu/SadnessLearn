@@ -16,6 +16,7 @@
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/custom_button_settings_border.xml" value="0.137" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/custom_button_settings_border_pressed.xml" value="0.1065" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/gradient.xml" value="0.1065" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/ic_flag_en.xml" value="0.137" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.137" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/ic_splash_screen.xml" value="0.1065" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/drawable/splash_image.xml" value="0.1065" />
@@ -40,9 +41,14 @@
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/fragment_task_solve.xml" value="0.1265625" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/fragment_task_text.xml" value="0.1265625" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/list_item_block_option.xml" value="0.1" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/list_item_choose_interface_lang.xml" value="0.10389055151774262" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/list_item_interface_lang.xml" value="0.10389055151774262" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/list_item_suggestion.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/task_list_item.xml" value="0.1265625" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_choose_interface_language.xml" value="0.10089781958101753" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_choose_language.xml" value="0.1265625" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_choose_prog_language.xml" value="0.10389055151774262" />
+        <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_choose_theme.xml" value="0.10389055151774262" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_profile_setting.xml" value="0.22530996152201796" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/layout/window_profile_settings.xml" value="0.1" />
         <entry key="..\:/Users/seriy/AndroidStudioProjects/SadnessLearn/app/src/main/res/mipmap-anydpi-v26/ic_btn_back.xml" value="0.137" />

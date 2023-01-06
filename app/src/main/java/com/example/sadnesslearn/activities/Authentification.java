@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.AnimationHelper;
+import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 
 public class Authentification extends AppCompatActivity {
@@ -44,6 +45,9 @@ public class Authentification extends AppCompatActivity {
     }
 
     private boolean onStartCheck() {
+        if (SettingsHelper.localeExists(this)) {
+            SettingsHelper.changeLocale(SettingsHelper.getStringLocaleFromPreferences(this), this);
+        }
         // Check if user is signed in (non-null) and update UI accordingly.
         if(UserAuthentification.isSignedIn()){
             if(UserAuthentification.isVerified(this)){

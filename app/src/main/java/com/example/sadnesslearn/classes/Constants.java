@@ -6,6 +6,10 @@ public class Constants {
     public static final String CODE_TASK_KEY = "CodeTask";
     public static final String COMICS_KEY = "Comics";
 
+    //Preferences
+    public static final String APP_PREFERENCES = "sadnessSettings";
+    public static final String APP_PREFERENCES_LANG = "Language";
+
     //Java
     public static final String JAVA_LANG_NAME = "java";
     public static final String JAVA_LANG_VERSION = "4";

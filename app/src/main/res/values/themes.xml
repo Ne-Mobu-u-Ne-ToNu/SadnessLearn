@@ -23,4 +23,11 @@
         <item name="colorBackgroundFloating">@color/darkGrey</item>
         <item name="colorAccent">@color/primaryPressedPink</item>
     </style>
+
+    <style name="Theme.SadnessLearn.Green" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryGreen</item>
+        <item name="colorPrimaryVariant">@color/primaryVarGreen</item>
+        <item name="colorAccent">@color/primaryPressedGreen</item>
+    </style>
+
 </resources>

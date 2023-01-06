@@ -1,12 +1,27 @@
 package com.example.sadnesslearn.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.InterfaceLangArrayAdapter;
+import com.example.sadnesslearn.classes.InterfaceLangItem;
+import com.example.sadnesslearn.classes.SettingsHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Settings extends AppCompatActivity {
@@ -17,6 +32,7 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         init();
+        settingsButtonsActions();
     }
 
     private void init() {
@@ -24,5 +40,52 @@ public class Settings extends AppCompatActivity {
         setSupportActionBar(tlb_settings);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setTitle(null);
+    }
+
+    private void settingsButtonsActions() {
+        LinearLayout lin_lay_lang = findViewById(R.id.lin_lay_settings_lang);
+        lin_lay_lang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLangDialog();
+            }
+        });
+    }
+
+    private void showLangDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Язык");
+        dialog.setMessage("Выберите язык интерфейса");
+
+        View window_choose_lang = LayoutInflater.from(this).inflate(R.layout.window_choose_interface_language, null);
+        dialog.setView(window_choose_lang);
+
+        ListView lv_langs = window_choose_lang.findViewById(R.id.lv_window_choose_interface_lang);
+        InterfaceLangArrayAdapter adapter = new InterfaceLangArrayAdapter(this, getLangList());
+        lv_langs.setAdapter(adapter);
+
+        dialog.setPositiveButton(getResources().getString(R.string.ok), (dialogInterface, i) -> {
+            String locale = SettingsHelper.getStringLocaleFromPosition(adapter.getSelectedPosition());
+            SettingsHelper.saveLocale(locale, this);
+            SettingsHelper.changeLocale(locale, this);
+            recreate();
+        });
+
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
+
+        dialog.show();
+    }
+
+    private List<InterfaceLangItem> getLangList() {
+        String[] languages = getResources().getStringArray(R.array.interface_langs);
+        int[] imageIds = {R.drawable.ic_flag_ru, R.drawable.ic_flag_en};
+
+        List<InterfaceLangItem> result = new ArrayList<>();
+        for (int i = 0; i < imageIds.length; i++) {
+            InterfaceLangItem item = new InterfaceLangItem(languages[i], imageIds[i]);
+            result.add(item);
+        }
+
+        return result;
     }
 }

@@ -1,8 +1,8 @@
 package com.example.sadnesslearn.classes;
 
 public class TaskItem {
-    private String name;
-    private boolean isSolved;
+    private final String name;
+    private final boolean isSolved;
 
     public TaskItem(String name, boolean isSolved){
         this.name = name;

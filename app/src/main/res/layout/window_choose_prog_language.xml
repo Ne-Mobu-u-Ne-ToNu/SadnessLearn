@@ -6,6 +6,6 @@
     <ListView
         android:id="@+id/lv_window_choose_lang"
         android:layout_width="match_parent"
-        android:layout_height="200sp" />
+        android:layout_height="200dp" />
 
 </RelativeLayout>

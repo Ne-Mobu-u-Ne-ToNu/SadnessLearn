@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.sadnesslearn.R;
-import com.example.sadnesslearn.classes.UserAuthentification;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,7 +56,7 @@ public class MainPage extends AppCompatActivity {
         dialog.setTitle(getResources().getString(R.string.programming_language));
         dialog.setMessage(getResources().getString(R.string.choose_programming_language));
 
-        View window_choose_lang = LayoutInflater.from(this).inflate(R.layout.window_choose_language, null);
+        View window_choose_lang = LayoutInflater.from(this).inflate(R.layout.window_choose_prog_language, null);
         dialog.setView(window_choose_lang);
 
         List<String> listLang = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.languages)));
