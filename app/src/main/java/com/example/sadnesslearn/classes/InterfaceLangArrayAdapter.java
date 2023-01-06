@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,13 +43,12 @@ public class InterfaceLangArrayAdapter extends ArrayAdapter<InterfaceLangItem> {
 
         cb_lang_item.setChecked(position == selectedPosition);
         cb_lang_item.setTag(position);
-        cb_lang_item.setOnClickListener(view -> {
-            selectedPosition = (Integer)view.getTag();
-            notifyDataSetChanged();
-        });
+        notifyDataSetChanged();
 
         return convertView;
     }
 
     public int getSelectedPosition() { return this.selectedPosition; }
+
+    public void setSelectedPosition(int selectedPosition) { this.selectedPosition = selectedPosition; }
 }

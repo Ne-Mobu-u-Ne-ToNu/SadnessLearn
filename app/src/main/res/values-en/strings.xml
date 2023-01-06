@@ -59,6 +59,7 @@
     <string name="exit">Log out</string>
     <string name="sure_to_exit">Are you sure you want to log out of your account?</string>
     <string name="sure_to_delete">Are you sure you want to delete your account?</string>
+    <string name="choose_interf_lang">Select interface language</string>
 
     <string-array name="interface_langs">
         <item>Russian</item>

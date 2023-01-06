@@ -63,6 +63,7 @@
     <string name="exit">Выход</string>
     <string name="sure_to_exit">Вы действительно хотите выйти из аккаунта?</string>
     <string name="sure_to_delete">Вы действительно хотите удалить свою учётную запись?</string>
+    <string name="choose_interf_lang">Выберите язык интерфейса</string>
 
     <string-array name="interface_langs">
         <item>Русский</item>

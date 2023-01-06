@@ -9,7 +9,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -54,8 +56,8 @@ public class Settings extends AppCompatActivity {
 
     private void showLangDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Язык");
-        dialog.setMessage("Выберите язык интерфейса");
+        dialog.setTitle(getResources().getString(R.string.lang));
+        dialog.setMessage(getResources().getString(R.string.choose_interf_lang));
 
         View window_choose_lang = LayoutInflater.from(this).inflate(R.layout.window_choose_interface_language, null);
         dialog.setView(window_choose_lang);
@@ -63,6 +65,13 @@ public class Settings extends AppCompatActivity {
         ListView lv_langs = window_choose_lang.findViewById(R.id.lv_window_choose_interface_lang);
         InterfaceLangArrayAdapter adapter = new InterfaceLangArrayAdapter(this, getLangList());
         lv_langs.setAdapter(adapter);
+        lv_langs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CheckBox cb_lang = adapter.getView(i, view, adapterView).findViewById(R.id.cb_item_interface_lang);
+                adapter.setSelectedPosition((Integer)cb_lang.getTag());
+            }
+        });
 
         dialog.setPositiveButton(getResources().getString(R.string.ok), (dialogInterface, i) -> {
             String locale = SettingsHelper.getStringLocaleFromPosition(adapter.getSelectedPosition());
