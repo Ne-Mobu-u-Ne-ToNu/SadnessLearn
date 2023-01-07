@@ -37,8 +37,7 @@ public class SettingsHelper {
 
     public static boolean localeExists(Context context) {
         sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
-        return sadnessSettings.contains(Constants.APP_PREFERENCES_LANG)
-                && sadnessSettings.getString(Constants.APP_PREFERENCES_LANG, "").length() != 0;
+        return sadnessSettings.contains(Constants.APP_PREFERENCES_LANG);
     }
 
     public static String getStringLocaleFromPreferences(Context context) {
@@ -55,8 +54,8 @@ public class SettingsHelper {
 
     public static boolean themeExists(Context context) {
         sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
-        return sadnessSettings.contains(Constants.APP_PREFERENCES_THEME)
-                && sadnessSettings.getInt(Constants.APP_PREFERENCES_THEME, 0) != 0;
+        boolean contains = sadnessSettings.contains(Constants.APP_PREFERENCES_THEME);
+        return sadnessSettings.contains(Constants.APP_PREFERENCES_THEME);
     }
 
     public static int getThemeFromPrefs(Context context) {

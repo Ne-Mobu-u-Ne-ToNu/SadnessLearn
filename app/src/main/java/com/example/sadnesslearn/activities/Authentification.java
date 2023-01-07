@@ -23,13 +23,6 @@ public class Authentification extends AppCompatActivity {
     }
 
     private void init() {
-        if (SettingsHelper.themeExists(this)) {
-            setTheme(SettingsHelper.getThemeFromPrefs(this));
-        }
-        else {
-            setTheme(R.style.Theme_SadnessLearn_Pink);
-        }
-
         setContentView(R.layout.activity_authentification);
 
         Button btn_register = findViewById(R.id.btn_auth_register);
@@ -51,6 +44,14 @@ public class Authentification extends AppCompatActivity {
     }
 
     private boolean onStartCheck() {
+        if (SettingsHelper.themeExists(this)) {
+            setTheme(SettingsHelper.getThemeFromPrefs(this));
+        }
+        else {
+            SettingsHelper.saveTheme(this, R.style.Theme_SadnessLearn_Pink);
+            setTheme(R.style.Theme_SadnessLearn_Pink);
+        }
+
         if (SettingsHelper.localeExists(this)) {
             SettingsHelper.changeLocale(SettingsHelper.getStringLocaleFromPreferences(this), this);
         }
