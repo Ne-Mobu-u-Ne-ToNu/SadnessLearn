@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.activities.solveCodeFragments.SolveAdapter;
@@ -39,6 +40,8 @@ public class SolveTask extends AppCompatActivity {
         setSupportActionBar(tlb_solve_code_task);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setTitle(null);
+        TextView tv_task_name = findViewById(R.id.tv_solve_task_name);
+        tv_task_name.setText(getIntent().getStringExtra("task_name"));
         if(getIntent().getStringExtra("task_type") != null)
             taskType = getIntent().getStringExtra("task_type");
         tl_solve_code_task = findViewById(R.id.tl_solve_code_task);

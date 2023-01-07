@@ -66,11 +66,48 @@ public class SettingsHelper {
 
     public static int getThemeFromColor(Context context, int color) {
 
-        if (color == context.getResources().getColor(R.color.primaryGreen)) {
+        if (color == context.getResources().getColor(R.color.primary)) {
+            return R.style.Theme_SadnessLearn_Pink;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryPurple)) {
+            return R.style.Theme_SadnessLearn_Purple;
+        }
+        //
+        else if (color == context.getResources().getColor(R.color.primaryDeepPurple)) {
+            return R.style.Theme_SadnessLearn_DeepPurple;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryIndigo)) {
+            return R.style.Theme_SadnessLearn_Indigo;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryBlue)) {
+            return R.style.Theme_SadnessLearn_Blue;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryCyan)) {
+            return R.style.Theme_SadnessLearn_Cyan;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryTeal)) {
+            return R.style.Theme_SadnessLearn_Teal;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryBlueGrey)) {
+            return R.style.Theme_SadnessLearn_BlueGrey;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryGreen)) {
             return R.style.Theme_SadnessLearn_Green;
         }
+        else if (color == context.getResources().getColor(R.color.primaryLime)) {
+            return R.style.Theme_SadnessLearn_Lime;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryYellow)) {
+            return R.style.Theme_SadnessLearn_Yellow;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryOrange)) {
+            return R.style.Theme_SadnessLearn_Orange;
+        }
+        else if (color == context.getResources().getColor(R.color.primaryDeepOrange)) {
+            return R.style.Theme_SadnessLearn_DeepOrange;
+        }
         else {
-            return R.style.Theme_SadnessLearn_Pink;
+            return R.style.Theme_SadnessLearn_Red;
         }
     }
 }

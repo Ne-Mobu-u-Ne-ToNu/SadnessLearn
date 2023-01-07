@@ -81,6 +81,7 @@ public class TaskList extends AppCompatActivity {
             CodeTask task = mapListCodeTask.get(i);
             assert task != null;
             intent.putExtra("task_id", task.getId());
+            intent.putExtra("task_name", task.getName());
             intent.putExtra("task_text", task.getText());
             intent.putExtra("task_code", task.getCode());
             intent.putExtra("task_test", task.getTest());
@@ -94,6 +95,7 @@ public class TaskList extends AppCompatActivity {
             BlockTask task = mapListBlockTask.get(i);
             assert task != null;
             intent.putExtra("task_id", task.getId());
+            intent.putExtra("task_name", task.getName());
             intent.putExtra("task_text", task.getText());
             intent.putExtra("task_code", task.getCode());
             intent.putExtra("task_test", task.getTest());

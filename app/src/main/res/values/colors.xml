@@ -12,9 +12,57 @@
     <color name="primaryVarPink">#ec407a</color>
     <color name="primaryPressedPink">#f48fb1</color>
 
-    <color name="primaryGreen">#dce775</color>
-    <color name="primaryVarGreen">#d4e157</color>
-    <color name="primaryPressedGreen">#e6ee9c</color>
+    <color name="primaryLime">#dce775</color>
+    <color name="primaryVarLime">#d4e157</color>
+    <color name="primaryPressedLime">#e6ee9c</color>
+
+    <color name="primaryRed">#ef5350</color>
+    <color name="primaryVarRed">#f44336</color>
+    <color name="primaryPressedRed">#e57373</color>
+
+    <color name="primaryPurple">#ba68c8</color>
+    <color name="primaryVarPurple">#ab47bc</color>
+    <color name="primaryPressedPurple">#e1bee7</color>
+
+    <color name="primaryDeepPurple">#9575cd</color>
+    <color name="primaryVarDeepPurple">#7e57c2</color>
+    <color name="primaryPressedDeepPurple">#b39ddb</color>
+
+    <color name="primaryIndigo">#7986cb</color>
+    <color name="primaryVarIndigo">#5c6bc0</color>
+    <color name="primaryPressedIndigo">#9fa8da</color>
+
+    <color name="primaryBlue">#64b5f6</color>
+    <color name="primaryVarBlue">#42a5f5</color>
+    <color name="primaryPressedBlue">#90caf9</color>
+
+    <color name="primaryCyan">#4dd0e1</color>
+    <color name="primaryVarCyan">#26c6da</color>
+    <color name="primaryPressedCyan">#b2ebf2</color>
+
+    <color name="primaryTeal">#4db6ac</color>
+    <color name="primaryVarTeal">#26a69a</color>
+    <color name="primaryPressedTeal">#80cbc4</color>
+
+    <color name="primaryBlueGrey">#78909c</color>
+    <color name="primaryVarBlueGrey">#607d8b</color>
+    <color name="primaryPressedBlueGrey">#90a4ae</color>
+
+    <color name="primaryGreen">#66bb6a</color>
+    <color name="primaryVarGreen">#4caf50</color>
+    <color name="primaryPressedGreen">#a5d6a7</color>
+
+    <color name="primaryYellow">#ffee58</color>
+    <color name="primaryVarYellow">#ffeb3b</color>
+    <color name="primaryPressedYellow">#fff59d</color>
+
+    <color name="primaryOrange">#ffb74d</color>
+    <color name="primaryVarOrange">#ffa726</color>
+    <color name="primaryPressedOrange">#ffcc80</color>
+
+    <color name="primaryDeepOrange">#ff7043</color>
+    <color name="primaryVarDeepOrange">#ff5722</color>
+    <color name="primaryPressedDeepOrange">#ff8a65</color>
 
     <color name="darkGrey">#464646</color>
     <color name="viewPagerColor">#404040</color>

@@ -22,12 +22,105 @@
         <!-- Customize your theme here. -->
         <item name="colorBackgroundFloating">@color/darkGrey</item>
         <item name="colorAccent">@color/primaryPressedPink</item>
+        <item name="colorControlNormal">@color/mainCode</item>
+        <item name="android:textColorSecondary">@color/mainCode</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.Lime" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryLime</item>
+        <item name="colorPrimaryVariant">@color/primaryVarLime</item>
+        <item name="colorAccent">@color/primaryPressedLime</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.Red" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryRed</item>
+        <item name="colorPrimaryVariant">@color/primaryVarRed</item>
+        <item name="colorAccent">@color/primaryPressedRed</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.Purple" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryPurple</item>
+        <item name="colorPrimaryVariant">@color/primaryVarPurple</item>
+        <item name="colorAccent">@color/primaryPressedPurple</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.DeepPurple" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryDeepPurple</item>
+        <item name="colorPrimaryVariant">@color/primaryVarDeepPurple</item>
+        <item name="colorAccent">@color/primaryPressedDeepPurple</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.Indigo" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryIndigo</item>
+        <item name="colorPrimaryVariant">@color/primaryVarIndigo</item>
+        <item name="colorAccent">@color/primaryPressedIndigo</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.Blue" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryBlue</item>
+        <item name="colorPrimaryVariant">@color/primaryVarBlue</item>
+        <item name="colorAccent">@color/primaryPressedBlue</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.Cyan" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryCyan</item>
+        <item name="colorPrimaryVariant">@color/primaryVarCyan</item>
+        <item name="colorAccent">@color/primaryPressedCyan</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.Teal" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryTeal</item>
+        <item name="colorPrimaryVariant">@color/primaryVarTeal</item>
+        <item name="colorAccent">@color/primaryPressedTeal</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.BlueGrey" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryBlueGrey</item>
+        <item name="colorPrimaryVariant">@color/primaryVarBlueGrey</item>
+        <item name="colorAccent">@color/primaryPressedBlueGrey</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
     </style>
 
     <style name="Theme.SadnessLearn.Green" parent="Theme.SadnessLearn.Pink">
         <item name="colorPrimary">@color/primaryGreen</item>
         <item name="colorPrimaryVariant">@color/primaryVarGreen</item>
         <item name="colorAccent">@color/primaryPressedGreen</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
     </style>
 
+    <style name="Theme.SadnessLearn.Yellow" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryYellow</item>
+        <item name="colorPrimaryVariant">@color/primaryVarYellow</item>
+        <item name="colorAccent">@color/primaryPressedYellow</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.Orange" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryOrange</item>
+        <item name="colorPrimaryVariant">@color/primaryVarOrange</item>
+        <item name="colorAccent">@color/primaryPressedOrange</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
+    <style name="Theme.SadnessLearn.DeepOrange" parent="Theme.SadnessLearn.Pink">
+        <item name="colorPrimary">@color/primaryDeepOrange</item>
+        <item name="colorPrimaryVariant">@color/primaryVarDeepOrange</item>
+        <item name="colorAccent">@color/primaryPressedDeepOrange</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+    </style>
 </resources>

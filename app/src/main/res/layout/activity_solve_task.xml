@@ -11,8 +11,8 @@
         android:background="?attr/colorPrimary">
 
         <TextView
-            style="@style/ToolbarText"
-            android:text="@string/solving" />
+            android:id="@+id/tv_solve_task_name"
+            style="@style/ToolbarText" />
 
     </androidx.appcompat.widget.Toolbar>
 

@@ -11,8 +11,8 @@
     <style name="ToolbarText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="fontFamily">@font/comicsansms</item>
-        <item name="android:textColor">@color/mainCode</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_gravity">center</item>
     </style>
@@ -28,7 +28,7 @@
     <style name="ButtonStyle" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/base_button</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:textColor">@color/mainCode</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">15sp</item>
         <item name="android:padding">10dp</item>
         <item name="fontFamily">@font/comicsansms</item>

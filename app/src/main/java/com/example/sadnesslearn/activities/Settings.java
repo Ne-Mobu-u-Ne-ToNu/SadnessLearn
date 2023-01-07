@@ -53,7 +53,13 @@ public class Settings extends AppCompatActivity implements ColorPickerDialogList
     }
 
     private void showThemeDialog() {
-        int[] presets = {getResources().getColor(R.color.primary), getResources().getColor(R.color.primaryGreen)};
+        int[] presets = {getResources().getColor(R.color.primaryRed), getResources().getColor(R.color.primary),
+                getResources().getColor(R.color.primaryPurple), getResources().getColor(R.color.primaryDeepPurple),
+                getResources().getColor(R.color.primaryIndigo), getResources().getColor(R.color.primaryBlue),
+                getResources().getColor(R.color.primaryCyan), getResources().getColor(R.color.primaryTeal),
+                getResources().getColor(R.color.primaryBlueGrey), getResources().getColor(R.color.primaryGreen),
+                getResources().getColor(R.color.primaryLime), getResources().getColor(R.color.primaryYellow),
+                getResources().getColor(R.color.primaryOrange), getResources().getColor(R.color.primaryDeepOrange)};
 
         ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_PRESETS)
