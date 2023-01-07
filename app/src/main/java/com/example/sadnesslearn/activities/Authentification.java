@@ -58,7 +58,10 @@ public class Authentification extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         if(UserAuthentification.isSignedIn()){
             if(UserAuthentification.isVerified(this)){
-                startActivity(new Intent(this, MainPage.class));
+                Intent intent = new Intent(this, MainPage.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
                 return true;
             }
             else {
@@ -75,6 +78,7 @@ public class Authentification extends AppCompatActivity {
         if (UserAuthentification.isSignedIn()) {
             if (UserAuthentification.isVerified(this)) {
                 startActivity(new Intent(this, MainPage.class));
+                finish();
             } else {
                 UserAuthentification.signOut();
             }
