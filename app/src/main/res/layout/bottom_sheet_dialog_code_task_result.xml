@@ -28,7 +28,7 @@
             android:textSize="18sp"
             android:text="@string/solving"
             android:layout_gravity="center"
-            android:textColor="@color/mainCode" />
+            android:textColor="?android:attr/textColorSecondary" />
 
     </LinearLayout>
 

@@ -42,7 +42,7 @@
             app:srcCompat="@android:drawable/ic_media_play"
             android:contentDescription="@string/description_run"
             android:background="?android:selectableItemBackground"
-            android:backgroundTint="@color/primary"
+            android:backgroundTint="?attr/colorPrimary"
             app:borderWidth="0dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"

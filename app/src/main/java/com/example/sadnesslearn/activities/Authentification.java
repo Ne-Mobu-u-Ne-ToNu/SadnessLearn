@@ -68,4 +68,16 @@ public class Authentification extends AppCompatActivity {
         }
         return false;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (UserAuthentification.isSignedIn()) {
+            if (UserAuthentification.isVerified(this)) {
+                startActivity(new Intent(this, MainPage.class));
+            } else {
+                UserAuthentification.signOut();
+            }
+        }
+    }
 }

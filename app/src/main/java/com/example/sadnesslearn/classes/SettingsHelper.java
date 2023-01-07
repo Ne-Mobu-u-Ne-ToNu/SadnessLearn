@@ -3,6 +3,7 @@ package com.example.sadnesslearn.classes;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 
 import com.example.sadnesslearn.R;
 
@@ -10,6 +11,8 @@ import java.util.Locale;
 
 public class SettingsHelper {
     private static SharedPreferences sadnessSettings;
+    private static String oldLocale = null;
+    private static Resources.Theme oldTheme = null;
 
     public static void changeLocale(String locale_s, Context context) {
         Locale locale = new Locale(locale_s);
@@ -20,6 +23,7 @@ public class SettingsHelper {
     }
 
     public static void saveLocale(String locale, Context context) {
+        oldLocale = context.getResources().getConfiguration().locale.toString();
         sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sadnessSettings.edit();
         editor.putString(Constants.APP_PREFERENCES_LANG, locale);
@@ -46,6 +50,7 @@ public class SettingsHelper {
     }
 
     public static void saveTheme(Context context, int themeId) {
+        oldTheme = context.getTheme();
         sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sadnessSettings.edit();
         editor.putInt(Constants.APP_PREFERENCES_THEME, themeId);
@@ -54,7 +59,6 @@ public class SettingsHelper {
 
     public static boolean themeExists(Context context) {
         sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
-        boolean contains = sadnessSettings.contains(Constants.APP_PREFERENCES_THEME);
         return sadnessSettings.contains(Constants.APP_PREFERENCES_THEME);
     }
 
@@ -71,7 +75,6 @@ public class SettingsHelper {
         else if (color == context.getResources().getColor(R.color.primaryPurple)) {
             return R.style.Theme_SadnessLearn_Purple;
         }
-        //
         else if (color == context.getResources().getColor(R.color.primaryDeepPurple)) {
             return R.style.Theme_SadnessLearn_DeepPurple;
         }
@@ -108,5 +111,19 @@ public class SettingsHelper {
         else {
             return R.style.Theme_SadnessLearn_Red;
         }
+    }
+
+    public static boolean settingsChanged(Context context) {
+        if (oldLocale != null && !oldLocale.equals(getStringLocaleFromPreferences(context))) {
+            oldLocale = null;
+            return true;
+        }
+
+        if (oldTheme != null && oldTheme != context.getTheme()) {
+            oldTheme = null;
+            return true;
+        }
+
+        return false;
     }
 }

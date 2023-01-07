@@ -16,6 +16,7 @@ import com.example.sadnesslearn.classes.SettingsHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class MainPage extends AppCompatActivity {
 
@@ -48,8 +49,8 @@ public class MainPage extends AppCompatActivity {
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
 
-        LinearLayout btn_exit = findViewById(R.id.lin_lay_main_btn_profile);
-        btn_exit.setOnClickListener(view -> {
+        LinearLayout btn_profile = findViewById(R.id.lin_lay_main_btn_profile);
+        btn_profile.setOnClickListener(view -> {
             startActivity(new Intent(MainPage.this, Profile.class));
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
@@ -78,5 +79,14 @@ public class MainPage extends AppCompatActivity {
         dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
 
         dialog.show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (SettingsHelper.settingsChanged(this)) {
+            startActivity(getIntent());
+            finish();
+        }
     }
 }
