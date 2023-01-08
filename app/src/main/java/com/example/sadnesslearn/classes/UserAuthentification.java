@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.activities.Authentification;
+import com.example.sadnesslearn.activities.MainPage;
 import com.example.sadnesslearn.activities.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -79,7 +80,7 @@ public class UserAuthentification {
         user.updateProfile(profileUpdates);
     }
 
-    public static void deleteAccount(Context context) {
+    public static void deleteAccount(Activity context) {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -89,7 +90,12 @@ public class UserAuthentification {
                     if (task.isSuccessful()) {
                         signOut();
                         Toast.makeText(context, context.getResources().getString(R.string.account_deleted), Toast.LENGTH_SHORT).show();
-                        context.startActivity(new Intent(context, Authentification.class));
+                        Intent i = new Intent(context, Authentification.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(i);
+                        context.finish();
                     }
                     else {
                         Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();
@@ -97,7 +103,7 @@ public class UserAuthentification {
                 });
     }
 
-    public static void changeUserMail(String email, Context context) {
+    public static void changeUserMail(String email, Activity context) {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -111,7 +117,12 @@ public class UserAuthentification {
                                 Toast.makeText(context, context.getResources().getString(R.string.confirm_email),
                                         Toast.LENGTH_SHORT).show();
                                 signOut();
-                                context.startActivity(new Intent(context, Authentification.class));
+                                Intent i = new Intent(context, Authentification.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(i);
+                                context.finish();
                             }
                             else {
                                 Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();
@@ -124,7 +135,7 @@ public class UserAuthentification {
         }
     }
 
-    public static void changeUserPassword(String password, String password_conf, Context context) {
+    public static void changeUserPassword(String password, String password_conf, Activity context) {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -137,7 +148,12 @@ public class UserAuthentification {
                                 Toast.makeText(context, context.getResources().getString(R.string.sign_in_again),
                                         Toast.LENGTH_SHORT).show();
                                 signOut();
-                                context.startActivity(new Intent(context, Authentification.class));
+                                Intent i = new Intent(context, Authentification.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(i);
+                                context.finish();
                             }
                             else {
                                 Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();

@@ -77,7 +77,11 @@ public class Profile extends AppCompatActivity {
 
     private void checkAuthAndRedirect(){
         if (!UserAuthentification.isSignedIn()){
-            startActivity(new Intent(Profile.this, Authentification.class));
+            Intent i = new Intent(this, Authentification.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
             finish();
         }
     }
