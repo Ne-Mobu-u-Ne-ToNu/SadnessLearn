@@ -3,5 +3,4 @@
 
     <item android:drawable="@color/darkGrey"/>
     <item android:drawable="@drawable/ic_splash_screen" android:gravity="center"/>
-
 </layer-list>
