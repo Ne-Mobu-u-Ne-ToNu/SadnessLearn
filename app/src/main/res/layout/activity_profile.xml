@@ -18,115 +18,133 @@
         style="@style/RelativeLayoutContent"
         tools:context=".activities.MainPage">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:src="@drawable/ic_profile"
-                android:padding="5dp"
-                android:scaleType="fitXY"
-                app:contentPadding="15dp"
-                app:shapeAppearanceOverlay="@style/roundedImageView"
-                app:strokeWidth="3dp"
-                app:strokeColor="@color/black"
-                android:layout_width="130dp"
-                android:tint="?attr/colorPrimary"
-                android:layout_height="130dp"/>
-
-            <TextView
-                android:id="@+id/tv_profile_user_name"
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/comicsansms"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_profile_user_mail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/comicsansms"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:layout_marginBottom="50dp"/>
-
-            <LinearLayout
-                android:id="@+id/lin_lay_profile_change_name"
-                style="@style/LinLaySettingsButton">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:src="@drawable/ic_profile"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    app:contentPadding="15dp"
+                    app:shapeAppearanceOverlay="@style/roundedImageView"
+                    app:strokeWidth="3dp"
+                    app:strokeColor="@color/black"
+                    android:layout_width="130dp"
+                    android:tint="?attr/colorPrimary"
+                    android:layout_height="130dp"/>
 
                 <TextView
-                    style="@style/TextViewSettingsButton"
-                    android:text="@string/change_name"/>
-
-                <ImageView
-                    style="@style/ImageViewSettingsButton"
-                    android:src="@drawable/ic_star" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lin_lay_profile_change_mail"
-                style="@style/LinLaySettingsButton">
+                    android:id="@+id/tv_profile_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/comicsansms"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
                 <TextView
-                    style="@style/TextViewSettingsButton"
-                    android:text="@string/change_mail"/>
+                    android:id="@+id/tv_profile_user_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/comicsansms"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="50dp"/>
 
-                <ImageView
-                    style="@style/ImageViewSettingsButton"
-                    android:src="@drawable/ic_star" />
+                <LinearLayout
+                    android:id="@+id/lin_lay_profile_change_name"
+                    style="@style/LinLaySettingsButton">
+
+                    <TextView
+                        style="@style/TextViewSettingsButton"
+                        android:text="@string/change_name"/>
+
+                    <ImageView
+                        style="@style/ImageViewSettingsButton"
+                        android:src="@drawable/ic_star" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_lay_profile_change_photo"
+                    style="@style/LinLaySettingsButton">
+
+                    <TextView
+                        style="@style/TextViewSettingsButton"
+                        android:text="@string/change_photo"/>
+
+                    <ImageView
+                        style="@style/ImageViewSettingsButton"
+                        android:src="@drawable/ic_star" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_lay_profile_change_mail"
+                    style="@style/LinLaySettingsButton">
+
+                    <TextView
+                        style="@style/TextViewSettingsButton"
+                        android:text="@string/change_mail"/>
+
+                    <ImageView
+                        style="@style/ImageViewSettingsButton"
+                        android:src="@drawable/ic_star" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_lay_profile_change_password"
+                    style="@style/LinLaySettingsButton">
+
+                    <TextView
+                        style="@style/TextViewSettingsButton"
+                        android:text="@string/change_password"/>
+
+                    <ImageView
+                        style="@style/ImageViewSettingsButton"
+                        android:src="@drawable/ic_star" />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/lin_lay_profile_sign_out"
+                    style="@style/LinLaySettingsButton">
+
+                    <TextView
+                        style="@style/TextViewSettingsButton"
+                        android:text="@string/sign_out"/>
+
+                    <ImageView
+                        style="@style/ImageViewSettingsButton"
+                        android:src="@drawable/ic_star" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_lay_profile_delete_account"
+                    style="@style/LinLaySettingsButton"
+                    android:layout_marginBottom="120dp">
+
+                    <TextView
+                        style="@style/TextViewSettingsButton"
+                        android:text="@string/delete_account"/>
+
+                    <ImageView
+                        style="@style/ImageViewSettingsButton"
+                        android:src="@drawable/ic_star" />
+                </LinearLayout>
+
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lin_lay_profile_change_password"
-                style="@style/LinLaySettingsButton">
-
-                <TextView
-                    style="@style/TextViewSettingsButton"
-                    android:text="@string/change_password"/>
-
-                <ImageView
-                    style="@style/ImageViewSettingsButton"
-                    android:src="@drawable/ic_star" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lin_lay_profile_sign_out"
-                style="@style/LinLaySettingsButton">
-
-                <TextView
-                    style="@style/TextViewSettingsButton"
-                    android:text="@string/sign_out"/>
-
-                <ImageView
-                    style="@style/ImageViewSettingsButton"
-                    android:src="@drawable/ic_star" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lin_lay_profile_delete_account"
-                style="@style/LinLaySettingsButton">
-
-                <TextView
-                    style="@style/TextViewSettingsButton"
-                    android:text="@string/delete_account"/>
-
-                <ImageView
-                    style="@style/ImageViewSettingsButton"
-                    android:src="@drawable/ic_star" />
-            </LinearLayout>
-
-
-
-        </LinearLayout>
+        </ScrollView>
 
     </RelativeLayout>
 

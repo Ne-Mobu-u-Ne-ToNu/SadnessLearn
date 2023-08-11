@@ -54,6 +54,11 @@ public class Profile extends AppCompatActivity {
             showNameWindow();
         });
 
+        LinearLayout lin_lay_change_photo = findViewById(R.id.lin_lay_profile_change_photo);
+        lin_lay_change_photo.setOnClickListener(view -> {
+
+        });
+
         LinearLayout lin_lay_change_mail = findViewById(R.id.lin_lay_profile_change_mail);
         lin_lay_change_mail.setOnClickListener(view -> {
             showMailWindow();

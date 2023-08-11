@@ -30,6 +30,7 @@
 
     <string name="profile">Профиль</string>
     <string name="change_name">Изменить имя</string>
+    <string name="change_photo">Изменить фото</string>
     <string name="change_mail">Сменить почту</string>
     <string name="change_password">Сменить пароль</string>
     <string name="sign_out">Выйти из аккаунта</string>
