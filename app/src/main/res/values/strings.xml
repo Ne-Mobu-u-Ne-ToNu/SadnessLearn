@@ -62,6 +62,7 @@
     <string name="user_not_exist">Пользователя с таким email не существует!</string>
     <string name="greeting_message">Добро пожаловать,</string>
     <string name="exit">Выход</string>
+    <string name="sure_to_change_photo">Вы действительно хотите изменить фото профиля?</string>
     <string name="sure_to_exit">Вы действительно хотите выйти из аккаунта?</string>
     <string name="sure_to_delete">Вы действительно хотите удалить свою учётную запись?</string>
     <string name="choose_interf_lang">Выберите язык интерфейса</string>

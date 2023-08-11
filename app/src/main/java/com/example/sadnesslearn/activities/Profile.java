@@ -127,14 +127,14 @@ public class Profile extends AppCompatActivity {
     }
 
     /*
-    -------------------Далее идет реализация смены фото профиля-------------------------------------
+    -------------------Реализация смены фото профиля------------------------------------------------
      */
     ActivityResultLauncher<Intent> choosePhotoResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result != null && result.getData() != null) {
                     if (result.getResultCode() == RESULT_OK) {
-                        Toast.makeText(this, "Всё ок!", Toast.LENGTH_SHORT).show();
+                        showPhotoChangeWindow();
                     }
                 }
             }
@@ -145,6 +145,20 @@ public class Profile extends AppCompatActivity {
         intentChooser.setType("image/*");
         intentChooser.setAction(Intent.ACTION_GET_CONTENT);
         choosePhotoResult.launch(intentChooser);
+    }
+
+    private void showPhotoChangeWindow() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle(getResources().getString(R.string.change_photo));
+        dialog.setMessage(getResources().getString(R.string.sure_to_change_photo));
+
+        dialog.setPositiveButton(getResources().getString(R.string.yes), (dialogInterface, i) -> {
+            
+        });
+
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
+
+        dialog.show();
     }
 
     private void showMailWindow() {
