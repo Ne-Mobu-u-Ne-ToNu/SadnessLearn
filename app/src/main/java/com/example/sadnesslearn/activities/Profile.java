@@ -1,5 +1,9 @@
 package com.example.sadnesslearn.activities;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -56,7 +60,7 @@ public class Profile extends AppCompatActivity {
 
         LinearLayout lin_lay_change_photo = findViewById(R.id.lin_lay_profile_change_photo);
         lin_lay_change_photo.setOnClickListener(view -> {
-
+            getImage();
         });
 
         LinearLayout lin_lay_change_mail = findViewById(R.id.lin_lay_profile_change_mail);
@@ -120,6 +124,27 @@ public class Profile extends AppCompatActivity {
         dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
 
         dialog.show();
+    }
+
+    /*
+    -------------------Далее идет реализация смены фото профиля-------------------------------------
+     */
+    ActivityResultLauncher<Intent> choosePhotoResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result != null && result.getData() != null) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Toast.makeText(this, "Всё ок!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
+
+    private void getImage() {
+        Intent intentChooser = new Intent();
+        intentChooser.setType("image/*");
+        intentChooser.setAction(Intent.ACTION_GET_CONTENT);
+        choosePhotoResult.launch(intentChooser);
     }
 
     private void showMailWindow() {
