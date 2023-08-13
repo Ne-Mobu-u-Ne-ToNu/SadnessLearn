@@ -7,14 +7,19 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.ImageViewCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +27,16 @@ import android.widget.Toast;
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
+import com.example.sadnesslearn.classes.UserProfileInformation;
+import com.google.android.material.color.MaterialColors;
+
+import java.io.IOException;
+import java.net.URI;
 import java.util.Objects;
 
 public class Profile extends AppCompatActivity {
     private TextView tv_hello_user;
+    private ImageView imw_profile_photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +61,8 @@ public class Profile extends AppCompatActivity {
 
         TextView tv_user_mail = findViewById(R.id.tv_profile_user_mail);
         tv_user_mail.setText(UserAuthentification.getUserMail());
+
+        imw_profile_photo = findViewById(R.id.imw_profile_photo);
     }
 
     private void settingsButtonsActions() {
@@ -129,11 +142,15 @@ public class Profile extends AppCompatActivity {
     /*
     -------------------Реализация смены фото профиля------------------------------------------------
      */
-    ActivityResultLauncher<Intent> choosePhotoResult = registerForActivityResult(
+
+    private Uri profilePhotoURI;
+
+    private final ActivityResultLauncher<Intent> choosePhotoResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result != null && result.getData() != null) {
                     if (result.getResultCode() == RESULT_OK) {
+                        profilePhotoURI = result.getData().getData();
                         showPhotoChangeWindow();
                     }
                 }
@@ -153,10 +170,25 @@ public class Profile extends AppCompatActivity {
         dialog.setMessage(getResources().getString(R.string.sure_to_change_photo));
 
         dialog.setPositiveButton(getResources().getString(R.string.yes), (dialogInterface, i) -> {
-            
+            if (profilePhotoURI != null) {
+                ImageViewCompat.setImageTintList(imw_profile_photo, null);
+                imw_profile_photo.setColorFilter(null);
+                imw_profile_photo.setImageURI(profilePhotoURI);
+
+                try {
+                    UserProfileInformation.uploadProfilePhoto(profilePhotoURI, this);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         });
 
-        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> dialogInterface.dismiss());
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> {
+            profilePhotoURI = null;
+            imw_profile_photo.setImageResource(R.drawable.ic_profile);
+            imw_profile_photo.setColorFilter(MaterialColors.getColor(this, androidx.appcompat.R.attr.colorPrimary, Color.BLACK));
+            dialogInterface.dismiss();
+        });
 
         dialog.show();
     }

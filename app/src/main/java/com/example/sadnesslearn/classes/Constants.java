@@ -5,6 +5,7 @@ public class Constants {
     public static final String BLOCK_TASK_KEY = "BlockTask";
     public static final String CODE_TASK_KEY = "CodeTask";
     public static final String COMICS_KEY = "Comics";
+    public static final String PROFILE_PHOTOS_FOLDER = "ProfilePhotos";
 
     //Preferences
     public static final String APP_PREFERENCES = "sadnessSettings";
