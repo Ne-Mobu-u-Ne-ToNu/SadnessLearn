@@ -36,7 +36,6 @@
                     android:id="@+id/imw_profile_photo"
                     android:padding="5dp"
                     android:scaleType="fitXY"
-                    app:contentPadding="15dp"
                     app:shapeAppearanceOverlay="@style/roundedImageView"
                     app:strokeWidth="3dp"
                     app:strokeColor="@color/black"
