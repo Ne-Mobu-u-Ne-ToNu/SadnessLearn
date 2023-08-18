@@ -90,6 +90,19 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lin_lay_profile_delete_photo"
+                    style="@style/LinLaySettingsButton">
+
+                    <TextView
+                        style="@style/TextViewSettingsButton"
+                        android:text="@string/delete_photo"/>
+
+                    <ImageView
+                        style="@style/ImageViewSettingsButton"
+                        android:src="@drawable/ic_star" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/lin_lay_profile_change_mail"
                     style="@style/LinLaySettingsButton">
 
