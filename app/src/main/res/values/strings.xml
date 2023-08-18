@@ -64,11 +64,14 @@
     <string name="greeting_message">Добро пожаловать,</string>
     <string name="exit">Выход</string>
     <string name="sure_to_change_photo">Вы действительно хотите изменить фото профиля?</string>
+    <string name="sure_to_delete_photo">Вы действительно хотите удалить фото профиля?</string>
     <string name="sure_to_exit">Вы действительно хотите выйти из аккаунта?</string>
     <string name="sure_to_delete">Вы действительно хотите удалить свою учётную запись?</string>
     <string name="choose_interf_lang">Выберите язык интерфейса</string>
     <string name="photo_uploading">Фото загружается, пожалуйста, подождите</string>
     <string name="error_uploading_photo">Ошибка при загрузке фото</string>
+    <string name="photo_deleting">Фото удаляется, пожалуйста, подождите</string>
+    <string name="error_deleting_photo">Ошибка при удалении фото</string>
 
     <string-array name="interface_langs">
         <item>Русский</item>

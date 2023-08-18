@@ -67,6 +67,11 @@ public class Profile extends AppCompatActivity {
             getImage();
         });
 
+        LinearLayout lin_lay_delete_photo = findViewById(R.id.lin_lay_profile_delete_photo);
+        lin_lay_delete_photo.setOnClickListener(view -> {
+            showPhotoDeleteWindow();
+        });
+
         LinearLayout lin_lay_change_mail = findViewById(R.id.lin_lay_profile_change_mail);
         lin_lay_change_mail.setOnClickListener(view -> {
             showMailWindow();
@@ -180,6 +185,32 @@ public class Profile extends AppCompatActivity {
                 }
             } else {
                 UserProfileInformation.uploadError(Profile.this, alertDialog);
+            }
+        });
+    }
+
+    /*
+    -------------------Реализация удаления фото профиля---------------------------------------------
+     */
+
+    private void showPhotoDeleteWindow() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle(getResources().getString(R.string.delete_photo));
+        dialog.setMessage(getResources().getString(R.string.sure_to_delete_photo));
+
+        dialog.setPositiveButton(getResources().getString(R.string.yes), null);
+
+        dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> {
+            dialogInterface.dismiss();
+        });
+
+        AlertDialog alertDialog = dialog.create();
+        alertDialog.show();
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
+            if (UserAuthentification.isNetworkAvailable(Profile.this)) {
+                    Toast.makeText(Profile.this, Profile.this.getResources().getString(R.string.photo_deleting), Toast.LENGTH_SHORT).show();
+            } else {
+                UserProfileInformation.deleteError(Profile.this, alertDialog);
             }
         });
     }

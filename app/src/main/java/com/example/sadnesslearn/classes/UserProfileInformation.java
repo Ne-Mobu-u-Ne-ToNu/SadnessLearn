@@ -32,7 +32,7 @@ public class UserProfileInformation {
     private static final DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY).child(UserAuthentification.getUID());
     private static Uri uploadUri;
     public static void uploadProfilePhoto(Uri photo, Activity context, AlertDialog dialog) throws IOException {
-        deleteProfilePhoto(dialog, false);
+        deleteProfilePhoto(dialog, Constants.UPDATE_PROFILE_PHOTO);
         StorageReference mRef = storageRef.child(System.currentTimeMillis() + "_profile_photo");
         UploadTask uploadTask = mRef.putFile(photo);
         uploadTask.continueWithTask(task1 -> mRef.getDownloadUrl()).addOnCompleteListener(task12 -> {
@@ -100,6 +100,11 @@ public class UserProfileInformation {
                 }
             }
         });
+    }
+
+    public static void deleteError(Activity context, AlertDialog dialog) {
+        Toast.makeText(context, context.getResources().getString(R.string.error_deleting_photo), Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
     }
 
     public static class ProfilePhoto {

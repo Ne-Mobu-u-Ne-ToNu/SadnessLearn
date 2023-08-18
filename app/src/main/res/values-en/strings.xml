@@ -60,11 +60,14 @@
     <string name="greeting_message">Welcome,</string>
     <string name="exit">Log out</string>
     <string name="sure_to_change_photo">Are you sure you want to change your profile photo?</string>
+    <string name="sure_to_delete_photo">Are you sure you want to delete your profile photo?</string>
     <string name="sure_to_exit">Are you sure you want to log out of your account?</string>
     <string name="sure_to_delete">Are you sure you want to delete your account?</string>
     <string name="choose_interf_lang">Select interface language</string>
     <string name="photo_uploading">Photo is uploading, please wait</string>
     <string name="error_uploading_photo">Error uploading the photo</string>
+    <string name="photo_deleting">Photo is deleting, please wait</string>
+    <string name="error_deleting_photo">Error deleting the photo</string>
 
     <string-array name="interface_langs">
         <item>Russian</item>
