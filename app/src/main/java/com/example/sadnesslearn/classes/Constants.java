@@ -6,6 +6,10 @@ public class Constants {
     public static final String CODE_TASK_KEY = "CodeTask";
     public static final String COMICS_KEY = "Comics";
     public static final String PROFILE_PHOTOS_FOLDER = "ProfilePhotos";
+    public static final String USERS_KEY = "Users";
+    public static final String PROFILE_PHOTO_KEY = "profilePhoto";
+    public static final boolean DELETE_PROFILE_PHOTO = true;
+    public static final boolean UPDATE_PROFILE_PHOTO = false;
 
     //Preferences
     public static final String APP_PREFERENCES = "sadnessSettings";

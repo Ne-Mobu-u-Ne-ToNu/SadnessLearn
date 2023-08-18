@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
@@ -22,6 +24,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.Objects;
 
 public class UserAuthentification {
     private static FirebaseAuth mAuth;
@@ -56,6 +60,11 @@ public class UserAuthentification {
     public static void signOut(){
         mAuth = FirebaseAuth.getInstance();
         mAuth.signOut();
+    }
+
+    public static String getUID() {
+        mAuth = FirebaseAuth.getInstance();
+        return Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
     }
 
     public static String getUserName() {
@@ -223,5 +232,20 @@ public class UserAuthentification {
             tv_match_passw.setTextColor(text_color);
             tv_match_passw.setText(context.getResources().getString(R.string.password_length));
         }
+    }
+
+    public static boolean isNetworkAvailable(Activity context) {
+        try {
+            ConnectivityManager cm = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+
+            if (networkInfo != null && networkInfo.isConnected()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -62,6 +62,8 @@
     <string name="sure_to_exit">Are you sure you want to log out of your account?</string>
     <string name="sure_to_delete">Are you sure you want to delete your account?</string>
     <string name="choose_interf_lang">Select interface language</string>
+    <string name="photo_uploading">Photo is uploading, please wait</string>
+    <string name="error_uploading_photo">Error uploading the photo</string>
 
     <string-array name="interface_langs">
         <item>Russian</item>

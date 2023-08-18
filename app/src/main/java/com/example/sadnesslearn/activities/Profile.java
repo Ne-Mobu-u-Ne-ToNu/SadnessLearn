@@ -1,18 +1,12 @@
 package com.example.sadnesslearn.activities;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.widget.ImageViewCompat;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
@@ -23,15 +17,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import com.example.sadnesslearn.classes.UserProfileInformation;
-import com.google.android.material.color.MaterialColors;
-
 import java.io.IOException;
-import java.net.URI;
 import java.util.Objects;
 
 public class Profile extends AppCompatActivity {
@@ -63,6 +53,7 @@ public class Profile extends AppCompatActivity {
         tv_user_mail.setText(UserAuthentification.getUserMail());
 
         imw_profile_photo = findViewById(R.id.imw_profile_photo);
+        UserProfileInformation.setProfilePhoto(imw_profile_photo, this);
     }
 
     private void settingsButtonsActions() {
@@ -169,28 +160,28 @@ public class Profile extends AppCompatActivity {
         dialog.setTitle(getResources().getString(R.string.change_photo));
         dialog.setMessage(getResources().getString(R.string.sure_to_change_photo));
 
-        dialog.setPositiveButton(getResources().getString(R.string.yes), (dialogInterface, i) -> {
-            if (profilePhotoURI != null) {
-                ImageViewCompat.setImageTintList(imw_profile_photo, null);
-                imw_profile_photo.setColorFilter(null);
-                imw_profile_photo.setImageURI(profilePhotoURI);
-
-                try {
-                    UserProfileInformation.uploadProfilePhoto(profilePhotoURI, this);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
+        dialog.setPositiveButton(getResources().getString(R.string.yes), null);
 
         dialog.setNegativeButton(getResources().getString(R.string.cancel), (dialogInterface, i) -> {
             profilePhotoURI = null;
-            imw_profile_photo.setImageResource(R.drawable.ic_profile);
-            imw_profile_photo.setColorFilter(MaterialColors.getColor(this, androidx.appcompat.R.attr.colorPrimary, Color.BLACK));
             dialogInterface.dismiss();
         });
 
-        dialog.show();
+        AlertDialog alertDialog = dialog.create();
+        alertDialog.show();
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
+            if (profilePhotoURI != null && UserAuthentification.isNetworkAvailable(Profile.this)) {
+                try {
+                    Toast.makeText(Profile.this, Profile.this.getResources().getString(R.string.photo_uploading), Toast.LENGTH_SHORT).show();
+                    UserProfileInformation.uploadProfilePhoto(profilePhotoURI, Profile.this, alertDialog);
+                } catch (IOException e) {
+                    UserProfileInformation.uploadError(Profile.this, alertDialog);
+                    throw new RuntimeException(e);
+                }
+            } else {
+                UserProfileInformation.uploadError(Profile.this, alertDialog);
+            }
+        });
     }
 
     private void showMailWindow() {
