@@ -1,6 +1,5 @@
 package com.example.sadnesslearn.classes;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.net.Uri;
@@ -23,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.firebase.storage.internal.StorageReferenceUri;
 
 import java.io.IOException;
 
@@ -32,7 +30,7 @@ public class UserProfileInformation {
     private static final DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY).child(UserAuthentification.getUID());
     private static Uri uploadUri;
     public static void uploadProfilePhoto(Uri photo, Activity context, AlertDialog dialog) throws IOException {
-        deleteProfilePhoto(dialog, Constants.UPDATE_PROFILE_PHOTO);
+        deleteProfilePhoto(context, dialog, Constants.UPDATE_PROFILE_PHOTO);
         StorageReference mRef = storageRef.child(System.currentTimeMillis() + "_profile_photo");
         UploadTask uploadTask = mRef.putFile(photo);
         uploadTask.continueWithTask(task1 -> mRef.getDownloadUrl()).addOnCompleteListener(task12 -> {
@@ -80,23 +78,36 @@ public class UserProfileInformation {
         dialog.dismiss();
     }
 
-    public static void deleteProfilePhoto(AlertDialog dialog, boolean action) {
-        databaseRef.child(Constants.PROFILE_PHOTO_KEY).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (task.isSuccessful()) {
-                    ProfilePhoto photo = task.getResult().getValue(ProfilePhoto.class);
-                    if (photo != null) {
-                        StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(photo.ref);
-                        reference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
+    public static void deleteProfilePhoto(Activity context, AlertDialog dialog, boolean action) {
+        databaseRef.child(Constants.PROFILE_PHOTO_KEY).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                ProfilePhoto photo = task.getResult().getValue(ProfilePhoto.class);
+                if (photo != null) {
+                    StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(photo.ref);
+                    reference.delete().addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful() && action) {
+                            deleteProfilePhotoDB(context, dialog);
+                        } else if (action && !task.isSuccessful()) {
+                            deleteError(context, dialog);
+                        }
+                    });
+                } else if (action) {
+                    deleteError(context, dialog);
+                }
+            } else if (action) {
+                deleteError(context, dialog);
+            }
+        });
+    }
 
-                                }
-                            }
-                        });
-                    }
+    private static void deleteProfilePhotoDB(Activity context, AlertDialog dialog) {
+        databaseRef.child(Constants.PROFILE_PHOTO_KEY).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    dialog.dismiss();
+                } else {
+                    deleteError(context, dialog);
                 }
             }
         });

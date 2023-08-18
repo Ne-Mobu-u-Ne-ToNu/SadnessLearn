@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import com.example.sadnesslearn.classes.UserProfileInformation;
@@ -209,6 +210,7 @@ public class Profile extends AppCompatActivity {
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
             if (UserAuthentification.isNetworkAvailable(Profile.this)) {
                     Toast.makeText(Profile.this, Profile.this.getResources().getString(R.string.photo_deleting), Toast.LENGTH_SHORT).show();
+                    UserProfileInformation.deleteProfilePhoto(Profile.this, alertDialog, Constants.DELETE_PROFILE_PHOTO);
             } else {
                 UserProfileInformation.deleteError(Profile.this, alertDialog);
             }
