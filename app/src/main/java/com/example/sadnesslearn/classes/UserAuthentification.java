@@ -13,17 +13,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
 import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.activities.Authentification;
-import com.example.sadnesslearn.activities.MainPage;
-import com.example.sadnesslearn.activities.Profile;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
 
@@ -90,26 +88,59 @@ public class UserAuthentification {
     }
 
     public static void deleteAccount(Activity context) {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance()
+                .getReference(Constants.USERS_KEY).child(UserAuthentification.getUID());
 
-        assert user != null;
-        user.delete()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        signOut();
-                        Toast.makeText(context, context.getResources().getString(R.string.account_deleted), Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(context, Authentification.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(i);
-                        context.finish();
-                    }
-                    else {
-                        Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        databaseRef.child(Constants.PROFILE_PHOTO_KEY).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                UserProfileInformation.ProfilePhoto photo = task.getResult().getValue(UserProfileInformation.ProfilePhoto.class);
+                if (photo != null) {
+                    StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(photo.ref);
+                    reference.delete().addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful()) {
+                            deleteUser(context);
+                        } else if (!task.isSuccessful()) {
+                            Toast.makeText(context, context.getResources().getString(R.string.error_deleting_photo), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    deleteUser(context);
+                }
+            } else {
+                deleteUser(context);
+            }
+        });
+
+    }
+
+    private static void deleteUser(Activity context) {
+        DatabaseReference fullDatabaseRef = FirebaseDatabase.getInstance()
+                .getReference(Constants.USERS_KEY).child(UserAuthentification.getUID());
+        fullDatabaseRef.removeValue().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
+                assert user != null;
+                user.delete()
+                        .addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                signOut();
+                                Toast.makeText(context, context.getResources().getString(R.string.account_deleted), Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(context, Authentification.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(i);
+                                context.finish();
+                            }
+                            else {
+                                Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            } else {
+                Toast.makeText(context, context.getResources().getString(R.string.error_try_sign_in), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public static void changeUserMail(String email, Activity context) {
