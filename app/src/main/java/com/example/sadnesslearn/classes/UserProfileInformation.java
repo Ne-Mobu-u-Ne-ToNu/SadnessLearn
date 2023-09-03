@@ -26,10 +26,12 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 
 public class UserProfileInformation {
-    private static final StorageReference storageRef = FirebaseStorage.getInstance().getReference(Constants.PROFILE_PHOTOS_FOLDER);
-    private static final DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY).child(UserAuthentification.getUID());
+    private static StorageReference storageRef;
+    private static DatabaseReference databaseRef;
     private static Uri uploadUri;
     public static void uploadProfilePhoto(Uri photo, Activity context, AlertDialog dialog) throws IOException {
+        storageRef = getStorageRef();
+        databaseRef = getDatabaseRef();
         deleteProfilePhoto(context, dialog, Constants.UPDATE_PROFILE_PHOTO);
         StorageReference mRef = storageRef.child(System.currentTimeMillis() + "_profile_photo");
         UploadTask uploadTask = mRef.putFile(photo);
@@ -50,6 +52,7 @@ public class UserProfileInformation {
     }
 
     public static void setProfilePhoto(ImageView imw_profile_photo, Activity context) {
+        databaseRef = getDatabaseRef();
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -79,6 +82,7 @@ public class UserProfileInformation {
     }
 
     public static void deleteProfilePhoto(Activity context, AlertDialog dialog, boolean action) {
+        databaseRef = getDatabaseRef();
         databaseRef.child(Constants.PROFILE_PHOTO_KEY).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 ProfilePhoto photo = task.getResult().getValue(ProfilePhoto.class);
@@ -101,6 +105,7 @@ public class UserProfileInformation {
     }
 
     private static void deleteProfilePhotoDB(Activity context, AlertDialog dialog) {
+        databaseRef = getDatabaseRef();
         databaseRef.child(Constants.PROFILE_PHOTO_KEY).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -117,6 +122,15 @@ public class UserProfileInformation {
         Toast.makeText(context, context.getResources().getString(R.string.error_deleting_photo), Toast.LENGTH_SHORT).show();
         dialog.dismiss();
     }
+
+    private static StorageReference getStorageRef() {
+        return FirebaseStorage.getInstance().getReference(Constants.PROFILE_PHOTOS_FOLDER);
+    }
+
+    private static DatabaseReference getDatabaseRef() {
+        return FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY).child(UserAuthentification.getUID());
+    }
+
 
     public static class ProfilePhoto {
         public String link, ref;
