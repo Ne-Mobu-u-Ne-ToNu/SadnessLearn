@@ -19,6 +19,8 @@ import com.example.sadnesslearn.R;
 import com.example.sadnesslearn.classes.BottomSheetBehaviorNoSwipe;
 import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.OptionRecyclerViewAdapter;
+import com.example.sadnesslearn.classes.TaskSolved;
+import com.example.sadnesslearn.classes.UserAuthentification;
 import com.example.sadnesslearn.classes.languages.CompilerApi;
 import com.example.sadnesslearn.classes.languages.JavaSyntaxManager;
 import com.example.sadnesslearn.classes.languages.SyntaxManager;
@@ -38,12 +40,14 @@ public class TaskSolve extends Fragment {
     private RecyclerView rv_solve;
     private OptionRecyclerViewAdapter adapter;
     private CodeView cv_code;
+    private final int task_number;
 
-    public TaskSolve(String task_code, String task_test, String task_id, String task_options){
+    public TaskSolve(String task_code, String task_test, String task_id, String task_options, int task_number){
         this.task_code = task_code;
         this.task_test = task_test;
         this.task_id = task_id;
         this.task_options = task_options;
+        this.task_number = task_number;
     }
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -100,18 +104,19 @@ public class TaskSolve extends Fragment {
             task_code = buf.substring(0, buf.lastIndexOf('}')) + task_test;
             tv_result.setText(CompilerApi.compileAndRun(task_code, syntaxManager.getLanguage(), syntaxManager.getVersionIndex()));
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            checkAndWriteSolved(task_key, task_id, tv_result.getText().toString());
+            checkAndWriteSolved(task_key, task_id, task_number, tv_result.getText().toString());
         });
 
         return view;
     }
 
-    private void checkAndWriteSolved(String task_key, String child, String codeResult){
-        DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
+    private void checkAndWriteSolved(String task_key, String child, int task_number, String codeResult){
+        DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY)
+                .child(UserAuthentification.getUID()).child(task_key);
         String SOLVED = "Задание выполнено!";
         boolean isSolved = codeResult.contains(SOLVED);
 
-        mDataBase.child(task_key).child(child).child("isSolved").setValue(isSolved);
+        mDataBase.child(child).setValue(new TaskSolved(task_number, isSolved));
     }
 
     private void fillOptions(View v) {

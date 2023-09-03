@@ -21,6 +21,7 @@ public class SolveTask extends AppCompatActivity {
     private ViewPager2 vp2_solve_code_task;
     private SolveAdapter sca;
     private String task_text, task_code, task_test, task_id, task_options;
+    private int task_number;
     private static String taskType;
 
     @Override
@@ -51,15 +52,16 @@ public class SolveTask extends AppCompatActivity {
         task_code = getIntent().getStringExtra("task_code");
         task_code = task_code.replace("\\n", "\n");
         task_test = getIntent().getStringExtra("task_test");
+        task_number = getIntent().getIntExtra("task_number", -1);
     }
 
     private void initCode() {
-        sca = new SolveAdapter(this, task_text, task_code, task_test, task_id);
+        sca = new SolveAdapter(this, task_text, task_code, task_test, task_id, task_number);
     }
 
     private void initBlock() {
         task_options = getIntent().getStringExtra("task_options");
-        sca = new SolveAdapter(this, task_text, task_code, task_test, task_id, task_options);
+        sca = new SolveAdapter(this, task_text, task_code, task_test, task_id, task_options, task_number);
     }
 
     private void scenario(String taskType) {

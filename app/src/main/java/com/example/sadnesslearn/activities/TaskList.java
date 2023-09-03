@@ -15,6 +15,9 @@ import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.TaskItem;
 import com.example.sadnesslearn.classes.TaskListArrayAdapter;
+import com.example.sadnesslearn.classes.TaskSolved;
+import com.example.sadnesslearn.classes.UserAuthentification;
+import com.example.sadnesslearn.classes.UserProfileInformation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,10 +35,12 @@ public class TaskList extends AppCompatActivity {
     private List<TaskItem> listData;
     private Map<Integer, CodeTask> mapListCodeTask;
     private Map<Integer, BlockTask> mapListBlockTask;
+    private Map<Integer, Boolean> mapListTaskSolved;
     private static String taskType;
     private Intent intent;
     private TaskListArrayAdapter adapter;
     private DatabaseReference mDataBase;
+    private DatabaseReference mDataBaseSolved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,15 +69,20 @@ public class TaskList extends AppCompatActivity {
         listData = new ArrayList<>();
         adapter = new TaskListArrayAdapter(this, listData);
         listTasks.setAdapter(adapter);
+        mapListTaskSolved = new HashMap<>();
     }
 
     private void initCode(){
         mDataBase = FirebaseDatabase.getInstance().getReference(Constants.CODE_TASK_KEY);
+        mDataBaseSolved = FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY)
+                .child(UserAuthentification.getUID()).child(Constants.CODE_TASK_KEY);
         mapListCodeTask = new HashMap<>();
     }
 
     private void initBlock() {
         mDataBase = FirebaseDatabase.getInstance().getReference(Constants.BLOCK_TASK_KEY);
+        mDataBaseSolved = FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY)
+                .child(UserAuthentification.getUID()).child(Constants.BLOCK_TASK_KEY);
         mapListBlockTask = new HashMap<>();
     }
 
@@ -85,6 +95,7 @@ public class TaskList extends AppCompatActivity {
             intent.putExtra("task_text", task.getText());
             intent.putExtra("task_code", task.getCode());
             intent.putExtra("task_test", task.getTest());
+            intent.putExtra("task_number", task.getNumber());
             startActivity(intent);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
@@ -100,6 +111,7 @@ public class TaskList extends AppCompatActivity {
             intent.putExtra("task_code", task.getCode());
             intent.putExtra("task_test", task.getTest());
             intent.putExtra("task_options", task.getOptions());
+            intent.putExtra("task_number", task.getNumber());
             startActivity(intent);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
@@ -109,15 +121,45 @@ public class TaskList extends AppCompatActivity {
         switch (taskType) {
             case "code":
                 initCode();
-                getCodeTaskFromDB();
+                getTaskSolvedFromDB(taskType);
                 goSolveCode();
                 break;
             case "block":
                 initBlock();
-                getBlockTaskFromDB();
+                getTaskSolvedFromDB(taskType);
                 goSolveBlock();
                 break;
         }
+    }
+
+    private void getTaskSolvedFromDB(String taskType) {
+        ValueEventListener vListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(mapListTaskSolved.size() > 0) mapListTaskSolved.clear();
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    TaskSolved task =  ds.getValue(TaskSolved.class);
+                    assert task != null;
+                    mapListTaskSolved.put(task.getNumber() - 1, task.getIsSolved());
+                }
+
+                switch (taskType) {
+                    case "code":
+                        getCodeTaskFromDB();
+                        break;
+                    case "block":
+                        getBlockTaskFromDB();
+                        break;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        mDataBaseSolved.addValueEventListener(vListener);
+        adapter.notifyDataSetChanged();
     }
 
     private void getCodeTaskFromDB(){
@@ -128,6 +170,12 @@ public class TaskList extends AppCompatActivity {
                 for(DataSnapshot ds : snapshot.getChildren()){
                     CodeTask task =  ds.getValue(CodeTask.class);
                     assert task != null;
+
+                    if (mapListTaskSolved.get(task.getNumber() - 1) != null &&
+                            !Boolean.FALSE.equals(mapListTaskSolved.get(task.getNumber() - 1))) {
+                        task.setIsSolved(true);
+                    }
+
                     mapListCodeTask.put(task.getNumber() - 1, task);
                 }
                 updateCodeTaskList();
@@ -150,6 +198,12 @@ public class TaskList extends AppCompatActivity {
                 for(DataSnapshot ds : snapshot.getChildren()){
                     BlockTask task =  ds.getValue(BlockTask.class);
                     assert task != null;
+
+                    if (mapListTaskSolved.get(task.getNumber() - 1) != null &&
+                            !Boolean.FALSE.equals(mapListTaskSolved.get(task.getNumber() - 1))) {
+                        task.setIsSolved(true);
+                    }
+
                     mapListBlockTask.put(task.getNumber() - 1, task);
                 }
                 updateBlockTaskList();

@@ -55,6 +55,10 @@ public class Profile extends AppCompatActivity {
 
         imw_profile_photo = findViewById(R.id.imw_profile_photo);
         UserProfileInformation.setProfilePhoto(imw_profile_photo, this);
+
+        String id = UserAuthentification.getUID();
+        int a = 5;
+
     }
 
     private void settingsButtonsActions() {

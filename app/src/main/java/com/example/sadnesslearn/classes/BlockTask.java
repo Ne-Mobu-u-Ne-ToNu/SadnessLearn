@@ -7,11 +7,11 @@ public class BlockTask {
 
     public BlockTask() {}
 
-    public BlockTask(String code, String id, boolean isSolved, String name, int number,
+    public BlockTask(String code, String id, String name, int number,
                      String options, String test, String text) {
         this.code = code;
         this.id = id;
-        this.isSolved = isSolved;
+        this.isSolved = false;
         this.name = name;
         this.number = number;
         this.options = options;
@@ -34,4 +34,8 @@ public class BlockTask {
     public String getTest() { return this.test; }
 
     public String getText() { return this.text; }
+
+    public void setIsSolved(boolean isSolved) {
+        this.isSolved = isSolved;
+    }
 }

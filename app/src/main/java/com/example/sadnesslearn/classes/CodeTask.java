@@ -9,10 +9,10 @@ public class CodeTask {
 
     }
 
-    public CodeTask(String code, String id, boolean isSolved, String name, int number, String test, String text){
+    public CodeTask(String code, String id, String name, int number, String test, String text){
         this.code = code;
         this.id = id;
-        this.isSolved = isSolved;
+        this.isSolved = false;
         this.name = name;
         this.number = number;
         this.test = test;
@@ -39,5 +39,9 @@ public class CodeTask {
 
     public int getNumber(){
         return this.number;
+    }
+
+    public void setIsSolved(boolean isSolved) {
+        this.isSolved = isSolved;
     }
 }
