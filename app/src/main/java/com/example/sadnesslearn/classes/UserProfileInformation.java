@@ -11,8 +11,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.widget.ImageViewCompat;
 import com.bumptech.glide.Glide;
 import com.example.sadnesslearn.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.color.MaterialColors;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,11 +24,10 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 
 public class UserProfileInformation {
-    private static StorageReference storageRef;
     private static DatabaseReference databaseRef;
     private static Uri uploadUri;
     public static void uploadProfilePhoto(Uri photo, Activity context, AlertDialog dialog) throws IOException {
-        storageRef = getStorageRef();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference(Constants.PROFILE_PHOTOS_FOLDER);
         databaseRef = getDatabaseRef();
         deleteProfilePhoto(context, dialog, Constants.UPDATE_PROFILE_PHOTO);
         StorageReference mRef = storageRef.child(System.currentTimeMillis() + "_profile_photo");
@@ -106,14 +103,11 @@ public class UserProfileInformation {
 
     private static void deleteProfilePhotoDB(Activity context, AlertDialog dialog) {
         databaseRef = getDatabaseRef();
-        databaseRef.child(Constants.PROFILE_PHOTO_KEY).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    dialog.dismiss();
-                } else {
-                    deleteError(context, dialog);
-                }
+        databaseRef.child(Constants.PROFILE_PHOTO_KEY).removeValue().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                dialog.dismiss();
+            } else {
+                deleteError(context, dialog);
             }
         });
     }
@@ -121,10 +115,6 @@ public class UserProfileInformation {
     public static void deleteError(Activity context, AlertDialog dialog) {
         Toast.makeText(context, context.getResources().getString(R.string.error_deleting_photo), Toast.LENGTH_SHORT).show();
         dialog.dismiss();
-    }
-
-    private static StorageReference getStorageRef() {
-        return FirebaseStorage.getInstance().getReference(Constants.PROFILE_PHOTOS_FOLDER);
     }
 
     private static DatabaseReference getDatabaseRef() {
