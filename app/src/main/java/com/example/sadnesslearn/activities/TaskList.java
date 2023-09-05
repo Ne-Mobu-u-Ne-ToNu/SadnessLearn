@@ -9,15 +9,14 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.example.sadnesslearn.R;
-import com.example.sadnesslearn.classes.BlockTask;
-import com.example.sadnesslearn.classes.CodeTask;
+import com.example.sadnesslearn.classes.Tasks.BlockTask;
+import com.example.sadnesslearn.classes.Tasks.CodeTask;
 import com.example.sadnesslearn.classes.Constants;
 import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.TaskItem;
 import com.example.sadnesslearn.classes.TaskListArrayAdapter;
 import com.example.sadnesslearn.classes.TaskSolved;
 import com.example.sadnesslearn.classes.UserAuthentification;
-import com.example.sadnesslearn.classes.UserProfileInformation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
