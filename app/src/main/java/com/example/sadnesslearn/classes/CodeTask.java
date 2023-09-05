@@ -1,47 +1,52 @@
 package com.example.sadnesslearn.classes;
 
+import com.example.sadnesslearn.classes.languages.LocaleLanguages;
+
+import java.sql.Struct;
+
 public class CodeTask {
-    private String code, id, name, test, text;
+    public String code, id, nameRu, nameEn, test, textRu, textEn;
+    private String name, text;
     private boolean isSolved;
-    private int number;
+    public int number;
 
     public CodeTask(){
-
-    }
-
-    public CodeTask(String code, String id, String name, int number, String test, String text){
-        this.code = code;
-        this.id = id;
         this.isSolved = false;
-        this.name = name;
-        this.number = number;
-        this.test = test;
-        this.text = text;
-    }
-
-    public String getCode() { return this.code; }
-
-    public String getId(){
-        return this.id;
     }
 
     public boolean getIsSolved() { return this.isSolved; }
 
-    public String getName(){
+    public void setIsSolved(boolean isSolved) {
+        this.isSolved = isSolved;
+    }
+
+    public String getName() {
         return this.name;
     }
 
-    public String getText(){
+    public void setName(LocaleLanguages locale) {
+        switch (locale) {
+            case ENGLISH:
+                name = nameEn;
+                break;
+            default:
+                name = nameRu;
+                break;
+        }
+    }
+
+    public String getText() {
         return this.text;
     }
 
-    public String getTest() { return this.test; }
-
-    public int getNumber(){
-        return this.number;
-    }
-
-    public void setIsSolved(boolean isSolved) {
-        this.isSolved = isSolved;
+    public void setText(LocaleLanguages locale) {
+        switch (locale) {
+            case ENGLISH:
+                text = textEn;
+                break;
+            default:
+                text = textRu;
+                break;
+        }
     }
 }

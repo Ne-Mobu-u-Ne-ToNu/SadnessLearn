@@ -6,8 +6,10 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 
 import com.example.sadnesslearn.R;
+import com.example.sadnesslearn.classes.languages.LocaleLanguages;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class SettingsHelper {
     private static SharedPreferences sadnessSettings;
@@ -30,12 +32,12 @@ public class SettingsHelper {
         editor.apply();
     }
 
-    public static String getStringLocaleFromPosition(int position) {
+    public static LocaleLanguages getLocaleFromPosition(int position) {
         switch (position) {
             case 1:
-                return "en";
+                return LocaleLanguages.ENGLISH;
             default:
-                return "ru";
+                return LocaleLanguages.RUSSIAN;
         }
     }
 
@@ -44,9 +46,11 @@ public class SettingsHelper {
         return sadnessSettings.contains(Constants.APP_PREFERENCES_LANG);
     }
 
-    public static String getStringLocaleFromPreferences(Context context) {
+    public static LocaleLanguages getLocaleFromPreferences(Context context) {
         sadnessSettings = context.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
-        return sadnessSettings.getString(Constants.APP_PREFERENCES_LANG, "");
+        return LocaleLanguages.getLocale(
+                Objects.requireNonNull(sadnessSettings.getString(Constants.APP_PREFERENCES_LANG,
+                        String.valueOf(context.getResources().getConfiguration().locale))));
     }
 
     public static void saveTheme(Context context, int themeId) {
@@ -114,7 +118,7 @@ public class SettingsHelper {
     }
 
     public static boolean settingsChanged(Context context) {
-        if (oldLocale != null && !oldLocale.equals(getStringLocaleFromPreferences(context))) {
+        if (oldLocale != null && !oldLocale.equals(getLocaleFromPreferences(context).getTitle())) {
             oldLocale = null;
             return true;
         }

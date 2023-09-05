@@ -1,41 +1,47 @@
 package com.example.sadnesslearn.classes;
 
+import com.example.sadnesslearn.classes.languages.LocaleLanguages;
+
 public class BlockTask {
-    private String code, id, name, options, test, text;
+    public String code, id, nameRu, nameEn, options, test, textRu, textEn;
+    private String name, text;
     private boolean isSolved;
-    private int number;
+    public int number;
 
     public BlockTask() {}
 
-    public BlockTask(String code, String id, String name, int number,
-                     String options, String test, String text) {
-        this.code = code;
-        this.id = id;
-        this.isSolved = false;
-        this.name = name;
-        this.number = number;
-        this.options = options;
-        this.test = test;
-        this.text = text;
-    }
-
-    public String getCode() { return this.code; }
-
-    public String getId() { return this.id; }
-
     public boolean getIsSolved() { return this.isSolved; }
-
-    public String getName() { return this.name; }
-
-    public int getNumber() { return this.number; }
-
-    public String getOptions() { return this.options; }
-
-    public String getTest() { return this.test; }
-
-    public String getText() { return this.text; }
 
     public void setIsSolved(boolean isSolved) {
         this.isSolved = isSolved;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+    public void setName(LocaleLanguages locale) {
+        switch (locale) {
+            case ENGLISH:
+                name = nameEn;
+                break;
+            default:
+                name = nameRu;
+                break;
+        }
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public void setText(LocaleLanguages locale) {
+        switch (locale) {
+            case ENGLISH:
+                text = textEn;
+                break;
+            default:
+                text = textRu;
+                break;
+        }
     }
 }

@@ -90,7 +90,7 @@ public class Settings extends AppCompatActivity implements ColorPickerDialogList
         });
 
         dialog.setPositiveButton(getResources().getString(R.string.ok), (dialogInterface, i) -> {
-            String locale = SettingsHelper.getStringLocaleFromPosition(adapter.getSelectedPosition());
+            String locale = SettingsHelper.getLocaleFromPosition(adapter.getSelectedPosition()).getTitle();
             SettingsHelper.saveLocale(locale, this);
             SettingsHelper.changeLocale(locale, this);
             recreate();

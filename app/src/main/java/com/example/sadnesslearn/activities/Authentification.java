@@ -53,7 +53,7 @@ public class Authentification extends AppCompatActivity {
         }
 
         if (SettingsHelper.localeExists(this)) {
-            SettingsHelper.changeLocale(SettingsHelper.getStringLocaleFromPreferences(this), this);
+            SettingsHelper.changeLocale(SettingsHelper.getLocaleFromPreferences(this).getTitle(), this);
         }
         // Check if user is signed in (non-null) and update UI accordingly.
         if(UserAuthentification.isSignedIn()){

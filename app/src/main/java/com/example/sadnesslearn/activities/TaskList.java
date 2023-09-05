@@ -90,12 +90,12 @@ public class TaskList extends AppCompatActivity {
         listTasks.setOnItemClickListener((adapterView, view, i, l) -> {
             CodeTask task = mapListCodeTask.get(i);
             assert task != null;
-            intent.putExtra("task_id", task.getId());
+            intent.putExtra("task_id", task.id);
             intent.putExtra("task_name", task.getName());
             intent.putExtra("task_text", task.getText());
-            intent.putExtra("task_code", task.getCode());
-            intent.putExtra("task_test", task.getTest());
-            intent.putExtra("task_number", task.getNumber());
+            intent.putExtra("task_code", task.code);
+            intent.putExtra("task_test", task.test);
+            intent.putExtra("task_number", task.number);
             startActivity(intent);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
@@ -105,13 +105,13 @@ public class TaskList extends AppCompatActivity {
         listTasks.setOnItemClickListener((adapterView, view, i, l) -> {
             BlockTask task = mapListBlockTask.get(i);
             assert task != null;
-            intent.putExtra("task_id", task.getId());
+            intent.putExtra("task_id", task.id);
             intent.putExtra("task_name", task.getName());
             intent.putExtra("task_text", task.getText());
-            intent.putExtra("task_code", task.getCode());
-            intent.putExtra("task_test", task.getTest());
-            intent.putExtra("task_options", task.getOptions());
-            intent.putExtra("task_number", task.getNumber());
+            intent.putExtra("task_code", task.code);
+            intent.putExtra("task_test", task.test);
+            intent.putExtra("task_options", task.options);
+            intent.putExtra("task_number", task.number);
             startActivity(intent);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
@@ -170,13 +170,15 @@ public class TaskList extends AppCompatActivity {
                 for(DataSnapshot ds : snapshot.getChildren()){
                     CodeTask task =  ds.getValue(CodeTask.class);
                     assert task != null;
+                    task.setName(SettingsHelper.getLocaleFromPreferences(TaskList.this));
+                    task.setText(SettingsHelper.getLocaleFromPreferences(TaskList.this));
 
-                    if (mapListTaskSolved.get(task.getNumber() - 1) != null &&
-                            !Boolean.FALSE.equals(mapListTaskSolved.get(task.getNumber() - 1))) {
+                    if (mapListTaskSolved.get(task.number - 1) != null &&
+                            !Boolean.FALSE.equals(mapListTaskSolved.get(task.number - 1))) {
                         task.setIsSolved(true);
                     }
 
-                    mapListCodeTask.put(task.getNumber() - 1, task);
+                    mapListCodeTask.put(task.number - 1, task);
                 }
                 updateCodeTaskList();
                 adapter.notifyDataSetChanged();
@@ -196,15 +198,17 @@ public class TaskList extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(mapListBlockTask.size() > 0) mapListBlockTask.clear();
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    BlockTask task =  ds.getValue(BlockTask.class);
+                    BlockTask task = ds.getValue(BlockTask.class);
                     assert task != null;
+                    task.setName(SettingsHelper.getLocaleFromPreferences(TaskList.this));
+                    task.setText(SettingsHelper.getLocaleFromPreferences(TaskList.this));
 
-                    if (mapListTaskSolved.get(task.getNumber() - 1) != null &&
-                            !Boolean.FALSE.equals(mapListTaskSolved.get(task.getNumber() - 1))) {
+                    if (mapListTaskSolved.get(task.number - 1) != null &&
+                            !Boolean.FALSE.equals(mapListTaskSolved.get(task.number - 1))) {
                         task.setIsSolved(true);
                     }
 
-                    mapListBlockTask.put(task.getNumber() - 1, task);
+                    mapListBlockTask.put(task.number - 1, task);
                 }
                 updateBlockTaskList();
                 adapter.notifyDataSetChanged();
