@@ -16,6 +16,7 @@ import com.example.sadnesslearn.classes.SettingsHelper;
 import com.example.sadnesslearn.classes.TaskItem;
 import com.example.sadnesslearn.classes.TaskListArrayAdapter;
 import com.example.sadnesslearn.classes.TaskSolved;
+import com.example.sadnesslearn.classes.Tasks.Task;
 import com.example.sadnesslearn.classes.UserAuthentification;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,8 +33,7 @@ import java.util.Objects;
 public class TaskList extends AppCompatActivity {
     private ListView listTasks;
     private List<TaskItem> listData;
-    private Map<Integer, CodeTask> mapListCodeTask;
-    private Map<Integer, BlockTask> mapListBlockTask;
+    private Map<Integer, Task> mapListTask;
     private Map<Integer, Boolean> mapListTaskSolved;
     private static String taskType;
     private Intent intent;
@@ -69,25 +69,25 @@ public class TaskList extends AppCompatActivity {
         adapter = new TaskListArrayAdapter(this, listData);
         listTasks.setAdapter(adapter);
         mapListTaskSolved = new HashMap<>();
+        mapListTask = new HashMap<>();
     }
 
     private void initCode(){
         mDataBase = FirebaseDatabase.getInstance().getReference(Constants.CODE_TASK_KEY);
         mDataBaseSolved = FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY)
                 .child(UserAuthentification.getUID()).child(Constants.CODE_TASK_KEY);
-        mapListCodeTask = new HashMap<>();
     }
 
     private void initBlock() {
         mDataBase = FirebaseDatabase.getInstance().getReference(Constants.BLOCK_TASK_KEY);
         mDataBaseSolved = FirebaseDatabase.getInstance().getReference(Constants.USERS_KEY)
                 .child(UserAuthentification.getUID()).child(Constants.BLOCK_TASK_KEY);
-        mapListBlockTask = new HashMap<>();
     }
 
-    private void goSolveCode() {
+    private void goSolveTask(String taskType) {
         listTasks.setOnItemClickListener((adapterView, view, i, l) -> {
-            CodeTask task = mapListCodeTask.get(i);
+            Task task = mapListTask.get(i);
+
             assert task != null;
             intent.putExtra("task_id", task.id);
             intent.putExtra("task_name", task.getName());
@@ -95,22 +95,10 @@ public class TaskList extends AppCompatActivity {
             intent.putExtra("task_code", task.code);
             intent.putExtra("task_test", task.test);
             intent.putExtra("task_number", task.number);
-            startActivity(intent);
-            overridePendingTransition(R.anim.right_in, R.anim.left_out);
-        });
-    }
 
-    private void goSolveBlock() {
-        listTasks.setOnItemClickListener((adapterView, view, i, l) -> {
-            BlockTask task = mapListBlockTask.get(i);
-            assert task != null;
-            intent.putExtra("task_id", task.id);
-            intent.putExtra("task_name", task.getName());
-            intent.putExtra("task_text", task.getText());
-            intent.putExtra("task_code", task.code);
-            intent.putExtra("task_test", task.test);
-            intent.putExtra("task_options", task.options);
-            intent.putExtra("task_number", task.number);
+            if (taskType.equals("block")) {
+                intent.putExtra("task_options", ((BlockTask) Objects.requireNonNull(mapListTask.get(i))).options);
+            }
             startActivity(intent);
             overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
@@ -120,15 +108,13 @@ public class TaskList extends AppCompatActivity {
         switch (taskType) {
             case "code":
                 initCode();
-                getTaskSolvedFromDB(taskType);
-                goSolveCode();
                 break;
             case "block":
                 initBlock();
-                getTaskSolvedFromDB(taskType);
-                goSolveBlock();
                 break;
         }
+        getTaskSolvedFromDB(taskType);
+        goSolveTask(taskType);
     }
 
     private void getTaskSolvedFromDB(String taskType) {
@@ -142,14 +128,7 @@ public class TaskList extends AppCompatActivity {
                     mapListTaskSolved.put(task.getNumber() - 1, task.getIsSolved());
                 }
 
-                switch (taskType) {
-                    case "code":
-                        getCodeTaskFromDB();
-                        break;
-                    case "block":
-                        getBlockTaskFromDB();
-                        break;
-                }
+                getTaskFromDB(taskType);
             }
 
             @Override
@@ -161,13 +140,23 @@ public class TaskList extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private void getCodeTaskFromDB(){
+    private void getTaskFromDB(String taskType){
         ValueEventListener vListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(mapListCodeTask.size() > 0) mapListCodeTask.clear();
+
+                if(mapListTask.size() > 0) mapListTask.clear();
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    CodeTask task =  ds.getValue(CodeTask.class);
+                    Task task = null;
+                    switch (taskType) {
+                        case "code":
+                            task =  ds.getValue(CodeTask.class);
+                            break;
+                        case "block":
+                            task =  ds.getValue(BlockTask.class);
+                            break;
+                    }
+
                     assert task != null;
                     task.setName(SettingsHelper.getLocaleFromPreferences(TaskList.this));
                     task.setText(SettingsHelper.getLocaleFromPreferences(TaskList.this));
@@ -177,9 +166,9 @@ public class TaskList extends AppCompatActivity {
                         task.setIsSolved(true);
                     }
 
-                    mapListCodeTask.put(task.number - 1, task);
+                    mapListTask.put(task.number - 1, task);
                 }
-                updateCodeTaskList();
+                updateTaskList();
                 adapter.notifyDataSetChanged();
             }
 
@@ -191,50 +180,12 @@ public class TaskList extends AppCompatActivity {
         mDataBase.addValueEventListener(vListener);
     }
 
-    private void getBlockTaskFromDB(){
-        ValueEventListener vListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(mapListBlockTask.size() > 0) mapListBlockTask.clear();
-                for(DataSnapshot ds : snapshot.getChildren()){
-                    BlockTask task = ds.getValue(BlockTask.class);
-                    assert task != null;
-                    task.setName(SettingsHelper.getLocaleFromPreferences(TaskList.this));
-                    task.setText(SettingsHelper.getLocaleFromPreferences(TaskList.this));
 
-                    if (mapListTaskSolved.get(task.number - 1) != null &&
-                            !Boolean.FALSE.equals(mapListTaskSolved.get(task.number - 1))) {
-                        task.setIsSolved(true);
-                    }
-
-                    mapListBlockTask.put(task.number - 1, task);
-                }
-                updateBlockTaskList();
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        mDataBase.addValueEventListener(vListener);
-    }
-
-    private void updateCodeTaskList(){
+    private void updateTaskList(){
         if(listData.size() > 0) listData.clear();
-        for(int i = 0; i < mapListCodeTask.size(); i++){
-            TaskItem taskItem = new TaskItem(Objects.requireNonNull(mapListCodeTask.get(i)).getName(),
-                    Objects.requireNonNull(mapListCodeTask.get(i)).getIsSolved());
-            listData.add(taskItem);
-        }
-    }
-
-    private void updateBlockTaskList() {
-        if(listData.size() > 0) listData.clear();
-        for(int i = 0; i < mapListBlockTask.size(); i++){
-            TaskItem taskItem = new TaskItem(Objects.requireNonNull(mapListBlockTask.get(i)).getName(),
-                    Objects.requireNonNull(mapListBlockTask.get(i)).getIsSolved());
+        for(int i = 0; i < mapListTask.size(); i++){
+            TaskItem taskItem = new TaskItem(Objects.requireNonNull(mapListTask.get(i)).getName(),
+                    Objects.requireNonNull(mapListTask.get(i)).getIsSolved());
             listData.add(taskItem);
         }
     }
