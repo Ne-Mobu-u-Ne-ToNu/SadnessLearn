@@ -1,8 +1,5 @@
 # SadnessLearn
 ____
-#### Ссылка на скачивание:
-https://drive.google.com/file/d/1jslEQZrSEPiH-o4W102covTYe7cN15PM/view?usp=share_link
-
 #### Диаграмма Ганта
 <img width="1024" src="https://github.com/Ne-Mobu-u-Ne-ToNu/SadnessLearn/blob/main/Задания_уitп/timegantpng.png">
 
